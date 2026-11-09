@@ -59,6 +59,9 @@ android {
         textOutput = file("build/reports/lint.txt")
         abortOnError = true
         checkReleaseBuilds = true
+        // Daha yeni AndroidX sürümleri compileSdk 37 + AGP 9 istiyor. Proje bilinçli olarak SDK 36'da sabit;
+        // yükseltme ayrı bir adım olarak yapılmalı (README > Bakım).
+        disable += setOf("GradleDependency", "NewerVersionAvailable")
     }
 }
 
@@ -69,9 +72,9 @@ kotlin {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.19.1")
-    implementation("androidx.appcompat:appcompat:1.8.0")
-    implementation("androidx.activity:activity-ktx:1.13.0")
-    implementation("androidx.webkit:webkit:1.18.0")
+    implementation("androidx.core:core-ktx:1.16.0")
+    implementation("androidx.appcompat:appcompat:1.7.1")
+    implementation("androidx.activity:activity-ktx:1.10.1")
+    implementation("androidx.webkit:webkit:1.14.0")
     implementation("com.android.billingclient:billing:8.0.0")
 }

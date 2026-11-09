@@ -104,7 +104,11 @@ Yapım: **selcukyus** · Paket adı: `com.selcuk.azim` · Sürüm 2.0.0 (version
 - **Gizlilik politikası:** https://sinekvalesii.github.io/AzimApp/privacy.html (TR + EN, `docs/` klasöründen GitHub Pages ile yayınlanıyor)
 - **Kapalı test:** Kişisel geliştirici hesaplarında üretime çıkmadan önce 12 test kullanıcısıyla 14 gün kapalı test şartı var. Güncel koşulu Play Console panosundan kontrol et.
 
-## 6. Bilinen sınırlar / sonraki adımlar
+## 6. Bakım
+- Proje compileSdk/targetSdk 36 ile derleniyor (Google Play'in güncel hedef API şartını karşılıyor). AndroidX kütüphanelerinin daha yeni sürümleri compileSdk 37 ve AGP 9 gerektiriyor. Play, hedef API şartını yükselttiğinde (genelde her yıl Ağustos) Android Studio > **Tools > AGP Upgrade Assistant** ile AGP'yi, ardından `compileSdk`/`targetSdk` ve kütüphaneleri birlikte yükselt.
+- Billing Library 8.0.0 kullanılıyor. Google'ın kullanım dışı bırakma takvimini Play Console'dan takip et.
+
+## 7. Bilinen sınırlar / sonraki adımlar
 - **Bulut hesabı, gerçek lig, arkadaş serisi ve çökme raporlama (Crashlytics)** senin Firebase projeni gerektiriyor. Firebase Console'da proje oluşturup `google-services.json` dosyasını gönderdiğinde eklenebilir. O zamana kadar Sezon ekranındaki sıralama "örnek lig" olarak etiketli.
 - Bildirimler birkaç dakika sapabilir; Play, tam zamanlı alarm iznini yalnızca alarm uygulamalarına veriyor.
 - Pil tasarrufu agresif olan telefonlarda (Xiaomi, Huawei, Oppo): Ayarlar > Pil > AZİM > **Kısıtlama yok**.
