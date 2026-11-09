@@ -53,6 +53,13 @@ android {
     buildFeatures {
         buildConfig = true
     }
+
+    lint {
+        textReport = true
+        textOutput = file("stdout")
+        abortOnError = true
+        checkReleaseBuilds = true
+    }
 }
 
 kotlin {
