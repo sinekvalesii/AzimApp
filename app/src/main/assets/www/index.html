@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0908">
+<title>AZİM · 66 Gün</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{--bg:#0a0908;--s1:#131110;--s2:#1a1816;--s3:#221f1c;--ln:#2b2723;--ln2:#3d3832;--tx:#f1ebe2;--mu:#8b837a;--mu2:#5f5952;--or:#ee7a2f;--or2:#a8511d;--or3:#3a2216;--gd:#d6a443;--gn:#62d08e;--rd:#ff6464;--safe-t:env(safe-area-inset-top);--safe-b:env(safe-area-inset-bottom)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{background:#000}
+body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;background:#000;color:var(--tx);font-family:Archivo,system-ui,sans-serif;display:flex;justify-content:center;-webkit-font-smoothing:antialiased}
+input,textarea{-webkit-user-select:text;user-select:text}
+button{font-family:inherit;color:inherit;cursor:pointer}
+.app{width:100%;max-width:440px;min-height:100vh;background:var(--bg);position:relative;padding-top:var(--safe-t);overflow-x:hidden}
+.d{font-stretch:62%;font-weight:900;text-transform:uppercase;line-height:.88}
+.w{font-stretch:125%;font-weight:800;letter-spacing:-.025em}
+.m{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.14em;font-size:10.5px;color:var(--mu);font-weight:500}
+.or{color:var(--or)}.mu{color:var(--mu)}
+#scr{padding:16px 18px 110px;animation:fi .25s ease}
+#scr.ob{min-height:calc(100vh - var(--safe-t));display:flex;flex-direction:column;padding:22px 20px calc(24px + var(--safe-b))}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+svg.i{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.grow{flex:1}
+.chip{display:inline-flex;align-items:center;gap:5px;height:32px;padding:0 10px;border:1.5px solid var(--ln2);border-radius:7px;background:var(--s1);font-weight:700;font-size:13.5px}
+.chip.hot{border-color:var(--or2);background:var(--or3);color:var(--or)}
+.bx{width:40px;height:40px;display:grid;place-items:center;border:1.5px solid var(--ln2);border-radius:7px;background:var(--s2);box-shadow:3px 3px 0 #000;flex:none}
+.bx:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
+.bx.off{opacity:.3;pointer-events:none}
+.cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:56px;border:0;border-radius:10px;background:var(--or);color:#140a03;font-family:'JetBrains Mono';font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:13px;margin-top:14px}
+.cta:active{filter:brightness(.92)}.cta:disabled{opacity:.35}
+.cta.ghost{background:transparent;border:1.5px solid var(--ln2);color:var(--tx)}
+.cta.sm{height:44px;font-size:11.5px;margin-top:10px}
+.cta.red{background:var(--rd);color:#fff}
+.lnk{background:none;border:0;color:var(--mu);font-size:14px;margin-top:14px;width:100%;text-align:center}.lnk b{color:var(--tx)}
+.panel{border:1.5px solid var(--ln);border-radius:12px;background:var(--s1);padding:16px;margin-top:14px}
+.hdr{display:flex;justify-content:space-between;align-items:center;margin:4px 0 14px;gap:10px}
+.hdr h1{font-size:32px}
+.sec{display:flex;justify-content:space-between;align-items:center;margin:24px 0 10px;gap:10px}
+.sec .ln{flex:1;height:1px;background:var(--ln)}
+.seg{display:flex;gap:3px;margin-top:10px}.seg i{flex:1;height:12px;background:var(--s3)}.seg i.on{background:var(--or)}
+.err{color:var(--rd);font-size:13px;margin-top:10px;min-height:18px;font-weight:600}
+.fl2{font-size:12px;color:var(--mu);margin-top:12px;line-height:1.5}
+.inp{width:100%;height:56px;border:1.5px solid var(--ln2);background:var(--s1);border-radius:10px;padding:0 16px;color:var(--tx);font:600 18px Archivo;outline:none;margin-top:10px}
+.inp:focus{border-color:var(--or)}
+textarea.inp{height:140px;padding:12px;font:500 12px 'JetBrains Mono'}
+.row2{display:flex;gap:8px}.row2>*{flex:1;min-width:0}
+.lbl{display:block;margin-top:16px}
+.pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.pill{border:1.5px solid var(--ln2);border-radius:8px;padding:9px 12px;font-weight:600;font-size:14px;background:var(--s1)}
+.pill.sel{background:var(--tx);color:#111;border-color:var(--tx)}
+.pill.lock{opacity:.55}
+.dw{display:flex;gap:5px;margin-top:8px}.dw button{flex:1;height:40px;border:1.5px solid var(--ln2);border-radius:7px;background:var(--s1);font-weight:700;font-size:12.5px}
+.dw button.sel{background:var(--or);border-color:var(--or);color:#140a03}
+.tg{width:48px;height:28px;border-radius:20px;background:var(--ln2);position:relative;flex:none;transition:.2s;border:0}
+.tg::after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:.2s}
+.tg.on{background:var(--or)}.tg.on::after{left:23px}
+.set{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--ln)}
+.set:last-child{border-bottom:0}
+.set small{color:var(--mu);display:block;font-size:12.5px;margin-top:3px;line-height:1.35}
+.set .v{color:var(--or);font-family:'JetBrains Mono';font-size:13px;font-weight:700;white-space:nowrap}
+.tline{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--ln);font-size:14px}.tline:last-child{border:0}.tline b{font-family:'JetBrains Mono';font-size:13px;color:var(--or)}
+.pro{display:inline-flex;align-items:center;gap:3px;background:linear-gradient(90deg,#c9963a,#ecc675);color:#1a1205;font-family:'JetBrains Mono';font-weight:700;font-size:9px;letter-spacing:.1em;padding:2px 6px;border-radius:4px;vertical-align:middle}
+.flag{display:inline-block;width:18px;height:12px;vertical-align:middle;margin-left:6px;border-radius:2px}
+
+/* onboarding */
+.logo{display:flex;align-items:center;gap:12px;margin-top:6vh}
+.logo .n{position:relative;font-size:clamp(110px,36vw,150px);color:var(--or)}
+.logo .n span{position:absolute;left:7px;top:7px;color:transparent;-webkit-text-stroke:1.5px var(--or2);z-index:-1}
+.logo .v{border-left:3px solid var(--or);padding-left:10px;font-size:clamp(34px,11vw,46px);line-height:.95;color:var(--or)}
+.bars{display:flex;flex-direction:column;gap:6px;margin-left:auto;align-self:flex-start;margin-top:22px}.bars i{display:block;width:70px;height:14px;background:var(--or)}.bars i:nth-child(2){background:var(--or2)}.bars i:nth-child(3){background:var(--or3);filter:brightness(1.8)}
+.hero{font-size:clamp(48px,16vw,64px);margin-top:24px}
+.lead{color:var(--mu);font-size:15px;line-height:1.55;margin-top:14px}
+.prog{display:flex;gap:5px;margin-bottom:26px}.prog i{flex:1;height:3px;background:var(--ln)}.prog i.on{background:var(--or)}
+.q{font-size:clamp(38px,12vw,46px);margin:8px 0 6px}
+.opt{display:flex;align-items:center;gap:14px;border:1.5px solid var(--ln);border-radius:10px;padding:14px;margin-top:9px;background:var(--s1)}
+.opt.sel{border-color:var(--or);background:var(--or3)}
+.opt .ic{width:40px;height:40px;border-radius:8px;display:grid;place-items:center;background:var(--s3);flex:none}
+.opt b{display:block;font-size:16px}.opt small{color:var(--mu);font-size:13px;line-height:1.35}
+.opt .rad{margin-left:auto;width:20px;height:20px;border:1.5px solid var(--ln2);border-radius:4px;display:grid;place-items:center;flex:none}
+.opt.sel .rad{background:var(--or);border-color:var(--or);color:#140a03}
+.scan div{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--ln);font-size:15px;opacity:.25;transition:.3s}.scan div.on{opacity:1}.scan div b{color:var(--gn);font-family:'JetBrains Mono';font-size:12px}
+.lang{position:absolute;right:20px;top:calc(18px + var(--safe-t));display:flex;border:1.5px solid var(--ln2);border-radius:7px;overflow:hidden}
+.lang button{border:0;background:none;padding:6px 10px;font-family:'JetBrains Mono';font-size:11px;font-weight:700;color:var(--mu)}.lang button.on{background:var(--tx);color:#111}
+
+/* today */
+.top{display:flex;gap:7px;align-items:center}
+.top .hi{flex:1;min-width:0}.top .hi b{display:block;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.av{width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:900;font-stretch:125%;font-size:13px;color:#fff;border:2px solid #0a0908}
+.dayhero{position:relative;border:1.5px solid var(--ln2);border-radius:14px;overflow:hidden;margin-top:14px;padding:16px}
+.dayhero>svg.art{position:absolute;inset:0;width:100%;height:100%}
+.dayhero>*:not(svg){position:relative}
+.dh{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.dh>div:first-child{flex:1;min-width:0}.dh h1{font-size:clamp(32px,10vw,50px);line-height:.85;white-space:nowrap}.dh h1 small{font-size:18px;color:var(--mu)}.ring{width:70px;height:70px}.ring svg{width:70px;height:70px}
+.ring{position:relative;width:76px;height:76px;flex:none}.ring b{position:absolute;inset:0;display:grid;place-items:center;font-stretch:125%;font-weight:800;font-size:17px}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:16px}
+.week div{text-align:center}.week span{display:block;font-family:'JetBrains Mono';font-size:9.5px;color:var(--mu);letter-spacing:.06em;margin-bottom:5px}
+.week i{display:grid;place-items:center;height:30px;border-radius:6px;background:#0a0908aa;border:1.5px solid var(--ln);font-style:normal;font-size:12px;font-weight:700;color:var(--mu)}
+.week i.ok{background:var(--or);border-color:var(--or);color:#140a03}.week i.part{border-color:var(--or);color:var(--or)}.week i.miss{border-color:#ff646488;color:var(--rd)}.week i.frz{border-color:#6aa6ff;color:#6aa6ff}.week i.now{border-color:var(--tx);color:var(--tx);box-shadow:0 0 0 2px #f1ebe233}
+.next{position:relative;height:150px;border:1.5px solid var(--ln2);border-radius:12px;overflow:hidden;margin-top:12px;box-shadow:0 3px 0 #000}
+.next>svg.art{position:absolute;inset:0;width:100%;height:100%}
+.next .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,9,8,.1),rgba(10,9,8,.78))}
+.next .in{position:relative;height:100%;padding:13px 15px;display:flex;flex-direction:column}
+.next h3{font-size:clamp(22px,7vw,27px);margin-top:auto;line-height:1.05;max-width:76%}
+.tchip{align-self:flex-start;display:flex;gap:6px;align-items:center;background:var(--tx);color:#111;border-radius:20px;padding:4px 10px;font-family:'JetBrains Mono';font-weight:700;font-size:11px}
+.tchip i{width:7px;height:7px;background:var(--or);display:block}
+.meta{display:flex;gap:8px;align-items:center;font-size:12.5px;color:#d8d0c5;margin-top:6px;font-weight:600;flex-wrap:wrap}
+.meta svg{width:13px;height:13px}.meta i{width:1px;height:12px;background:#ffffff40}
+.ck{position:absolute;right:13px;bottom:13px;width:48px;height:48px;border:0;border-radius:4px;background:#e7e0d4;color:#1d1a17;display:grid;place-items:center;box-shadow:2px 2px 0 #000}
+.ck svg{width:22px;height:22px;stroke-width:2.4;opacity:.45}
+.pbar{position:absolute;left:0;bottom:0;height:3px;background:var(--or)}
+.grp{margin-top:18px}
+.gh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.qr{display:flex;align-items:center;gap:12px;padding:11px 12px;border:1.5px solid var(--ln);border-radius:10px;background:var(--s1);margin-top:7px;position:relative;overflow:hidden;transition:transform .25s}
+.qr .tm{font-family:'JetBrains Mono';font-size:12px;color:var(--mu);width:42px;flex:none}
+.qr .cb{width:4px;align-self:stretch;border-radius:3px;flex:none}
+.qr .tx{flex:1;min-width:0}.qr .tx b{display:block;font-size:15px;font-weight:700;line-height:1.25}.qr .tx small{display:flex;gap:6px;align-items:center;color:var(--mu);font-size:12px;margin-top:3px;flex-wrap:wrap}
+.qr .st{color:var(--or);font-weight:800;display:inline-flex;align-items:center;gap:2px}
+.qr .c2{width:36px;height:36px;border-radius:4px;border:1.5px solid var(--ln2);background:var(--s2);display:grid;place-items:center;flex:none}
+.qr .c2 svg{opacity:.35;stroke-width:2.6}
+.qr.done{opacity:.55}.qr.done .tx b{text-decoration:line-through}.qr.done .c2{background:var(--or);border-color:var(--or);color:#140a03}.qr.done .c2 svg{opacity:1}
+.qr.skip{opacity:.4}
+.qr .pb{position:absolute;left:0;bottom:0;height:2px;background:var(--or)}
+.qr.pop{transform:scale(1.02) rotate(-1deg)}
+.empty{text-align:center;padding:30px 10px;color:var(--mu);border:1.5px dashed var(--ln2);border-radius:12px;margin-top:12px}
+.empty b{display:block;color:var(--tx);font-size:20px;margin-bottom:6px}
+.closeday{margin-top:18px;width:100%;background:none;border:1.5px dashed var(--ln2);border-radius:8px;height:48px;color:var(--mu)}
+
+/* insight */
+.peak{border:1.5px solid var(--ln2);border-radius:8px;padding:7px 11px;text-align:left}
+.peak b{font-size:20px}.peak small{font-family:'JetBrains Mono';font-size:11px;color:var(--mu)}
+.peak .bar{height:3px;background:var(--ln);margin-top:5px}.peak .bar i{display:block;height:100%;background:var(--gn)}
+.klass{position:relative;border:1.5px solid var(--ln2);border-radius:14px;overflow:hidden;padding:18px}
+.klass>svg.art{position:absolute;inset:0;width:100%;height:100%}
+.klass>*:not(svg){position:relative}
+.klass h2{font-size:clamp(44px,14vw,54px);margin-top:12px}
+.klass p{color:#d8d0c5;margin-top:6px;font-size:15px}
+.tag{border:1.5px solid #ffffff30;border-radius:20px;padding:4px 10px;font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.08em;background:#0007}
+.cls{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
+.cls div{border:1.5px solid #ffffff22;border-radius:8px;background:#0a0908b8;padding:9px 5px;min-width:0}
+.cls div.top1{border-color:#ffffffaa;background:#ffffff1c}
+.cls b{display:block;font-size:clamp(17px,5.5vw,22px);margin-top:6px}.cls span{font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.03em;color:var(--mu);text-transform:uppercase;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cls svg{width:15px;height:15px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.tile{border:1.5px solid var(--ln);border-radius:12px;background:var(--s1);padding:14px;position:relative;min-width:0}
+.tile .big{font-size:38px;margin-top:6px}
+.ba{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ba .tile{padding:11px}.ba .h{display:flex;gap:7px;align-items:center;font-size:12px;font-weight:700;line-height:1.15}
+.ba .h span{width:26px;height:26px;border-radius:6px;display:grid;place-items:center;background:var(--s3);flex:none}
+.ba .v{font-family:'JetBrains Mono';margin-top:10px;font-size:11px;color:var(--mu)}
+.ba .n{font-size:clamp(17px,5.5vw,22px);margin-top:4px;white-space:nowrap}
+.lvcard{border:1.5px solid var(--ln2);border-radius:12px;padding:0 16px 14px;margin-top:16px;position:relative;background:var(--s1)}
+.lvbox{position:absolute;left:-2px;top:-2px;width:108px;height:100px;background:var(--or);border-radius:10px 4px 22px 4px;padding:12px 14px;color:#fff}
+.lvbox b{font-size:44px;display:block;line-height:.9}.lvbox span{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.2em}
+.lvtop{text-align:right;padding:18px 0 0 116px;min-height:100px}.lvtop b{font-size:32px}
+.rt{display:flex;gap:7px;margin-top:4px;flex-wrap:wrap}
+.rt button{height:34px;padding:0 12px;border:0;border-radius:7px;background:var(--s2);font-weight:600;font-size:13px;color:var(--mu)}
+.rt button.on{background:var(--tx);color:#111}
+.srow{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--ln)}
+.srow .m{font-size:11.5px;color:var(--tx);letter-spacing:.18em}
+.srow .dl{margin-left:auto;color:var(--gn);font-size:11px}
+.srow b{font-size:38px;min-width:84px;text-align:right}
+.heat{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;margin-top:12px}
+.heat i{aspect-ratio:1;border-radius:3px;background:var(--s3)}
+.cbar{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:13px}.cbar span{width:74px;flex:none}.cbar div{flex:1;height:8px;background:var(--s3);border-radius:4px;overflow:hidden}.cbar div i{display:block;height:100%}.cbar b{width:40px;text-align:right;font-family:'JetBrains Mono';font-size:12px}
+.lockwrap{position:relative}.lockwrap .blur{filter:blur(6px);opacity:.5;pointer-events:none}
+.lockwrap .ov2{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
+.coach{border:1.5px solid var(--or2);background:linear-gradient(135deg,var(--or3),#14100d);border-radius:12px;padding:16px;margin-top:12px}
+.coach p{margin-top:8px;line-height:1.5;color:#e4dccf;font-size:14.5px}
+
+/* workout */
+.sess{border:1.5px solid var(--ln2);border-radius:12px;overflow:hidden;background:var(--s1)}
+.sess .img{position:relative;height:140px;border-bottom:2px solid var(--or)}
+.sess .img>svg.art{position:absolute;inset:0;width:100%;height:100%}
+.sess .img .t{position:absolute;left:16px;bottom:12px;font-size:34px}
+.sess .img .c1{position:absolute;left:14px;top:14px}
+.sess .img .c2{position:absolute;right:14px;top:14px;background:#e7e0d4;color:#111;padding:5px 9px;font-family:'JetBrains Mono';font-weight:700;font-size:11px;letter-spacing:.06em}
+.sess .body{padding:14px}
+.st3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.st3 div{border:1.5px solid var(--ln2);padding:9px 11px;min-width:0}.st3 b{font-size:19px;display:block;margin-top:3px;white-space:nowrap}
+.moves{display:flex;flex-wrap:wrap;gap:6px;border-top:1.5px dashed var(--ln2);margin-top:16px;padding-top:14px}
+.moves span{border:1.5px solid var(--ln2);padding:6px 9px;font-size:13px}.moves span em{color:var(--or);font-style:normal;margin-right:5px;font-weight:700}
+.qs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.qs button{border:1.5px solid var(--ln2);border-radius:10px;background:var(--s1);padding:13px 0 10px;font-weight:700;font-size:13.5px}
+.qs button.on{border-color:var(--or)}
+.qs .sw{width:34px;height:34px;margin:0 auto 8px;border-radius:4px;display:grid;place-items:center}
+.rec{display:flex;justify-content:space-between;align-items:center;border:1.5px solid var(--ln2);border-radius:10px;padding:13px 14px;margin-top:8px}
+.rec b{font-size:16px}.rec small{display:block;color:var(--mu);font-size:12.5px;margin-top:3px}
+.rec .kg{border:1.5px solid var(--ln2);padding:5px 8px;font-weight:800;font-size:14px}
+.live{text-align:center}.live .clock{font-size:80px;color:var(--or)}
+.mv{border:1.5px solid var(--ln);border-radius:10px;padding:13px;margin-top:8px}
+.mv .h{display:flex;justify-content:space-between;font-weight:700}
+.sets{display:flex;gap:6px;margin-top:10px}.sets button{flex:1;height:36px;border:1.5px solid var(--ln2);background:var(--s2);border-radius:5px;font-family:'JetBrains Mono';font-size:12px;font-weight:700}
+.sets button.on{background:var(--or);border-color:var(--or);color:#140a03}
+
+/* season */
+.lg{border:2px solid var(--gd);border-radius:6px;background:linear-gradient(180deg,#1d1810,#121110)}
+.lg .a{display:flex;gap:14px;align-items:center;padding:16px;border-bottom:1.5px dashed #3a3222}
+.lg .a h2{font-size:28px}
+.lg .b{padding:14px 16px 16px}
+.lg .seg i{height:14px}.lg .seg i.on{background:linear-gradient(90deg,#c9963a,#ecc675)}
+.rw{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.rw>div{border:1.5px solid #3a3222;padding:12px;display:flex;gap:10px;align-items:center;min-width:0}
+.rw b{font-size:13.5px;display:block}.rw small{color:var(--mu);font-size:11.5px}
+.rw .pb2{height:5px;background:var(--s3);margin-top:6px}.rw .pb2 i{display:block;height:100%;background:var(--gd)}
+.chart{border:1.5px solid var(--ln);border-radius:12px;padding:14px;margin-top:14px;background:var(--s1)}
+.lb{border:1.5px solid var(--ln);border-radius:12px;margin-top:14px;overflow:hidden;background:var(--s1)}
+.lb .h{display:flex;justify-content:space-between;padding:14px 16px}
+.lr{display:flex;align-items:center;gap:12px;padding:11px 16px;border-top:1px solid var(--ln)}
+.lr .rk{width:22px;color:var(--gn);font-weight:800}
+.lr .nm{min-width:0}.lr .nm b{font-size:15.5px}.lr .nm small{display:block;color:var(--mu);font-size:12px;margin-top:2px}
+.lr .fl{color:var(--or);font-size:12px;font-weight:700;margin-left:6px}
+.lr .xp{margin-left:auto;text-align:right;font-weight:800;font-size:16px}.lr .xp small{display:block;color:var(--gn);font-size:11px;font-weight:600}
+.lr.me{background:linear-gradient(90deg,#d6a443,#c99637);color:#1a1205;border-radius:10px;margin:8px;border:0}
+.lr.me .rk,.lr.me .xp small,.lr.me .nm small{color:#3a2a0a}
+
+/* profile */
+.fs{border:1.5px solid var(--or2);border-radius:12px;background:linear-gradient(135deg,var(--or3),#14100d);padding:16px}
+.fs .r{display:flex;align-items:center;gap:12px;margin-top:10px}
+.nudge{margin-left:auto;height:42px;padding:0 13px;border:1.5px solid var(--or);border-radius:8px;background:transparent;color:var(--or);font-family:'JetBrains Mono';font-weight:700;letter-spacing:.1em;font-size:11.5px;flex:none}
+.pc{border:1.5px solid var(--ln2);border-radius:12px;padding:22px 16px;text-align:center;margin-top:12px;background:radial-gradient(circle at 50% 0,#2a241c,var(--s1) 70%)}
+.pc .av{width:90px;height:90px;font-size:28px;margin:0 auto;border:3px solid #e7e0d4}
+.pc h2{font-size:28px;margin-top:12px}
+.bdg{display:flex;justify-content:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+.bdg span{border-radius:20px;padding:6px 12px;font-family:'JetBrains Mono';font-weight:700;font-size:11px;letter-spacing:.1em}
+.g4{display:grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--ln2);border-radius:12px;margin-top:12px;overflow:hidden}
+.g4 div{padding:14px;border-right:1.5px solid var(--ln2);border-bottom:1.5px solid var(--ln2);min-width:0}
+.g4 div:nth-child(2n){border-right:0}.g4 div:nth-child(n+3){border-bottom:0}
+.g4 b{font-size:24px;display:flex;align-items:center;gap:4px;margin-top:4px}
+.act{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--ln)}
+.act .dy{border:1.5px solid var(--ln2);width:48px;text-align:center;padding:5px 0;flex:none}
+.act .dy b{display:block;font-size:19px}
+.act .xb{margin-left:auto;text-align:right;flex:none}.act .xb span{border:1.5px solid var(--ln2);padding:3px 7px;font-weight:800;font-size:12px}
+.act .xb small{display:block;color:var(--mu);margin-top:5px;font-size:12px}
+.sw5{display:flex;gap:10px;margin-top:10px}.sw5 button{width:38px;height:38px;border-radius:50%;border:3px solid transparent;position:relative}.sw5 button.on{border-color:var(--tx)}
+.sw5 button svg{position:absolute;right:-4px;bottom:-4px;width:14px;height:14px;background:var(--s1);border-radius:50%;padding:2px}
+
+/* plan */
+.prg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.prg button{text-align:left;border:1.5px solid var(--ln2);border-radius:10px;background:var(--s1);padding:12px;min-height:92px;display:flex;flex-direction:column;gap:4px}
+.prg button.on{border-color:var(--or);background:var(--or3)}
+.prg b{font-size:15px}.prg small{color:var(--mu);font-size:12px;line-height:1.3}
+.pl{display:flex;align-items:center;gap:12px;padding:12px;border:1.5px solid var(--ln);border-radius:10px;background:var(--s1);margin-top:7px}
+.pl .tx{flex:1;min-width:0}.pl b{display:block;font-size:15px}.pl small{color:var(--mu);font-size:12px}
+.pl.off{opacity:.45}
+
+/* paywall */
+.pw h2{font-size:40px;margin-top:6px}
+.feat{display:flex;gap:12px;align-items:flex-start;padding:10px 0}
+.feat span{width:30px;height:30px;border-radius:7px;background:var(--or3);color:var(--or);display:grid;place-items:center;flex:none}
+.feat b{display:block;font-size:15px}.feat small{color:var(--mu);font-size:12.5px}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.plans button{border:1.5px solid var(--ln2);border-radius:12px;background:var(--s1);padding:14px 12px;text-align:left;position:relative}
+.plans button.on{border-color:var(--or);background:var(--or3)}
+.plans b{display:block;font-size:20px;margin-top:6px}.plans small{color:var(--mu);font-size:12px}
+.plans em{position:absolute;top:-9px;right:10px;background:var(--gn);color:#08130c;font-style:normal;font-family:'JetBrains Mono';font-weight:700;font-size:9.5px;padding:3px 6px;border-radius:4px;letter-spacing:.06em}
+
+/* nav, sheet, toast */
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:440px;display:none;background:rgba(10,9,8,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--ln);padding:8px 6px calc(8px + var(--safe-b));z-index:5}
+.nav.on{display:flex}
+.nav button{flex:1;background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:5px;padding:4px 0;color:var(--mu2)}
+.nav button span{font-family:'JetBrains Mono';font-size:9px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.nav button svg{width:22px;height:22px}
+.nav button.on{color:var(--or)}
+.ov{position:fixed;inset:0;background:#000b;display:none;align-items:flex-end;justify-content:center;z-index:10}
+.ov.on{display:flex}
+.sh{width:100%;max-width:440px;max-height:92vh;overflow-y:auto;background:var(--s1);border-top:1.5px solid var(--ln2);border-radius:18px 18px 0 0;padding:10px 18px calc(22px + var(--safe-b));animation:su .25s ease}
+@keyframes su{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}
+.sh .grab{width:40px;height:4px;background:var(--ln2);border-radius:4px;margin:0 auto 14px}
+.sh h2{font-size:30px;margin-top:6px}
+.stp{display:flex;align-items:center;justify-content:space-between;margin-top:20px}
+.stp .val{font-size:50px;text-align:center}.stp .val small{font-size:18px;color:var(--mu)}
+.stp .bx{width:54px;height:54px;font-size:26px;font-weight:700}
+.barb{height:6px;background:var(--s3);margin-top:16px}.barb i{display:block;height:100%;background:var(--or);transition:.3s}
+.toast{position:fixed;left:50%;top:calc(14px + var(--safe-t));transform:translate(-50%,-160%);transition:.35s;background:var(--tx);color:#111;font-weight:700;padding:12px 16px;border-radius:8px;z-index:20;box-shadow:3px 3px 0 #000;font-size:14px;max-width:90%;text-align:center}
+.toast.on{transform:translate(-50%,0)}
+.fxp{position:fixed;font-weight:900;font-stretch:125%;color:var(--or);pointer-events:none;z-index:20;animation:fx 1s forwards;font-size:18px}
+@keyframes fx{to{transform:translateY(-60px);opacity:0}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <main id="scr"></main>
+  <nav class="nav" id="nav"></nav>
+</div>
+<div class="ov" id="ov" onclick="if(event.target===this)closeSheet()"><div class="sh" id="sh"></div></div>
+<div class="toast" id="toast"></div>
+<svg width="0" height="0" style="position:absolute">
+<defs>
+<symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2.5 1.2-4 2.5-5.2.3 1.6 1 2.6 2 3 0-3.3-.8-6.3.5-8.8z"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3M12 14v4M8 21h8M9 18h6"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.2V21a2 2 0 0 1-4 0v-.1A1.6 1.6 0 0 0 7.3 19.7l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.3 14H3a2 2 0 0 1 0-4h.1A1.6 1.6 0 0 0 4.3 7.3l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 10 3.3V3a2 2 0 0 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.2 2.7H21a2 2 0 0 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1.2z"/></symbol>
+<symbol id="i-l" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+<symbol id="i-r" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+<symbol id="i-arr" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></symbol>
+<symbol id="i-rep" viewBox="0 0 24 24"><path d="M17 2l3 3-3 3M4 11V9a4 4 0 0 1 4-4h12M7 22l-3-3 3-3M20 13v2a4 4 0 0 1-4 4H4"/></symbol>
+<symbol id="i-lvl" viewBox="0 0 24 24"><path d="M5 20v-5M12 20V10M19 20V4"/></symbol>
+<symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V16h8v-1.3A7 7 0 0 0 12 2z"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M12 2.5c3 3.5 5 6.5 5 10a5 5 0 0 1-10 0c0-3.5 2-6.5 5-10z"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></symbol>
+<symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+<symbol id="i-run" viewBox="0 0 24 24"><circle cx="14" cy="4" r="2"/><path d="M5 21l4-6 3 2 1-5M9 9l4-2 3 4h4M13 12l3 3-1 6"/></symbol>
+<symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 2h6M10 2v7l-5 10a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-10V2"/></symbol>
+<symbol id="i-today" viewBox="0 0 24 24"><path d="M14.5 4l5.5 5.5-9 9H5.5V13z"/><path d="M12 6.5l5.5 5.5"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 20h18M5 16l4-5 4 3 6-8"/></symbol>
+<symbol id="i-db" viewBox="0 0 24 24"><path d="M6 7v10M18 7v10M3 9v6M21 9v6M6 12h12"/></symbol>
+<symbol id="i-crown" viewBox="0 0 24 24"><path d="M3 7l4.5 4L12 4l4.5 7L21 7l-2 12H5z"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></symbol>
+<symbol id="i-hand" viewBox="0 0 24 24"><path d="M7 11V5.5a1.5 1.5 0 0 1 3 0V11M10 10V4a1.5 1.5 0 0 1 3 0v6M13 10V5a1.5 1.5 0 0 1 3 0v6M16 10a1.5 1.5 0 0 1 3 0v4a8 8 0 0 1-8 8 6 6 0 0 1-5.4-3.4L3.5 14a1.5 1.5 0 0 1 2.6-1.5L7 14"/></symbol>
+<symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 12h3l2-5 3 10 3-8 2 3h5"/></symbol>
+<symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 2v20M4.5 6.5l15 11M19.5 6.5l-15 11M9 4l3 2 3-2M9 20l3-2 3 2"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+<symbol id="i-up" viewBox="0 0 24 24"><path d="M12 15V4M7 9l5-5 5 5M5 20h14"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+</defs>
+</svg>
+<script>
+/* ---------- I18N: [Türkçe, English] ---------- */
+const L={
+ // common
+ next:['Devam','Continue'],back:['Geri','Back'],cancel:['Vazgeç','Cancel'],save:['Kaydet','Save'],del:['Sil','Delete'],close:['Kapat','Close'],ok:['Tamam','OK'],
+ done:['Tamamla','Complete'],undo:['Geri al','Undo'],skip:['Bugün atla','Skip today'],unskip:['Atlamayı geri al','Undo skip'],
+ // categories
+ c_wis:['Bilgelik','Wisdom'],c_conf:['Özgüven','Confidence'],c_str:['Güç','Strength'],c_disc:['Disiplin','Discipline'],c_foc:['Odak','Focus'],
+ ad_wis:['Okuma, öğrenme, yeni beceriler','Reading, learning, new skills'],ad_conf:['Sosyal cesaret, duruş, öz saygı','Social courage, posture, self-respect'],ad_str:['Spor, kondisyon, beslenme','Training, fitness, nutrition'],ad_disc:['Erken kalkış, uyku, öz kontrol','Waking early, sleep, self-control'],ad_foc:['Derin çalışma, ekran süresi, zihin','Deep work, screen time, mind'],
+ // classes
+ k_wis:['BİLGE','SAGE'],k_conf:['LİDER','LEADER'],k_str:['SAVAŞÇI','WARRIOR'],k_disc:['MUHAFIZ','GUARDIAN'],k_foc:['AVCI','HUNTER'],
+ kd_wis:['Her gün bir öncekinden fazlasını biliyorsun.','Every day you know more than the day before.'],kd_conf:['Odaya girdiğinde fark ediliyorsun.','When you walk in, people notice.'],kd_str:['Bedenin, iraden kadar güçlü.','Your body is as strong as your will.'],kd_disc:['Söz verdiysen, yapılmıştır.','If you promised, it is done.'],kd_foc:['Hedefine kilitlenince kaçırmıyorsun.','Once locked on, you do not miss.'],
+ // difficulty / units / days
+ d_Kolay:['Kolay','Easy'],d_Orta:['Orta','Medium'],d_Zor:['Zor','Hard'],
+ u_rep:['tekrar','reps'],u_km:['km','km'],u_l:['L','L'],u_page:['sayfa','pages'],u_min:['dk','min'],u_step:['adım','steps'],u_block:['blok','blocks'],u_round:['tur','rounds'],u_none:['Yok','None'],
+ dow:[['Paz','Pzt','Sal','Çar','Per','Cum','Cmt'],['Sun','Mon','Tue','Wed','Thu','Fri','Sat']],
+ everyday:['Her gün','Daily'],xweek:['Haftada {0}','{0}× week'],anytime:['Gün boyu','Anytime'],
+ g_morning:['Sabah','Morning'],g_noon:['Öğleden sonra','Afternoon'],g_eve:['Akşam','Evening'],g_any:['Gün boyu','Anytime'],
+ // quest templates
+ q_push:['{n} şınav','{n} push-ups'],q_water:['{n} L su iç','Drink {n} L water'],q_run:['{n} km koşu','Run {n} km'],q_read:['{n} sayfa oku','Read {n} pages'],q_learn:['{n} dk yeni beceri','{n} min new skill'],
+ q_wake:['Kalkış: {w}','Wake up at {w}'],q_lights:['Işıklar kapalı: {s}','Lights out at {s}'],q_cold:['{n} dk soğuk duş','{n} min cold shower'],q_deep:['{n} dk derin çalışma','{n} min deep work'],q_med:['{n} dk meditasyon','{n} min meditation'],
+ q_screen:['Ekran süresi 2 saatin altında','Screen time under 2 hours'],q_journal:['Günlüğe 3 satır yaz','Write 3 lines in your journal'],q_posture:['{n} dk duruş çalışması','{n} min posture practice'],q_talk:['Yeni biriyle sohbet başlat','Start a conversation with someone new'],
+ q_sm1:['Sigarasız gün','Smoke-free day'],q_sm2:['İstek gelince {n} dk yürü','Walk {n} min when a craving hits'],q_sm3:['4-7-8 nefes: {n} tur','4-7-8 breathing: {n} rounds'],q_sm5:['Biriktirdiğin parayı not et','Log the money you saved'],
+ q_ex1:['{n} odak bloğu (50 dk)','{n} focus blocks (50 min)'],q_ex2:['Dünkü konuyu {n} dk tekrar et','Review yesterday\'s topic {n} min'],q_ex3:['Deneme sınavı çöz','Take a practice exam'],q_ex4:['Telefon başka odada çalış','Study with phone in another room'],
+ q_ft1:['{n} adım','{n} steps'],q_ft2:['Şekerli içecek yok','No sugary drinks'],q_ft3:['Proteinli kahvaltı','High-protein breakfast'],q_ft4:['20:00 sonrası atıştırma yok','No snacking after 8 PM'],
+ // programs
+ p_core:['Temel 66','Core 66'],pd_core:['Seçtiğin alanlara göre kişisel program.','Personal program built from your focus areas.'],
+ p_smoke:['Sigarayı bırak','Quit smoking'],pd_smoke:['İstek anı stratejileri, nefes ve tasarruf takibi.','Craving tactics, breathing and savings log.'],
+ p_exam:['Sınav dönemi','Exam season'],pd_exam:['Odak blokları, aralıklı tekrar, deneme sınavı.','Focus blocks, spaced review, practice exams.'],
+ p_fat:['Kilo ver','Lose weight'],pd_fat:['Adım, protein ve şekersiz alışkanlıklar.','Steps, protein and sugar-free habits.'],
+ // auth / onboarding
+ tagline:['Gerçek hayatta<br><span class="or">seviye atla.</span>','Level up<br><span class="or">in real life.</span>'],
+ lead0:['Alışkanlıkların günlük görevlere dönüşür. Tamamla, XP kazan, sınıfını yükselt. 66 günde otomatik pilota geç.','Your habits become daily quests. Complete them, earn XP, rank up your class. Autopilot in 66 days.'],
+ madeby:['AZİM · YAPIM: SELCUKYUS','AZIM · MADE BY SELCUKYUS'],
+ create:['Hesap oluştur','Create account'],signin:['Giriş yap','Sign in'],
+ reg_t:['Hesabını<br>oluştur','Create your<br>account'],name:['Adın','Your name'],email:['E-posta','Email'],pass:['Şifre (en az 6 karakter)','Password (min. 6 characters)'],pass2:['Şifre','Password'],
+ reg_note:['Hesabın ve tüm verilerin yalnızca bu cihazda saklanır. Devam ederek Gizlilik Politikası\'nı kabul etmiş olursun.','Your account and all data stay on this device only. By continuing you accept the Privacy Policy.'],
+ have_acc:['Hesabın var mı? <b>Giriş yap</b>','Have an account? <b>Sign in</b>'],no_acc:['Hesabın yok mu? <b>Kayıt ol</b>','No account? <b>Sign up</b>'],
+ welcome_back:['TEKRAR HOŞ GELDİN','WELCOME BACK'],login_t:['Giriş<br>yap','Sign<br>in'],forgot:['Şifremi unuttum','Forgot password'],
+ e_name:['Adını yaz.','Enter your name.'],e_mail:['Geçerli bir e-posta gir.','Enter a valid email.'],e_pass:['Şifre en az 6 karakter olmalı.','Password must be at least 6 characters.'],e_exists:['Bu e-posta ile zaten bir hesap var. Giriş yap.','An account with this email exists. Sign in.'],e_login:['E-posta ya da şifre hatalı.','Wrong email or password.'],
+ forgot_t:['Şifremi unuttum','Forgot password'],forgot_d:['Hesabın yalnızca bu cihazda saklandığı için şifre e-postayla sıfırlanamaz. Hesabı silip yeniden oluşturabilirsin; bu işlem o hesabın ilerlemesini de siler.','Accounts live only on this device, so passwords cannot be reset by email. You can delete the account and create it again; this also deletes its progress.'],
+ del_mail:['Silinecek hesabın e-postası','Email of the account to delete'],del_acc:['Hesabı sil','Delete account'],no_such:['Bu e-postayla kayıtlı hesap yok.','No account with this email.'],acc_deleted:['Hesap silindi.','Account deleted.'],
+ s_areas:['{0} / 06 · EN AZ 2 ALAN','{0} / 06 · PICK AT LEAST 2'],areas_q:['Neyi güçlendirmek<br>istiyorsun?','What do you want<br>to strengthen?'],
+ s_now:['{0} / 06 · BAŞLANGIÇ NOKTAN','{0} / 06 · YOUR STARTING POINT'],now_q:['Günün nasıl<br>geçiyor?','What does your<br>day look like?'],
+ o_shift:['Çalışma düzenin','Your schedule'],o_wake:['Genelde ne kadar su içiyorsun?','How much water do you drink?'],o_screen:['Günlük ekran süren?','Daily screen time?'],
+ sh_day:['Gündüz','Daytime'],sh_early:['Erken kalkan','Early riser'],sh_night:['Gece vardiyası','Night shift'],
+ w0:['1 L altı','Under 1 L'],w1:['1–2 L','1–2 L'],w2:['2 L üstü','Over 2 L'],sc0:['2 sa altı','Under 2 h'],sc1:['2–4 sa','2–4 h'],sc2:['4 sa üstü','Over 4 h'],
+ s_mode:['{0} / 06 · MOD','{0} / 06 · MODE'],mode_q:['Ne kadar<br>sert olsun?','How strict<br>should it be?'],
+ m_std:['Standart','Standard'],m_std_d:['Tek kaçırılan gün seriyi bozmaz. İki gün üst üste kaçırma.','One missed day won\'t break the streak. Never miss twice.'],
+ m_hard:['Sert Mod','Hard Mode'],m_hard_d:['Eksik gün: seri sıfır, −100 XP. Seri koruma yok.','Missed day: streak reset, −100 XP. No streak freeze.'],
+ s_an:['06 / 06 · ANALİZ','06 / 06 · ANALYSIS'],an_t:['Profilin<br>çıkarılıyor','Building<br>your profile'],
+ sc_1:['Uyku ve kalkış düzeni','Sleep and wake pattern'],sc_2:['Hidrasyon seviyesi','Hydration level'],sc_3:['Dikkat ve ekran yükü','Attention and screen load'],sc_4:['Hedef alanları eşleştirme','Matching focus areas'],sc_5:['66 günlük plan oluşturma','Building your 66-day plan'],
+ your_class:['Sınıfın:','Your class:'],an_lead:['{0} Günde {1} görev, her biri kendi saatinde. 3 aşama, 66 gün.','{0} {1} quests a day, each at its own time. 3 phases, 66 days.'],
+ ph1:['Temel','Foundation'],ph1d:['Kısa ve kolay hedefler. Tek amaç: zinciri kırmamak.','Short, easy targets. One goal: don\'t break the chain.'],ph2:['İnşa','Build'],ph2d:['Hedefler %50 büyür. Alışkanlık şekillenir.','Targets grow 50%. The habit takes shape.'],ph3:['Ustalık','Mastery'],ph3d:['Hedefler iki katına çıkar. Otomatik pilot.','Targets double. Autopilot.'],
+ rem_k:['HATIRLATICILAR','REMINDERS'],rem_t:['Gün boyu<br><span class="or">yanındayız.</span>','We\'ve got you<br><span class="or">all day.</span>'],
+ rem_lead:['Uyanış saatine göre her gün en az 7 bildirim: motivasyon, su molaları, antrenman kuralı ve gün sonu. Ayrıca her görev kendi saatinde hatırlatılır.','At least 7 daily notifications timed to your wake-up: motivation, water breaks, a training rule and an end-of-day check. Each quest also gets its own reminder.'],
+ allow:['Bildirimlere izin ver','Allow notifications'],notnow:['Şimdi değil','Not now'],
+ r_morning:['Sabah motivasyonu','Morning motivation'],r_water:['Su molası','Water break'],r_train:['Antrenman kuralı','Training rule'],r_tasks:['Görev kontrolü','Quest check'],r_night:['Uyku ve seri','Sleep & streak'],
+ // today
+ hello:['Merhaba, {0}','Hi, {0}'],phase0:['TEMEL','FOUNDATION'],phase1:['İNŞA','BUILD'],phase2:['USTALIK','MASTERY'],day:['GÜN','DAY'],
+ nextq:['Sıradaki','Up next'],allclear:['Bugün tamam.','All done today.'],allclear_d:['Bütün görevleri bitirdin. Serin güvende.','Every quest is done. Your streak is safe.'],
+ plan_today:['Bugünün planı','Today\'s plan'],edit:['Düzenle','Edit'],closes:['Gün 23:59\'da otomatik kapanır','The day closes automatically at 23:59'],preview_close:['Önizleme: günü kapat','Preview: close the day'],
+ sub_done:['Kusursuz gün. Serin güvende.','Perfect day. Your streak is safe.'],sub_half:['İyi gidiyorsun. Devam et.','Good pace. Keep going.'],sub_first:['İlk gün. Küçük başla, ama başla.','Day one. Start small, but start.'],sub_a:['Zinciri kırma.','Don\'t break the chain.'],sub_b:['Bugün de kendine söz ver.','Make yourself a promise today.'],sub_c:['Bir görev, sonra bir tane daha.','One quest, then another.'],sub_end:['66 günü tamamladın. Alışkanlıkların artık senin.','You finished 66 days. The habits are yours now.'],
+ single_step:['Bu görev tek adımlı. Yaptıysan işaretle.','Single-step quest. Mark it when done.'],
+ all_done_toast:['Bugünün tüm görevleri tamam.','All of today\'s quests are done.'],skipped_toast:['Görev bugün için atlandı.','Quest skipped for today.'],hard_skip:['Sert Mod: atlanan görev günü eksik bırakır.','Hard Mode: a skipped quest leaves the day incomplete.'],
+ levelup:['Seviye {0}! Yeni seviyeye ulaştın.','Level {0}! You leveled up.'],day_started:['Gün {0} başladı.','Day {0} started.'],new_phase:['Yeni aşama: {0}. Hedefler büyüdü.','New phase: {0}. Targets increased.'],finished66:['66 günü tamamladın!','You completed 66 days!'],auto_close:['Gün gece yarısı otomatik kapanır.','The day closes automatically at midnight.'],
+ sum_k:['Gün {0} özeti','Day {0} summary'],perfect:['Kusursuz gün','Perfect day'],partial:['Kısmi gün','Partial day'],missed:['Kaçırılan gün','Missed day'],frozen:['Seri korundu','Streak frozen'],grace:['Tek kaçırma hakkı','One-miss grace'],
+ sum_perfect:['Tüm görevler tamam. Seri bonusu: <b class="or">+{0} XP</b>','All quests done. Streak bonus: <b class="or">+{0} XP</b>'],
+ sum_hard:['{0}/{1} görev. Sert Mod: serin sıfırlanacak, <b style="color:var(--rd)">−100 XP</b>.','{0}/{1} quests. Hard Mode: streak resets, <b style="color:var(--rd)">−100 XP</b>.'],
+ sum_frz:['{0}/{1} görev. Bir seri koruma kullanılacak, serin bozulmaz.','{0}/{1} quests. A streak freeze will be used; your streak survives.'],
+ sum_grace:['{0}/{1} görev. Tek kaçırma hakkını kullanıyorsun. Yarın kaçırırsan seri sıfırlanır.','{0}/{1} quests. This uses your one-miss grace. Miss tomorrow and the streak resets.'],
+ sum_reset:['{0}/{1} görev. İki gün üst üste kaçırıldı, serin sıfırlanacak.','{0}/{1} quests. Two misses in a row: your streak will reset.'],
+ sum_part:['{0}/{1} görev. Standart modda serin korunur.','{0}/{1} quests. In Standard mode your streak is kept.'],
+ close_day:['Günü kapat','Close the day'],keep_going:['Devam et','Keep going'],
+ rolled:['Gün {0} kapandı','Day {0} closed'],rolled_d:['{0}/{1} görev tamamlandı.','{0}/{1} quests completed.'],rolled_more:[' Arada {0} gün daha geçti ve işlendi.',' {0} more days passed and were processed.'],rolled_streak:[' Güncel serin: <b class="or">{0}</b>',' Current streak: <b class="or">{0}</b>'],
+ freezes:['Seri koruma','Streak freeze'],freeze_info:['Kaçırdığın bir günde seri koruma otomatik kullanılır ve serin bozulmaz. Her pazartesi 1 hak yenilenir (Premium: haftada 3). Sert Mod\'da kullanılamaz.','A freeze is used automatically on a missed day so your streak survives. 1 refills every Monday (Premium: 3 per week). Not available in Hard Mode.'],
+ // quest edit
+ new_q:['Yeni görev','New quest'],edit_q:['Görevi düzenle','Edit quest'],q_name:['Görev adı','Quest name'],q_target:['Hedef','Target'],q_unit:['Birim','Unit'],q_step:['Adım','Step'],q_days:['Günler','Days'],q_time:['Saat (isteğe bağlı)','Time (optional)'],q_area:['Alan','Area'],q_diff:['Zorluk','Difficulty'],q_remind:['Bu saatte hatırlat','Remind me at this time'],
+ q_added:['Görev eklendi.','Quest added.'],q_saved:['Görev güncellendi.','Quest updated.'],q_need_name:['Görev adı yaz.','Enter a quest name.'],q_need_day:['En az bir gün seç.','Pick at least one day.'],
+ n_quest_body:['Planladığın saat geldi. Bitirince +{0} XP.','It\'s the time you planned. +{0} XP when done.'],
+ why_time:['Belirli bir saate ve yere bağlanan hedefler daha sık gerçekleşir (uygulama niyeti).','Goals tied to a specific time and place get done more often (implementation intentions).'],
+ // plan
+ my_plan:['Programım','My program'],programs:['Programlar','Programs'],quests:['Görevler','Quests'],library:['Kütüphaneden ekle','Add from library'],add_custom:['+ Kendi görevini oluştur','+ Create your own quest'],
+ switch_prog:['Programı değiştir','Switch program'],switch_d:['{0} programına geçilsin mi? Mevcut hazır görevler bu programınkilerle değişir, kendi oluşturduğun görevler kalır.','Switch to {0}? Built-in quests are replaced with this program\'s; your custom quests stay.'],switched:['Program değişti.','Program switched.'],
+ lib_empty:['Kütüphanedeki tüm görevler zaten planında.','Every library quest is already in your plan.'],paused:['Duraklatıldı','Paused'],
+ // insight
+ insight:['Gelişim','Growth'],to_level:['Seviye {0} için','To level {0}'],analysis:['{0} ANALİZİ · GÜN {1}','{0}\'S ANALYSIS · DAY {1}'],top_pct:['En iyi %{0}','Top {0}%'],class_profile:['Sınıf profili','Class profile'],peak:['Zirve · {0}','Peak · {0}'],
+ total_tasks:['Toplam görev','Total quests'],since_d1:['Gün 1\'den beri','Since day 1'],you:['SEN','YOU'],avg:['ORT.','AVG'],today_plus:['+{0} BUGÜN','+{0} TODAY'],
+ suggestion:['Görev önerisi','Suggested quest'],weakest:['{0} en zayıf alanın','{0} is your weakest area'],add:['EKLE','ADD'],in_plan:['PLANDA','IN PLAN'],pass_:['GEÇ','SKIP'],added_plan:['Görev planına eklendi.','Added to your plan.'],already:['Bu görev zaten planında.','Already in your plan.'],tomorrow_sugg:['Yarın yeni bir öneri gelecek.','A new suggestion arrives tomorrow.'],
+ sg_wis:['Okuma, en düşük eforla artar','Reading grows with the least effort'],sg_conf:['Günlük, öz farkındalığı artırır','Journaling builds self-awareness'],sg_str:['Kısa ama her gün yapılan set','A short set, every single day'],sg_disc:['Sabit kalkış saati ritmi oturtur','A fixed wake time sets your rhythm'],sg_foc:['Bildirimsiz blok dikkati toplar','A notification-free block sharpens focus'],
+ ba:['Önce & Sonra','Before & After'],ba3:['3 değişim','3 changes'],ba_water:['Günlük su','Daily water'],ba_wake:['Kalkış saati','Wake time'],ba_screen:['Ekran süresi','Screen time'],days_ago:['{0} gün önce','{0} days ago'],today:['Bugün','Today'],
+ level:['Seviye','Level'],now:['Şu an','Now'],d1:['Gün 1','Day 1'],d66:['Gün 66 tahmini','Day 66 forecast'],xp_earned:['XP kazanıldı','XP earned'],xp_to:['Seviye {0} için {1} XP','{1} XP to level {0}'],start_pt:['Başlangıç noktan','Your starting point'],at_pace:['Mevcut tempoyla 66. gün','Day 66 at your current pace'],LEVEL:['SEVİYE','LEVEL'],
+ deep:['Detaylı analiz','Deep analysis'],heat:['66 günlük harita','66-day map'],by_area:['Alanlara göre tamamlama','Completion by area'],best_day:['En iyi günün','Your best day'],coach:['Koç notu','Coach note'],
+ unlock:['Premium ile aç','Unlock with Premium'],unlock_d:['Detaylı analiz, koç notları ve 66 günlük harita Premium\'da.','Deep analysis, coach notes and the 66-day map are in Premium.'],
+ coach_weak:['{0} görevlerinde tamamlama oranın %{1}. Bu alandaki bir görevi daha küçük bir hedefe indir ya da saatini değiştir: zor görev değil, uygun olmayan saat çoğu zaman sorundur.','Your {0} completion rate is {1}%. Shrink one of these quests or move its time: the problem is usually the timing, not the task.'],
+ coach_good:['Son 7 günde tamamlama oranın %{0}. Hedefleri büyütmeye hazırsın: bir görevin hedefini %10–20 artır.','Your completion rate over the last 7 days is {0}%. You are ready to grow: raise one target by 10–20%.'],
+ coach_start:['Henüz yeterli veri yok. 3 gün sonra kişisel öneriler burada görünecek.','Not enough data yet. Personal insights appear here after 3 days.'],
+ // workout
+ workout:['Antrenman','Workout'],today_sess:['Bugünün seansı','Today\'s session'],moves:['HAREKET','MOVES'],sets:['SET','SETS'],dur:['Süre','Time'],start_w:['Antrenmanı başlat','Start workout'],quick:['Hızlı başlat','Quick start'],recent:['Son seanslar','Recent sessions'],
+ no_sess:['Henüz seans yok','No sessions yet'],no_sess_d:['İlk antrenmanını başlat, burada görünsün.','Start your first workout and it shows up here.'],new_:['Yeni','New'],new_w_soon:['Özel seans oluşturma bir sonraki sürümde.','Custom sessions arrive in the next version.'],
+ w_push:['İtiş Günü','Push Day'],w_pull:['Çekiş Günü','Pull Day'],w_legs:['Bacak Günü','Leg Day'],in_progress:['{0} · devam ediyor','{0} · in progress'],sets_done:['{0}/{1} set tamamlandı','{0}/{1} sets done'],finish_w:['Antrenmanı bitir','Finish workout'],one_set:['En az bir seti işaretle.','Mark at least one set.'],w_saved:['Seans kaydedildi. +{0} XP','Session saved. +{0} XP'],day_n:['Gün {0}','Day {0}'],
+ rest_rule:['Setler arası 60–90 sn dinlen. Aynı kas grubunu ~48 saat dinlendir.','Rest 60–90 s between sets. Give each muscle group ~48 h to recover.'],
+ // season
+ season:['Sezon','Season'],closes_in:['Kapanış','Closes'],season_info:['Sezon her ayın sonunda kapanır. Kademe ödülleri profiline eklenir.','The season closes at month end. Tier rewards are added to your profile.'],this_season:['Bu sezon {0} XP','{0} XP this season'],to_next:['<b style="color:var(--gd)">{0} XP</b> ile {1}','<b style="color:var(--gd)">{0} XP</b> to {1}'],
+ frame:['S1 Çerçeve','S1 Frame'],unlocked:['AÇILDI','UNLOCKED'],wallpaper:['Duvar kâğıdı','Wallpaper'],daily_xp:['Günlük XP · bu sezon','Daily XP · this season'],avg_of:['{0} ort.','{0} avg'],sample_lg:['Örnek lig · çevrimiçi ligler yakında','Sample league · online leagues soon'],total_today:['Toplam (bugün)','Total (today)'],you2:['Sen','You'],
+ tiers:[['Bronz','Gümüş','Altın','Platin','Elmas'],['Bronze','Silver','Gold','Platinum','Diamond']],
+ // profile
+ profile:['PROFİL','PROFILE'],together:['Birlikte daha güçlü','Stronger together'],invite:['Arkadaşını davet et','Invite a friend'],invite_d:['66 günü birlikte başlayın, zinciri birlikte koruyun.','Start the 66 days together and protect the chain together.'],invite_btn:['DAVET','INVITE'],
+ invite_text:['66 günlük AZİM programına başladım. Sen de katıl, zinciri birlikte koruyalım!','I started the 66-day AZIM program. Join me and let\'s keep the chain going together!'],copied:['Davet metni kopyalandı.','Invite text copied.'],
+ month_goal:['Bu ayın hedefi','Goal of the month'],goal_def:['66 günü eksiksiz bitir','Finish all 66 days'],member:['Üyelik','Member since'],cur_streak:['Güncel seri','Current streak'],today_q:['Bugünkü görev','Quests today'],season_xp:['Sezon XP','Season XP'],
+ recent_act:['Son aktivite','Recent activity'],last5:['Son 5','Last 5'],no_act:['Görev tamamladıkça burada görünür.','Completed quests appear here.'],yesterday:['Dün','Yesterday'],
+ settings:['Ayarlar','Settings'],hard_mode:['Sert Mod','Hard Mode'],hard_d:['Eksik gün: seri sıfır, −100 XP','Missed day: streak reset, −100 XP'],hard_on:['Sert Mod açık.','Hard Mode on.'],hard_off:['Standart moda geçildi.','Switched to Standard.'],
+ schedule:['Günlük düzen','Daily rhythm'],schedule_d:['Bildirimler bu saatlere göre ayarlanır.','Notifications are timed to these.'],wake:['Uyanış','Wake'],sleep:['Uyku','Sleep'],train_t:['Antrenman','Training'],preset:['Hazır düzen','Preset'],
+ reminders:['Hatırlatıcılar','Reminders'],rem_d:['Günde en az 7 bildirim + görev saatleri','7+ daily notifications + quest times'],test_notif:['Örnek bildirim gönder','Send a test notification'],test_sent:['Örnek bildirim gönderildi.','Test notification sent.'],only_android:['Bildirimler Android uygulamasında çalışır.','Notifications work in the Android app.'],
+ rem_on:['Hatırlatıcılar açık.','Reminders are on.'],rem_denied:['Bildirim izni verilmedi. Telefon ayarlarından açabilirsin.','Notification permission denied. Enable it in phone settings.'],
+ language:['Dil','Language'],theme:['Tema rengi','Accent color'],areas:['Alanlar','Areas'],
+ premium:['AZİM Premium','AZIM Premium'],premium_on:['Premium aktif','Premium active'],premium_off:['Ücretsiz plan','Free plan'],go_premium:['Premium\'a geç','Go Premium'],manage_sub:['Aboneliği yönet','Manage subscription'],
+ data:['Veriler','Data'],export:['Yedeği dışa aktar','Export backup'],import:['Yedeği içe aktar','Import backup'],export_d:['Bu metni güvenli bir yere kaydet. Yeni cihazda "Yedeği içe aktar" ile geri yükleyebilirsin.','Save this text somewhere safe. Restore it on a new device with "Import backup".'],
+ copy:['Kopyala','Copy'],share:['Paylaş','Share'],import_d:['Daha önce dışa aktardığın yedek metnini yapıştır. Mevcut ilerlemenin yerine geçer.','Paste a backup you exported earlier. It replaces your current progress.'],import_ok:['Yedek geri yüklendi.','Backup restored.'],import_bad:['Yedek okunamadı. Metni eksiksiz yapıştır.','Could not read the backup. Paste the full text.'],
+ account:['Hesap','Account'],on_device:['Veriler bu cihazda saklanır','Data is stored on this device'],logout:['Çıkış yap','Sign out'],reset:['Programı sıfırla','Reset program'],reset_q:['Emin misin?','Are you sure?'],reset_d:['Tüm ilerleme, XP ve seri silinir. Bu işlem geri alınamaz.','All progress, XP and streak will be deleted. This cannot be undone.'],reset_yes:['Evet, sıfırla','Yes, reset'],
+ delacc_d:['Hesabın ve tüm ilerlemen bu cihazdan kalıcı olarak silinir.','Your account and all progress will be permanently deleted from this device.'],delacc_yes:['Hesabı kalıcı olarak sil','Delete permanently'],
+ version:['AZİM · Yapım: selcukyus · Sürüm {0}','AZIM · Made by selcukyus · Version {0}'],
+ // paywall
+ pw_k:['66 GÜNÜ GARANTİLE','LOCK IN YOUR 66 DAYS'],pw_t:['AZİM<br><span class="or">Premium</span>','AZIM<br><span class="or">Premium</span>'],
+ f1:['3 özel program','3 extra programs'],f1d:['Sigarayı bırak, Sınav dönemi, Kilo ver','Quit smoking, Exam season, Lose weight'],
+ f2:['Haftada 3 seri koruma','3 streak freezes per week'],f2d:['Kötü bir gün 40 günlük seriyi bitirmesin','Don\'t let one bad day end a 40-day streak'],
+ f3:['Detaylı analiz ve koç notları','Deep analysis & coach notes'],f3d:['66 günlük harita, alan bazlı oranlar, kişisel öneriler','66-day map, per-area rates, personal advice'],
+ f4:['Tema renkleri','Accent themes'],f4d:['4 ek renk','4 extra colors'],
+ monthly:['Aylık','Monthly'],yearly:['Yıllık','Yearly'],per_mo:['/ay','/mo'],per_yr:['/yıl','/yr'],save_pct:['%44 TASARRUF','SAVE 44%'],
+ subscribe:['Abone ol','Subscribe'],restore:['Satın alımları geri yükle','Restore purchases'],pw_note:['Abonelik Google Play üzerinden yönetilir, istediğin zaman iptal edebilirsin. Ücretsiz deneme varsa süresi bitmeden iptal edersen ücret alınmaz.','Subscriptions are managed in Google Play and can be cancelled anytime. If a free trial applies, cancel before it ends and you won\'t be charged.'],
+ pw_preview:['Önizleme modunda gerçek satın alma yok. Premium deneme olarak açıldı.','No real purchases in preview. Premium unlocked as a demo.'],premium_thanks:['Premium aktif. Teşekkürler!','Premium is active. Thank you!'],billing_na:['Mağaza bağlantısı kurulamadı. Biraz sonra tekrar dene.','Could not reach the store. Try again shortly.'],restored:['Satın alımlar kontrol edildi.','Purchases checked.'],
+ pw_d8:['7 gündür buradasın. Seriyi korumak için en güçlü araçlar Premium\'da.','You\'ve been here 7 days. The strongest tools to protect your streak are in Premium.'],
+ nav_today:['Bugün','Today'],nav_growth:['Gelişim','Growth'],nav_workout:['Antrenman','Workout'],nav_season:['Sezon','Season'],nav_profile:['Profil','Profile']
+};
+
+"use strict";
+/* ---------- BASICS ---------- */
+const NATIVE=typeof window.AzimNative!=='undefined';
+const Store={
+ get(k){try{return NATIVE?AzimNative.get(k):localStorage.getItem(k)}catch(e){return null}},
+ set(k,v){try{NATIVE?AzimNative.set(k,v):localStorage.setItem(k,v)}catch(e){}},
+ del(k){try{NATIVE?AzimNative.remove(k):localStorage.removeItem(k)}catch(e){}},
+ json(k){try{return JSON.parse(this.get(k)||'null')}catch(e){return null}}
+};
+let LANG=Store.get('azim.lang')||((navigator.language||'tr').toLowerCase().startsWith('tr')?'tr':'en');
+const LI=()=>LANG==='en'?1:0;
+function t(k,...a){const e=L[k];let s=e?e[LI()]:k;if(typeof s==='string')a.forEach((v,i)=>{s=s.split('{'+i+'}').join(v)});return s}
+const $=id=>document.getElementById(id), val=id=>($(id)?$(id).value.trim():'');
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const up=s=>s.toLocaleUpperCase(LANG==='tr'?'tr':'en');
+function toast(x){const e=$('toast');e.textContent=x;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2600)}
+function ic(id,st){return `<svg class="i"${st?` style="${st}"`:''}><use href="#${id}"/></svg>`}
+const fmtN=n=>Math.round(n).toLocaleString(LANG==='tr'?'tr-TR':'en-US');
+const num=n=>LANG==='tr'?String(n).replace('.',','):String(n);
+const toMin=s=>{if(!s)return null;const [h,m]=s.split(':').map(Number);return h*60+m};
+const fromMin=m=>{m=((Math.round(m)%1440)+1440)%1440;return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')};
+function hm(h){return fromMin(h*60)}
+function ymd(d){d=d||new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function addDay(s){const [y,m,d]=s.split('-').map(Number);return ymd(new Date(y,m-1,d+1))}
+function dowOfDate(s){const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d).getDay()}
+
+/* ---------- DATA ---------- */
+const CATS={wis:{ic:'i-bulb',col:'#b59cff',a:['#1c2238','#0c0d12'],art:'book'},conf:{ic:'i-shield',col:'#68d39a',a:['#18301f','#0b0e0c'],art:'mount'},str:{ic:'i-bolt',col:'#ff6b6b',a:['#3b1a10','#120b08'],art:'run'},disc:{ic:'i-lock',col:'#6aa6ff',a:['#3a2a12','#110d08'],art:'sun'},foc:{ic:'i-target',col:'#56d0cf',a:['#0f2a2c','#090c0d'],art:'target'}};
+const CK=Object.keys(CATS);
+const ALL=[0,1,2,3,4,5,6],MWF=[1,3,5];
+// Quest library. tk = translation key, n = base target, u = unit key, s = step, days, d = difficulty, time ('' = flexible, 'wake'/'sleep' = linked)
+const LIB={
+ push:{c:'str',tk:'q_push',n:20,u:'u_rep',s:5,days:ALL,d:'Orta',time:'07:15'},
+ water:{c:'str',tk:'q_water',n:2,u:'u_l',s:.5,days:ALL,d:'Kolay',time:'',k:[1,1.25,1.5]},
+ run:{c:'str',tk:'q_run',n:3,u:'u_km',s:1,days:MWF,d:'Zor',time:'18:30'},
+ read:{c:'wis',tk:'q_read',n:20,u:'u_page',s:5,days:ALL,d:'Kolay',time:'21:30'},
+ learn:{c:'wis',tk:'q_learn',n:15,u:'u_min',s:5,days:ALL,d:'Orta',time:'20:00'},
+ wake:{c:'disc',tk:'q_wake',n:1,u:'',s:1,days:ALL,d:'Zor',time:'wake'},
+ lights:{c:'disc',tk:'q_lights',n:1,u:'',s:1,days:ALL,d:'Orta',time:'sleep'},
+ cold:{c:'disc',tk:'q_cold',n:2,u:'u_min',s:1,days:MWF,d:'Orta',time:'07:30'},
+ deep:{c:'foc',tk:'q_deep',n:50,u:'u_min',s:25,days:ALL,d:'Orta',time:'10:00'},
+ med:{c:'foc',tk:'q_med',n:5,u:'u_min',s:5,days:ALL,d:'Kolay',time:'08:00'},
+ screen:{c:'foc',tk:'q_screen',n:1,u:'',s:1,days:ALL,d:'Zor',time:''},
+ journal:{c:'conf',tk:'q_journal',n:1,u:'',s:1,days:ALL,d:'Kolay',time:'22:00'},
+ posture:{c:'conf',tk:'q_posture',n:5,u:'u_min',s:5,days:ALL,d:'Kolay',time:'12:30'},
+ talk:{c:'conf',tk:'q_talk',n:1,u:'',s:1,days:MWF,d:'Zor',time:''},
+ sm1:{c:'disc',tk:'q_sm1',n:1,u:'',s:1,days:ALL,d:'Zor',time:'',p:'smoke'},
+ sm2:{c:'str',tk:'q_sm2',n:5,u:'u_min',s:5,days:ALL,d:'Kolay',time:'',p:'smoke',k:[1,1,1.5]},
+ sm3:{c:'foc',tk:'q_sm3',n:4,u:'u_round',s:1,days:ALL,d:'Kolay',time:'09:00',p:'smoke',k:[1,1,1]},
+ sm5:{c:'conf',tk:'q_sm5',n:1,u:'',s:1,days:ALL,d:'Kolay',time:'21:00',p:'smoke'},
+ ex1:{c:'foc',tk:'q_ex1',n:3,u:'u_block',s:1,days:ALL,d:'Orta',time:'09:00',p:'exam',k:[1,1.34,1.67]},
+ ex2:{c:'wis',tk:'q_ex2',n:20,u:'u_min',s:5,days:ALL,d:'Orta',time:'19:00',p:'exam'},
+ ex3:{c:'wis',tk:'q_ex3',n:1,u:'',s:1,days:[2,6],d:'Zor',time:'10:00',p:'exam'},
+ ex4:{c:'disc',tk:'q_ex4',n:1,u:'',s:1,days:ALL,d:'Orta',time:'',p:'exam'},
+ ft1:{c:'str',tk:'q_ft1',n:8000,u:'u_step',s:1000,days:ALL,d:'Orta',time:'',p:'fat',k:[1,1.25,1.25]},
+ ft2:{c:'disc',tk:'q_ft2',n:1,u:'',s:1,days:ALL,d:'Orta',time:'',p:'fat'},
+ ft3:{c:'str',tk:'q_ft3',n:1,u:'',s:1,days:ALL,d:'Kolay',time:'08:30',p:'fat'},
+ ft4:{c:'disc',tk:'q_ft4',n:1,u:'',s:1,days:ALL,d:'Zor',time:'20:00',p:'fat'}
+};
+const PROGRAMS={core:{prem:false},smoke:{prem:true,q:['sm1','sm2','sm3','water','sm5']},exam:{prem:true,q:['ex1','ex2','ex3','ex4','lights']},fat:{prem:true,q:['ft1','ft2','ft3','ft4','water']}};
+const UNITS=['','u_rep','u_min','u_page','u_km','u_l','u_step','u_block','u_round'];
+const XPD={Kolay:20,Orta:30,Zor:50},STD={Kolay:2,Orta:3,Zor:5};
+const SHIFTS={day:{w:'07:00',s:'23:00',tr:'18:00'},early:{w:'05:30',s:'22:00',tr:'17:00'},night:{w:'14:00',s:'06:00',tr:'16:00'}};
+const OB_Q={water:[.7,1.4,2.2],screen:[100,190,262]};
+const THEMES={orange:['#ee7a2f','#a8511d','#3a2216',false],green:['#3ecf8e','#1f7a52','#132b1f',true],blue:['#4c8dff','#2a4f99','#13213d',true],purple:['#9b7bff','#5a44a3','#241b3d',true],red:['#ff5a5f','#a3343a','#3a1618',true]};
+const PLAYERS=[['Deniz',['5 km < 25 dk','5K under 25 min'],'#e0703a'],['Ece',['Şekersiz ay','Sugar-free month'],'#8c6cff'],['Kaan',['Deadlift rekoru','Deadlift PR'],'#3fae7c'],['Zeynep',['06:00 kalkış','Up at 6 AM'],'#d14f6a'],['Burak',['12 kitap','12 books'],'#4a8fe0'],['Elif','','#d6a443'],['Mert','10K adım','#3fb7b5'],['Selin','','#c76bd1'],['Can','','#e05a3a'],['İrem','','#6fa04a']];
+const WT={push:{tk:'w_push',col:'#c86a55',mv:[['Bench press',4,8],['Overhead press',4,6],['Push-up',3,12],['Dips',3,8]]},pull:{tk:'w_pull',col:'#6c66c9',mv:[['Pull-up',4,6],['Barbell row',4,8],['Face pull',3,12],['Biceps curl',3,10]]},legs:{tk:'w_legs',col:'#3d9aa1',mv:[['Squat',4,6],['Romanian deadlift',3,8],['Lunge',3,10],['Calf raise',4,12]]}};
+const WTR={'Push-up':'Şınav','Overhead press':'Omuz press','Pull-up':'Barfiks','Biceps curl':'Biceps curl'};
+const mvName=n=>LANG==='tr'&&WTR[n]?WTR[n]:n;
+
+/* ---------- STATE ---------- */
+let S=null,USER=null,F={},view=null,viewDay=null,showDone=false,wsel='push',live=null,rt='now',timer=null,pwPlan='y',PRODUCTS=null;
+function save(){if(!S||!USER)return;Store.set('azim.data.'+USER,JSON.stringify(S));syncNative()}
+function load(){const d=USER?Store.json('azim.data.'+USER):null;return d&&d.v===2?d:(d&&d.plan?migrate(d):d)}
+function migrate(o){// v1 -> v2
+ const n=newState(o.name,o.areas||['str','wis'],o.hard,{water:1,screen:1,shift:'day'});
+ Object.assign(n,{day:o.day||1,xp:o.xp||0,stats:o.stats||n.stats,stats0:o.stats0||n.stats0,hist:o.hist||[],log:o.log||[],workouts:o.workouts||[],tasks:o.tasks||0,streak:o.streak||0,best:o.best||0,goal:o.goal||n.goal,since:o.since||n.since,date:o.date||ymd(),qs:o.qs||{}});
+ return n}
+function isPrem(){if(NATIVE)try{return AzimNative.isPremium()}catch(e){}return Store.get('azim.demoPremium')==='1'}
+function freezeCap(){return isPrem()?3:1}
+
+/* ---------- ART ---------- */
+let artN=0;
+function art(kind,c1,c2,seed){
+ const id='a'+(artN++),s=seed||1,L2='stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round"';let g='';
+ if(kind==='book')g=`<g transform="translate(250 22) rotate(-8)" opacity=".2" ${L2} stroke-width="2.5"><path d="M0 20q55-22 110 0v95q-55-22-110 0z"/><path d="M110 20q55-22 110 0v95q-55-22-110 0z"/><path d="M14 40q40-12 80 0M14 60q40-12 80 0M14 80q40-12 80 0M126 40q40-12 80 0M126 60q40-12 80 0"/></g>`;
+ if(kind==='run')g=`<g transform="translate(270 10)" opacity=".22" ${L2} stroke-width="5"><circle cx="70" cy="18" r="13"/><path d="M28 120l26-38 22 14 8-36M42 52l30-16 22 28h28M76 66l24 22-8 40"/></g><g opacity=".12" ${L2} stroke-width="2"><path d="M180 108h120M140 92h90M200 76h70"/></g>`;
+ if(kind==='sun')g=`<g transform="translate(330 120)" opacity=".24" ${L2} stroke-width="3"><circle r="46"/><path d="M-110 0h56M54 0h56M0-110v56M-78-78l40 40M78-78l-40 40"/></g><path d="M0 120h420" stroke="#fff" opacity=".18" stroke-width="2"/>`;
+ if(kind==='target')g=`<g transform="translate(320 66)" opacity=".2" ${L2} stroke-width="3"><circle r="70"/><circle r="46"/><circle r="22"/><path d="M-90 0h180M0-90v180"/></g>`;
+ if(kind==='mount')g=`<g opacity=".22" ${L2} stroke-width="3"><path d="M150 140l80-90 40 40 50-70 110 120"/><circle cx="360" cy="34" r="12"/></g>`;
+ if(kind==='bar')g=`<g opacity=".22" ${L2} stroke-width="5" transform="translate(220 40) rotate(-12)"><path d="M10 50h150M10 20v60M30 28v44M160 20v60M140 28v44"/></g>`;
+ if(kind==='grid')g=`<g opacity=".1" stroke="#fff" stroke-width="1">${Array.from({length:12},(_,i)=>`<path d="M${i*36} 0v140"/>`).join('')}${Array.from({length:5},(_,i)=>`<path d="M0 ${i*36}h420"/>`).join('')}</g>`;
+ return `<svg class="art" viewBox="0 0 420 140" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="${id}g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient><pattern id="${id}p" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(${30+s*7})"><path d="M0 0v7" stroke="#fff" stroke-opacity=".035" stroke-width="2"/></pattern><filter id="${id}n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="${s}"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0"/></filter><radialGradient id="${id}r" cx=".85" cy=".15" r=".9"><stop offset="0" stop-color="var(--or)" stop-opacity=".25"/><stop offset="1" stop-color="var(--or)" stop-opacity="0"/></radialGradient></defs><rect width="420" height="140" fill="url(#${id}g)"/><rect width="420" height="140" fill="url(#${id}r)"/><rect width="420" height="140" fill="url(#${id}p)"/>${g}<rect width="420" height="140" filter="url(#${id}n)"/></svg>`;
+}
+function avatar(name,col,size){const ini=(name||'?').trim().split(/\s+/).map(x=>x[0]).join('').slice(0,2);return `<div class="av" style="background:linear-gradient(135deg,${col},#1a1512);${size?`width:${size}px;height:${size}px`:''}">${esc(up(ini))}</div>`}
+const TRF='<svg class="flag" viewBox="0 0 30 20"><rect width="30" height="20" fill="#e30a17"/><circle cx="11" cy="10" r="5" fill="#fff"/><circle cx="12.3" cy="10" r="4" fill="#e30a17"/><path d="M17.5 10l-2.6.9 1.6-2.2v2.6l-1.6-2.2z" fill="#fff"/></svg>';
+function applyTheme(){const th=THEMES[(S&&S.theme)||'orange']||THEMES.orange;const r=document.documentElement.style;r.setProperty('--or',th[0]);r.setProperty('--or2',th[1]);r.setProperty('--or3',th[2])}
+
+/* ---------- QUESTS ---------- */
+function mkQuest(id){const b=LIB[id];return {id,lib:id,c:b.c,n:b.n,u:b.u,s:b.s,days:b.days.slice(),d:b.d,time:b.time,remind:true,on:true}}
+function phase(d){return d<=22?0:d<=44?1:2}
+function dowOf(day){return (dowOfDate(S.start)+day-1)%7}
+function qN(q,day){if(q.custom||!q.u)return q.n;const k=(LIB[q.lib]&&LIB[q.lib].k)||[1,1.5,2];const m=k[phase(day)];return Math.max(q.s,Math.round(q.n*m/q.s)*q.s)}
+function qTime(q){return q.time==='wake'?S.sched.wake:q.time==='sleep'?S.sched.sleep:q.time||''}
+function qTitle(q,day){if(q.custom)return q.text;const n=qN(q,day||S.day);return t(q.tk||LIB[q.lib].tk).replace('{n}',num(fmtSmall(n))).replace('{w}',S.sched.wake).replace('{s}',S.sched.sleep)}
+function fmtSmall(n){return n>=1000?fmtN(n):+n.toFixed(2)}
+function todayQuests(day){day=day||S.day;const dw=dowOf(day);return S.quests.filter(q=>q.on&&q.days.includes(dw)).map(q=>({...q,N:qN(q,day),title:qTitle(q,day),tm:qTime(q)})).sort((a,b)=>(toMin(a.tm)??9999)-(toMin(b.tm)??9999))}
+const isDone=q=>(S.prog[q.id]||0)>=q.N;
+function lvl(xp){let l=1,r=xp,need=400;while(r>=need){r-=need;l++;need=400+l*60}return{l,r,need}}
+function league(xp){const T=t('tiers'),D=['III','II','I'],step=600,k=Math.min(14,Math.floor(xp/step));return{t:T[Math.floor(k/3)],d:D[k%3],into:xp-k*step,step,next:k<14?(k%3===2?T[Math.floor(k/3)+1]+' III':T[Math.floor(k/3)]+' '+D[k%3+1]):'—'}}
+function topStat(){return CK.reduce((a,b)=>S.stats[b]>S.stats[a]?b:a)}
+function addXp(n,ev){const before=lvl(S.xp).l;S.xp=Math.max(0,S.xp+n);
+ if(ev&&n>0&&ev.clientX){const f=document.createElement('div');f.className='fxp';f.textContent='+'+n+' XP';f.style.left=(ev.clientX-30)+'px';f.style.top=(ev.clientY-30)+'px';document.body.appendChild(f);setTimeout(()=>f.remove(),1000)}
+ const a=lvl(S.xp).l;if(a>before)setTimeout(()=>toast(t('levelup',a)),300)}
+
+function complete(id,ev,quiet){
+ const q=todayQuests().find(x=>x.id===id);if(!q)return;
+ if(isDone(q)){S.prog[id]=0;addXp(-XPD[q.d]);S.stats[q.c]-=STD[q.d];S.tasks--;S.log=S.log.filter(l=>!(l.day===S.day&&l.id===id));save();if(!quiet)render();return}
+ S.prog[id]=q.N;S.skip=S.skip.filter(x=>x!==id);addXp(XPD[q.d],ev);S.stats[q.c]+=STD[q.d];S.tasks++;
+ S.log.unshift({day:S.day,id,t:q.title,xp:XPD[q.d],st:(S.qs[id]||0)+1});S.log=S.log.slice(0,40);
+ try{navigator.vibrate&&navigator.vibrate(12)}catch(e){}
+ save();if(quiet)return;
+ const el=document.querySelector(`[data-q="${id}"]`);if(el){el.classList.add('pop','done');setTimeout(render,380)}else render();
+ if(todayQuests().every(isDone))setTimeout(()=>toast(t('all_done_toast')),450);
+}
+
+/* ---------- DAY ROLLOVER / STREAK ---------- */
+function dayResult(){const Q=todayQuests(),d=Q.filter(isDone).length,r=Q.length?d/Q.length:1;
+ const okDay=r===1, kept=okDay||(!S.hard&&r>=.5);return{Q,d,all:Q.length,r,okDay,kept}}
+function missOutcome(){// what happens on a non-kept day
+ if(S.hard)return'reset';if((S.freezes||0)>0)return'frz';const prev=S.hist[S.day-2];if(prev&&(prev.res==='miss'||prev.res==='grace'))return'reset';return'grace'}
+function closeDay(auto){
+ if(S.day>66)return null;const x=dayResult();let res;
+ if(x.okDay){res='ok';S.streak=(S.streak||0)+1;addXp(40+S.streak*5)}
+ else if(x.kept){res='part';S.streak=(S.streak||0)+1}
+ else{const o=missOutcome();
+  if(o==='frz'){res='frz';S.freezes--}
+  else if(o==='grace'){res='grace'}
+  else{res='miss';S.streak=0;if(S.hard)addXp(-100)}}
+ x.Q.forEach(q=>S.qs[q.id]=isDone(q)?(S.qs[q.id]||0)+1:(res==='frz'?(S.qs[q.id]||0):0));
+ S.best=Math.max(S.best||0,S.streak||0);
+ S.hist[S.day-1]={done:x.d,total:x.all,res,xp:S.xp,items:x.Q.filter(isDone).map(q=>q.title),cats:x.Q.map(q=>[q.c,isDone(q)?1:0])};
+ S.day++;S.prog={};S.skip=[];
+ if(S.day<=66&&dowOf(S.day)===1)S.freezes=Math.min(freezeCap(),(S.freezes||0)+1);
+ const out={day:S.day-1,res,done:x.d,total:x.all};
+ if(auto)return out;
+ save();closeSheet();render();scrollTo(0,0);
+ const ph={23:t('ph2'),45:t('ph3')}[S.day];
+ toast(S.day>66?t('finished66'):ph?t('new_phase',ph):t('day_started',S.day));return out;
+}
+function rollover(){
+ if(!S||!S.quests)return;const td=ymd();let n=0,first=null;
+ while(S.date<td&&n<80){const r=closeDay(true);if(!first&&r)first=r;S.date=addDay(S.date);n++}
+ if(n){save();if(first)setTimeout(()=>rolledSheet(first,n),350)}
+}
+function resName(r){return {ok:t('perfect'),part:t('partial'),miss:t('missed'),frz:t('frozen'),grace:t('grace')}[r]}
+function rolledSheet(r,n){openSheet(`<div class="m">${t('rolled',r.day)}</div><h2 class="w">${resName(r.res)}</h2><p style="color:#d8d0c5;margin-top:10px;line-height:1.5">${t('rolled_d',r.done,r.total)}${n>1?t('rolled_more',n-1):''}${t('rolled_streak',S.streak||0)}</p><button class="cta" onclick="closeSheet();maybePaywall()">${t('keep_going')}</button>`)}
+function maybePaywall(){if(!isPrem()&&S.day>=8&&!S.pwShown){S.pwShown=1;save();setTimeout(()=>paywall(t('pw_d8')),300)}}
+
+/* ---------- SYNC WITH ANDROID ---------- */
+function syncNative(){if(!NATIVE||!S||!S.quests)return;try{
+ const Q=todayQuests(),w=Q.find(q=>q.lib==='water');
+ AzimNative.syncSummary(JSON.stringify({lang:LANG,name:S.name,day:Math.min(S.day,66),streak:S.streak||0,left:Q.filter(q=>!isDone(q)).length,total:Q.length,hard:!!S.hard,water:w?w.N:2,date:S.date,
+  quests:Q.slice(0,8).map(q=>({id:q.id,title:q.title,done:isDone(q),time:q.tm}))}))}catch(e){}}
+function reminderPlan(){const w=toMin(S.sched.wake),sl=toMin(S.sched.sleep);
+ const base=[[1,'morning',w+30],[2,'water',w+180],[3,'water',w+360],[4,'water',w+540],[5,'training',toMin(S.sched.train)],[6,'tasks',sl-180],[7,'night',sl-45]].map(x=>({id:x[0],kind:x[1],time:fromMin(x[2])}));
+ S.quests.filter(q=>q.on&&q.remind&&qTime(q)).slice(0,24).forEach((q,i)=>base.push({id:100+i,kind:'quest',qid:q.id,time:qTime(q),days:q.days,title:qTitle(q),body:t('n_quest_body',XPD[q.d])}));
+ return base}
+function pushSchedule(){if(!NATIVE||!S)return;try{AzimNative.setSchedule(JSON.stringify(reminderPlan()))}catch(e){}}
+function remOn(){if(NATIVE)try{return AzimNative.remindersEnabled()}catch(e){}return Store.get('azim.rem')!=='0'}
+function enableReminders(on){Store.set('azim.rem',on?'1':'0');if(NATIVE)try{pushSchedule();AzimNative.setReminders(on);if(on&&!AzimNative.hasNotifPermission())AzimNative.requestNotifPermission()}catch(e){}}
+function applyWidgetActions(){if(!NATIVE||!S)return;try{const a=JSON.parse(AzimNative.takeWidgetActions()||'[]');let c=0;a.forEach(id=>{const q=todayQuests().find(x=>x.id===id);if(q&&!isDone(q)){complete(id,null,true);c++}});if(c)save()}catch(e){}}
+window.azimOnNotifPermission=g=>toast(g?t('rem_on'):t('rem_denied'));
+window.azimOnPremium=p=>{if(p){toast(t('premium_thanks'));closeSheet();if(S&&S.freezes<1)S.freezes=1}render()};
+window.azimProducts=j=>{try{PRODUCTS=typeof j==='string'?JSON.parse(j):j;if($('ov').classList.contains('on')&&document.querySelector('.pw'))pwRender()}catch(e){}};
+window.azimResume=()=>{if(S&&S.quests){rollover();applyWidgetActions();if(view&&!live)render()}};
+window.azimBack=()=>{
+ if($('ov').classList.contains('on')){closeSheet();return true}
+ if(viewDay){viewDay=null;render();return true}
+ if(S&&S.quests&&view&&view!=='today'){go(view==='plan'?'today':'today');return true}
+ if(['reg','login'].includes(view)){obGo('welcome');return true}
+ return false};
+
+/* ---------- AUTH ---------- */
+async function hashPw(pw,salt){const data=new TextEncoder().encode(salt+':'+pw);
+ try{if(window.crypto&&crypto.subtle){const b=await crypto.subtle.digest('SHA-256',data);return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}}catch(e){}
+ let h=2166136261;for(const c of data){h^=c;h=Math.imul(h,16777619)>>>0}return 'f'+h.toString(16)}
+function rnd(){const a=new Uint8Array(12);try{crypto.getRandomValues(a)}catch(e){for(let i=0;i<12;i++)a[i]=Math.random()*256|0}return [...a].map(x=>x.toString(16).padStart(2,'0')).join('')}
+const mailOk=m=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m);
+async function register(){const n=val('rName'),m=val('rMail').toLowerCase(),p=$('rPass').value,e=$('rErr');
+ if(n.length<2)return e.textContent=t('e_name');if(!mailOk(m))return e.textContent=t('e_mail');if(p.length<6)return e.textContent=t('e_pass');
+ const acc=Store.json('azim.accounts')||{};if(acc[m])return e.textContent=t('e_exists');
+ const salt=rnd();acc[m]={name:n,salt,hash:await hashPw(p,salt),created:Date.now()};Store.set('azim.accounts',JSON.stringify(acc));
+ USER=m;Store.set('azim.session',m);F={name:n,areas:[],water:null,screen:null,shift:null,hard:null};obGo('areas')}
+async function login(){const m=val('lMail').toLowerCase(),p=$('lPass').value,e=$('lErr');const a=(Store.json('azim.accounts')||{})[m];
+ if(!a||a.hash!==await hashPw(p,a.salt))return e.textContent=t('e_login');USER=m;Store.set('azim.session',m);resume()}
+function forgotSheet(){openSheet(`<h2 class="w">${t('forgot_t')}</h2><p class="mu" style="margin-top:10px;line-height:1.5">${t('forgot_d')}</p><input class="inp" id="fMail" type="email" placeholder="${t('del_mail')}"><button class="cta red" onclick="wipeAccount(val('fMail').toLowerCase())">${t('del_acc')}</button><button class="cta ghost sm" onclick="closeSheet()">${t('cancel')}</button>`)}
+function wipeAccount(m){const acc=Store.json('azim.accounts')||{};if(!acc[m])return toast(t('no_such'));delete acc[m];Store.set('azim.accounts',JSON.stringify(acc));Store.del('azim.data.'+m);if(Store.get('azim.session')===m)Store.del('azim.session');closeSheet();toast(t('acc_deleted'));if(USER===m){USER=null;S=null;nav(false);obGo('welcome')}}
+function logout(){Store.del('azim.session');USER=null;S=null;live=null;clearInterval(timer);nav(false);closeSheet();applyTheme();obGo('welcome')}
+function resume(){S=load();
+ if(S&&S.quests){applyTheme();nav(true);rollover();applyWidgetActions();pushSchedule();go(S.view&&S.view!=='plan'?S.view:'today');maybePaywall()}
+ else{const a=(Store.json('azim.accounts')||{})[USER];F={name:a?a.name:'',areas:[],water:null,screen:null,shift:null,hard:null};obGo('areas')}}
+
+/* ---------- ONBOARDING ---------- */
+function setLang(l){LANG=l;Store.set('azim.lang',l);document.documentElement.lang=l;if(S){syncNative();pushSchedule()}render()}
+function langSw(){return `<div class="lang"><button class="${LANG==='tr'?'on':''}" onclick="setLang('tr')">TR</button><button class="${LANG==='en'?'on':''}" onclick="setLang('en')">EN</button></div>`}
+function prog(n){return `<div class="prog">${[1,2,3,4,5,6].map(i=>`<i class="${i<=n?'on':''}"></i>`).join('')}</div>`}
+function optHtml(list,sel){return list.map((o,i)=>`<div class="opt ${sel.includes(i)?'sel':''}" data-i="${i}"><div class="ic" style="color:${o.col||'var(--tx)'}">${ic(o.ic)}</div><div><b>${o.n}</b><small>${o.d}</small></div><div class="rad">${ic('i-check','width:14px;height:14px;stroke-width:3')}</div></div>`).join('')}
+function obGo(step){view=step;render()}
+function renderOb(){
+ const sc=$('scr');sc.className='ob';let h='';
+ if(view==='welcome')h=`${langSw()}<div class="logo"><div class="n d">66<span class="d">66</span></div><div class="v d">${LANG==='tr'?'GÜN':'DAYS'}</div><div class="bars"><i></i><i></i><i></i></div></div>
+  <div class="hero d">${t('tagline')}</div><p class="lead">${t('lead0')}</p><div class="grow"></div><div class="m" style="text-align:center">${t('madeby')}</div>
+  <button class="cta" onclick="obGo('reg')">${t('create')} ${ic('i-arr')}</button><button class="cta ghost" style="margin-top:10px" onclick="obGo('login')">${t('signin')}</button>`;
+ if(view==='reg')h=`${prog(1)}<div class="m">01 / 06</div><div class="q d">${t('reg_t')}</div>
+  <input class="inp" id="rName" placeholder="${t('name')}" maxlength="18" autocomplete="given-name"><input class="inp" id="rMail" type="email" placeholder="${t('email')}" autocomplete="email" inputmode="email"><input class="inp" id="rPass" type="password" placeholder="${t('pass')}" autocomplete="new-password">
+  <div class="err" id="rErr"></div><p class="fl2">${t('reg_note')}</p><div class="grow"></div><button class="cta" onclick="register()">${t('next')}</button><button class="lnk" onclick="obGo('login')">${t('have_acc')}</button>`;
+ if(view==='login')h=`<div class="m" style="margin-top:20px">${t('welcome_back')}</div><div class="q d">${t('login_t')}</div>
+  <input class="inp" id="lMail" type="email" placeholder="${t('email')}" autocomplete="email" inputmode="email"><input class="inp" id="lPass" type="password" placeholder="${t('pass2')}" autocomplete="current-password">
+  <div class="err" id="lErr"></div><button class="lnk" style="text-align:left;margin-top:4px" onclick="forgotSheet()">${t('forgot')}</button><div class="grow"></div><button class="cta" onclick="login()">${t('signin')}</button><button class="lnk" onclick="obGo('reg')">${t('no_acc')}</button>`;
+ if(view==='areas')h=`${prog(2)}<div class="m">${t('s_areas','02')}</div><div class="q d">${t('areas_q')}</div><div id="opts">${optHtml(CK.map(k=>({n:t('c_'+k),d:t('ad_'+k),ic:CATS[k].ic,col:CATS[k].col})),F.areas.map(k=>CK.indexOf(k)))}</div><div class="grow"></div><button class="cta" onclick="obGo('now')" ${F.areas.length<2?'disabled':''}>${t('next')}</button>`;
+ if(view==='now'){const P=(k,arr)=>`<div class="pills">${arr.map((o,i)=>`<button class="pill ${F[k]===i?'sel':''}" onclick="F.${k}=${i};render()">${o}</button>`).join('')}</div>`;
+  h=`${prog(3)}<div class="m">${t('s_now','03')}</div><div class="q d">${t('now_q')}</div>
+  <div class="m lbl">${t('o_shift')}</div>${P('shift',[t('sh_day')+' · 07–23',t('sh_early')+' · 05:30–22',t('sh_night')])}
+  <div class="m lbl">${t('o_wake')}</div>${P('water',[t('w0'),t('w1'),t('w2')])}<div class="m lbl">${t('o_screen')}</div>${P('screen',[t('sc0'),t('sc1'),t('sc2')])}
+  <div class="grow"></div><button class="cta" onclick="obGo('mode')" ${[F.shift,F.water,F.screen].includes(null)?'disabled':''}>${t('next')}</button>`}
+ if(view==='mode')h=`${prog(4)}<div class="m">${t('s_mode','04')}</div><div class="q d">${t('mode_q')}</div><div id="opts">${optHtml([{n:t('m_std'),d:t('m_std_d'),ic:'i-shield'},{n:t('m_hard'),d:t('m_hard_d'),ic:'i-flame',col:'var(--or)'}],F.hard==null?[]:[F.hard?1:0])}</div><div class="grow"></div><button class="cta" onclick="analyze()" ${F.hard==null?'disabled':''}>${t('next')}</button>`;
+ if(view==='an')h=`${prog(5)}<div class="m">${t('s_an')}</div><div class="q d" id="anT">${t('an_t')}</div><div class="scan" id="scan">${[1,2,3,4,5].map(i=>`<div>${t('sc_'+i)} <b>OK</b></div>`).join('')}</div><div id="anR"></div><div class="grow"></div><button class="cta" id="b5" onclick="obGo('rem')" style="display:none">${t('next')}</button>`;
+ if(view==='rem')h=`${prog(6)}<div class="m">${t('rem_k')}</div><div class="q d">${t('rem_t')}</div><p class="lead">${t('rem_lead')}</p><div class="panel">${remList()}</div><div class="grow"></div>
+  <button class="cta" onclick="enableReminders(true);startApp()">${t('allow')}</button><button class="cta ghost" style="margin-top:10px" onclick="enableReminders(false);startApp()">${t('notnow')}</button>`;
+ sc.innerHTML=h;
+ const o=$('opts');if(o)o.querySelectorAll('.opt').forEach(d=>d.onclick=()=>{const i=+d.dataset.i;
+  if(view==='areas'){const k=CK[i];F.areas=F.areas.includes(k)?F.areas.filter(x=>x!==k):F.areas.concat(k)}else F.hard=i===1;render()});
+ if(view==='an')runScan();
+}
+function remList(sched){const sc=sched||(S?S.sched:SHIFTS[['day','early','night'][F.shift||0]]);const w=toMin(sc.wake||sc.w),sl=toMin(sc.sleep||sc.s),tr=toMin(sc.train||sc.tr);
+ return [[t('r_morning'),w+30],[t('r_water'),w+180],[t('r_water'),w+360],[t('r_water'),w+540],[t('r_train'),tr],[t('r_tasks'),sl-180],[t('r_night'),sl-45]].map(r=>`<div class="tline"><span>${r[0]}</span><b>${fromMin(r[1])}</b></div>`).join('')}
+function newState(name,areas,hard,o){
+ const base={};CK.forEach((k,i)=>{base[k]=30+((name||'').length*7+i*13)%16+(areas.includes(k)?-6:4)});
+ base.foc+=(1-(o.screen??1))*6;base.str+=((o.water??1)-1)*4;CK.forEach(k=>base[k]=Math.max(18,Math.min(70,Math.round(base[k]))));
+ const sh=SHIFTS[o.shift||'day'];const quests=[];
+ areas.forEach(a=>Object.keys(LIB).filter(id=>LIB[id].c===a&&!LIB[id].p).slice(0,areas.length<=2?3:2).forEach(id=>quests.push(mkQuest(id))));
+ return {v:2,name,areas,hard:!!hard,day:1,xp:0,stats:base,stats0:{...base},quests:quests.slice(0,8),program:'core',qs:{},prog:{},skip:[],hist:[],log:[],workouts:[],tasks:0,streak:0,best:0,freezes:hard?0:1,
+  base:{water:OB_Q.water[o.water??1],screen:OB_Q.screen[o.screen??1],wake:toMin(sh.w)/60},sched:{wake:sh.w,sleep:sh.s,train:sh.tr,preset:o.shift||'day'},goal:t('goal_def'),since:new Date().toISOString(),date:ymd(),start:ymd(),view:'today',theme:'orange'}}
+function analyze(){obGo('an')}
+function runScan(){const rows=[...document.querySelectorAll('#scan div')];rows.forEach((r,i)=>setTimeout(()=>r.classList.add('on'),300+i*330));
+ setTimeout(()=>{S=newState(F.name||'',F.areas,F.hard,{water:F.water,screen:F.screen,shift:['day','early','night'][F.shift]});
+  const top=topStat();if(!$('anT'))return;$('anT').innerHTML=`${t('your_class')}<br><span class="or">${t('k_'+top)}</span>`;$('scan').style.display='none';
+  $('anR').innerHTML=`<p class="lead" style="margin-top:4px">${t('an_lead',t('kd_'+top),todayQuests().length)}</p>
+  <div class="cls" style="margin-top:16px">${CK.map(k=>`<div class="${k===top?'top1':''}"><span style="color:${CATS[k].col}">${ic(CATS[k].ic)}</span><b class="w">${S.stats[k]}</b><span>${t('c_'+k)}</span></div>`).join('')}</div>
+  <div class="panel">${[['01–22','ph1'],['23–44','ph2'],['45–66','ph3']].map(p=>`<div style="display:flex;gap:12px;padding:7px 0"><span class="m or" style="width:48px;flex:none">${p[0]}</span><div><b>${t(p[1])}</b><div class="mu" style="font-size:13px;margin-top:2px">${t(p[1]+'d')}</div></div></div>`).join('')}</div>`;
+  $('b5').style.display='flex'},300+rows.length*330+250)}
+function startApp(){S.date=ymd();S.start=ymd();save();pushSchedule();nav(true);go('today')}
+
+/* ---------- NAV / RENDER ---------- */
+function nav(on){const n=$('nav');n.classList.toggle('on',on);if(on)n.innerHTML=[['today','i-today','nav_today'],['insight','i-chart','nav_growth'],['workout','i-db','nav_workout'],['season','i-crown','nav_season'],['profile','i-user','nav_profile']].map(x=>`<button data-t="${x[0]}" class="${view===x[0]?'on':''}" onclick="go('${x[0]}')">${ic(x[1])}<span>${t(x[2])}</span></button>`).join('')}
+function go(v){view=v;viewDay=null;if(S&&v!=='plan'){S.view=v;save()}render();scrollTo(0,0)}
+function render(){document.documentElement.lang=LANG;
+ if(!S||!S.quests||['welcome','reg','login','areas','now','mode','an','rem'].includes(view))return renderOb();
+ $('scr').className='';nav(true);
+ ({today:rToday,plan:rPlan,insight:rInsight,workout:rWorkout,season:rSeason,profile:rProfile}[view]||rToday)()}
+function openSheet(h){$('sh').innerHTML='<div class="grab"></div>'+h;$('ov').classList.add('on')}
+function closeSheet(){$('ov').classList.remove('on')}
+
+/* ---------- TODAY ---------- */
+function weekStrip(){const curDow=dowOf(Math.min(S.day,66)),mon=S.day-((curDow+6)%7);const names=t('dow');
+ return `<div class="week">${[0,1,2,3,4,5,6].map(i=>{const d=mon+i,dw=(i+1)%7,h=d>=1&&d<S.day?S.hist[d-1]:null;
+  const cls=d===S.day?'now':h?({ok:'ok',part:'part',miss:'miss',frz:'frz',grace:'miss'}[h.res]):'';
+  return `<div><span>${names[dw]}</span><i class="${cls}">${h&&h.res==='frz'?ic('i-snow','width:13px;height:13px'):d>=1&&d<=66?d:'·'}</i></div>`}).join('')}</div>`}
+function rToday(){
+ if(viewDay)return rPastDay();
+ const Q=todayQuests(),done=Q.filter(isDone),pct=Q.length?Math.round(done.length/Q.length*100):100;
+ const now=new Date(),nm=now.getHours()*60+now.getMinutes();
+ const pend=Q.filter(q=>!isDone(q)&&!S.skip.includes(q.id));
+ const nx=pend.find(q=>q.tm&&toMin(q.tm)>=nm-30)||pend.find(q=>!q.tm)||pend[0];
+ const r=done.length/(Q.length||1);
+ const sub=S.day>66?t('sub_end'):r===1?t('sub_done'):r>=.5?t('sub_half'):S.day===1?t('sub_first'):t(['sub_a','sub_b','sub_c'][S.day%3]);
+ const C=207.3;
+ let h=`<div class="top">${avatar(S.name,'var(--or)')}<div class="hi"><span class="m">${new Date().toLocaleDateString(LANG==='tr'?'tr-TR':'en-US',{weekday:'long',day:'numeric',month:'long'})}</span><b class="w">${esc(t('hello',S.name))}</b></div>
+ <span class="chip hot">${ic('i-flame','fill:var(--or);stroke:none;width:15px;height:15px')}${S.streak||0}</span><span class="chip" onclick="freezeInfo()" style="color:#6aa6ff">${ic('i-snow','width:15px;height:15px')}${S.hard?0:S.freezes||0}</span></div>
+ <div class="dayhero">${art('grid','#1d1a17','#0d0c0b',2)}<div class="dh"><div><div class="m or">${t('phase'+phase(Math.min(S.day,66)))} · ${fmtN(S.xp)} XP</div><h1 class="w" style="margin-top:8px">${t('day')} ${Math.min(S.day,66)} <small>/ 66</small></h1><div style="color:#cfc7bc;margin-top:8px;font-size:14px;font-weight:500">${sub}</div></div>
+ <div class="ring"><svg width="76" height="76" viewBox="0 0 78 78"><circle cx="39" cy="39" r="33" stroke="#2b2723" stroke-width="7" fill="none"/><circle cx="39" cy="39" r="33" stroke="var(--or)" stroke-width="7" fill="none" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pct/100)}" transform="rotate(-90 39 39)" style="transition:.5s"/></svg><b>${pct}%</b></div></div>${weekStrip()}</div>`;
+ if(nx){const Cc=CATS[nx.c],p=S.prog[nx.id]||0;
+  h+=`<div class="sec" style="margin-top:20px"><span class="m">${t('nextq')}</span><span class="ln"></span></div>
+  <div class="next" data-q="${nx.id}" onclick="qSheet('${nx.id}')">${art(Cc.art,Cc.a[0],Cc.a[1],nx.id.length+3)}<div class="shade"></div><div class="in">
+  <span class="tchip"><i></i>${nx.tm||t('anytime')}</span><h3 class="w">${esc(nx.title)}</h3>
+  <div class="meta">${ic(Cc.ic,'stroke:'+Cc.col)}${t('c_'+nx.c)}<i></i>${ic('i-lvl')}${t('d_'+nx.d)}<i></i>+${XPD[nx.d]} XP${S.qs[nx.id]?`<i></i>${ic('i-flame','fill:var(--or);stroke:none')}${S.qs[nx.id]}`:''}</div></div>
+  <button class="ck" onclick="event.stopPropagation();complete('${nx.id}',event)">${ic('i-check')}</button>${nx.u&&p>0?`<div class="pbar" style="width:${p/nx.N*100}%"></div>`:''}</div>`}
+ else h+=`<div class="empty" style="margin-top:20px"><b class="w">${t('allclear')}</b>${t('allclear_d')}</div>`;
+ h+=`<div class="sec"><span class="m">${t('plan_today')} · ${done.length}/${Q.length}</span><span class="ln"></span><button class="chip" onclick="go('plan')">${ic('i-edit','width:14px;height:14px')}${t('edit')}</button><button class="bx" style="width:34px;height:34px" onclick="editQ()">${ic('i-plus')}</button></div>`;
+ const groups=[['g_morning',q=>q.tm&&toMin(q.tm)<720],['g_noon',q=>q.tm&&toMin(q.tm)>=720&&toMin(q.tm)<1020],['g_eve',q=>q.tm&&toMin(q.tm)>=1020],['g_any',q=>!q.tm]];
+ groups.forEach(g=>{const list=Q.filter(g[1]);if(!list.length)return;h+=`<div class="grp"><div class="gh"><span class="m">${t(g[0])}</span></div>${list.map(qRow).join('')}</div>`});
+ h+=NATIVE?`<div class="m" style="text-align:center;margin-top:22px;font-size:9.5px">${t('closes')}</div>`:`<button class="closeday m" onclick="closeDaySheet()">${t('preview_close')} ${ic('i-arr','width:14px;height:14px;vertical-align:-2px')}</button>`;
+ $('scr').innerHTML=h;
+}
+function qRow(q){const C=CATS[q.c],p=S.prog[q.id]||0,dn=isDone(q),sk=S.skip.includes(q.id)&&!dn,st=S.qs[q.id]||0;
+ const pr=q.u?`${num(fmtSmall(Math.min(p,q.N)))} / ${num(fmtSmall(q.N))} ${t(q.u)}`:t('d_'+q.d);
+ return `<div class="qr ${dn?'done':''} ${sk?'skip':''}" data-q="${q.id}" onclick="qSheet('${q.id}')"><span class="tm">${q.tm||'—'}</span><span class="cb" style="background:${C.col}"></span>
+ <div class="tx"><b>${esc(q.title)}</b><small>${pr}${st?` · <span class="st">${ic('i-flame','fill:var(--or);stroke:none;width:11px;height:11px')}${st}</span>`:''} · +${XPD[q.d]} XP</small></div>
+ <button class="c2" onclick="event.stopPropagation();complete('${q.id}',event)">${ic('i-check','width:18px;height:18px')}</button>${q.u&&p>0&&!dn?`<div class="pb" style="width:${p/q.N*100}%"></div>`:''}</div>`}
+function rPastDay(){const h=S.hist[viewDay-1];$('scr').innerHTML=`<div class="hdr"><button class="bx" onclick="viewDay=null;render()">${ic('i-l')}</button><h1 class="w" style="flex:1">${t('day')} ${viewDay}</h1></div>
+ <div class="panel"><div class="m">${h?resName(h.res):''}</div><h2 class="w" style="font-size:28px;margin-top:6px">${h?h.done+'/'+h.total:''}</h2>${h?h.items.map(x=>`<div class="act"><div class="dy" style="border-color:var(--or2)">${ic('i-check','stroke:var(--or)')}</div><b>${esc(x)}</b></div>`).join(''):''}</div>`}
+function freezeInfo(){openSheet(`<div class="m" style="color:#6aa6ff">${ic('i-snow','width:14px;height:14px;vertical-align:-2px')} ${S.hard?0:S.freezes||0} / ${freezeCap()}</div><h2 class="w">${t('freezes')}</h2><p class="mu" style="margin-top:10px;line-height:1.55">${t('freeze_info')}</p>${isPrem()?'':`<button class="cta" onclick="paywall()">${t('go_premium')}</button>`}<button class="cta ghost sm" onclick="closeSheet()">${t('ok')}</button>`)}
+function qSheet(id){const q=todayQuests().find(x=>x.id===id);if(!q)return;const C=CATS[q.c],p=S.prog[id]||0,dn=isDone(q);
+ openSheet(`<div class="m" style="color:${C.col}">${t('c_'+q.c)} · ${q.tm||t('anytime')} · ${t('d_'+q.d)} · +${XPD[q.d]} XP</div><h2 class="w">${esc(q.title)}</h2>
+ ${q.u?`<div class="stp"><button class="bx" onclick="stepQ('${id}',-1)">−</button><div class="val w" id="sv"></div><button class="bx" onclick="stepQ('${id}',1)">+</button></div><div class="barb"><i id="sb"></i></div>`:`<p class="mu" style="margin-top:12px;line-height:1.5">${t('single_step')}</p>`}
+ <button class="cta" onclick="closeSheet();complete('${id}',event)">${dn?t('undo'):t('done')}</button>
+ <div class="row2">${dn?'':`<button class="cta ghost sm" onclick="skipQ('${id}')">${S.skip.includes(id)?t('unskip'):t('skip')}</button>`}<button class="cta ghost sm" onclick="editQ('${id}')">${ic('i-edit','width:15px;height:15px')}${t('edit')}</button></div>`);
+ if(q.u)updStep(q,p)}
+function updStep(q,p){$('sv').innerHTML=`${num(fmtSmall(p))}<small> / ${num(fmtSmall(q.N))} ${t(q.u)}</small>`;$('sb').style.width=Math.min(100,p/q.N*100)+'%'}
+function stepQ(id,d){const q=todayQuests().find(x=>x.id===id);const was=isDone(q);const p=Math.max(0,Math.min(q.N,+((S.prog[id]||0)+d*q.s).toFixed(2)));
+ if(p>=q.N&&!was){S.prog[id]=0;closeSheet();complete(id);return}
+ if(was&&p<q.N)complete(id,null,true);S.prog[id]=p;save();updStep(q,p);render()}
+function skipQ(id){S.skip.includes(id)?S.skip=S.skip.filter(x=>x!==id):S.skip.push(id);save();closeSheet();render();if(S.skip.includes(id))toast(S.hard?t('hard_skip'):t('skipped_toast'))}
+function closeDaySheet(){if(S.day>66)return toast(t('finished66'));const x=dayResult();let head,txt;
+ if(x.okDay){head=t('perfect');txt=t('sum_perfect',40+((S.streak||0)+1)*5)}
+ else if(x.kept){head=t('partial');txt=t('sum_part',x.d,x.all)}
+ else{const o=missOutcome();head=resName(o==='reset'?'miss':o);txt=t(S.hard?'sum_hard':o==='frz'?'sum_frz':o==='grace'?'sum_grace':'sum_reset',x.d,x.all)}
+ openSheet(`<div class="m">${t('sum_k',S.day)}</div><h2 class="w">${head}</h2><p style="color:#d8d0c5;margin-top:10px;line-height:1.5">${txt}</p><div class="barb"><i style="width:${x.r*100}%"></i></div>
+ <button class="cta" onclick="closeDay(false);maybePaywall()">${t('close_day')}</button><button class="cta ghost sm" onclick="closeSheet()">${t('keep_going')}</button>`)}
+
+/* ---------- QUEST EDITOR ---------- */
+let EQ=null;
+function editQ(id){const q=id?S.quests.find(x=>x.id===id):null;
+ EQ=q?{...q,days:q.days.slice(),text:q.custom?q.text:qTitle(q)}:{id:'c'+Date.now(),custom:true,text:'',c:'str',n:1,u:'',s:1,days:ALL.slice(),d:'Orta',time:'',remind:true,on:true,isNew:true};
+ const dn=t('dow'),order=[1,2,3,4,5,6,0];
+ openSheet(`<h2 class="w">${q?t('edit_q'):t('new_q')}</h2>
+ <span class="m lbl">${t('q_name')}</span><input class="inp" id="eT" maxlength="40" value="${esc(EQ.text)}">
+ <div class="row2"><div><span class="m lbl">${t('q_target')}</span><input class="inp" id="eN" type="number" min="1" step="any" value="${EQ.n}"></div><div><span class="m lbl">${t('q_step')}</span><input class="inp" id="eS" type="number" min="0.5" step="any" value="${EQ.s}"></div></div>
+ <span class="m lbl">${t('q_unit')}</span><div class="pills" id="eU">${UNITS.map(u=>`<button class="pill ${EQ.u===u?'sel':''}" data-u="${u}">${u?t(u):t('u_none')}</button>`).join('')}</div>
+ <span class="m lbl">${t('q_time')}</span><input class="inp" id="eTm" type="time" value="${esc(qTime(EQ))}">
+ <p class="fl2">${t('why_time')}</p>
+ <span class="m lbl">${t('q_days')}</span><div class="dw" id="eD">${order.map(d=>`<button class="${EQ.days.includes(d)?'sel':''}" data-d="${d}">${dn[d]}</button>`).join('')}</div>
+ <span class="m lbl">${t('q_area')}</span><div class="pills" id="eC">${CK.map(k=>`<button class="pill ${EQ.c===k?'sel':''}" data-c="${k}">${t('c_'+k)}</button>`).join('')}</div>
+ <span class="m lbl">${t('q_diff')}</span><div class="pills" id="eDf">${['Kolay','Orta','Zor'].map(d=>`<button class="pill ${EQ.d===d?'sel':''}" data-df="${d}">${t('d_'+d)}</button>`).join('')}</div>
+ <div class="set"><div><b>${t('q_remind')}</b></div><button class="tg ${EQ.remind?'on':''}" id="eR"></button></div>
+ <button class="cta" onclick="saveQ()">${t('save')}</button>${q?`<button class="cta ghost sm" style="color:var(--rd)" onclick="delQ('${q.id}')">${t('del')}</button>`:''}`);
+ const one=(sel,attr,key)=>$(sel).querySelectorAll('button').forEach(b=>b.onclick=()=>{$(sel).querySelectorAll('button').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');EQ[key]=b.dataset[attr]});
+ one('eU','u','u');one('eC','c','c');one('eDf','df','d');
+ $('eD').querySelectorAll('button').forEach(b=>b.onclick=()=>{b.classList.toggle('sel');const d=+b.dataset.d;EQ.days=EQ.days.includes(d)?EQ.days.filter(x=>x!==d):EQ.days.concat(d)});
+ $('eR').onclick=()=>{EQ.remind=!EQ.remind;$('eR').classList.toggle('on',EQ.remind)}}
+function saveQ(){const text=val('eT');if(!text)return toast(t('q_need_name'));if(!EQ.days.length)return toast(t('q_need_day'));
+ const n=Math.max(.5,+$('eN').value||1),s=Math.max(.5,+$('eS').value||1),tm=$('eTm').value||'';
+ const orig=EQ.isNew?null:S.quests.find(x=>x.id===EQ.id);
+ const titleChanged=orig&&!orig.custom&&text!==qTitle(orig);
+ const numChanged=orig&&!orig.custom&&(n!==orig.n||EQ.u!==orig.u);
+ const q={id:EQ.id,c:EQ.c,n:EQ.u?n:1,u:EQ.u,s:EQ.u?s:1,days:EQ.days.slice().sort(),d:EQ.d,remind:EQ.remind,on:true,
+  time:orig&&(orig.time==='wake'||orig.time==='sleep')&&tm===qTime(orig)?orig.time:tm};
+ if(orig&&!orig.custom&&!titleChanged&&!numChanged){q.lib=orig.lib}else{q.custom=true;q.text=text}
+ if(orig)S.quests[S.quests.indexOf(orig)]=q;else S.quests.push(q);
+ save();pushSchedule();closeSheet();render();toast(orig?t('q_saved'):t('q_added'))}
+function delQ(id){S.quests=S.quests.filter(x=>x.id!==id);save();pushSchedule();closeSheet();render()}
+
+/* ---------- PLAN ---------- */
+function rPlan(){
+ const dn=t('dow');
+ let h=`<div class="hdr"><button class="bx" onclick="go('today')">${ic('i-l')}</button><h1 class="w" style="flex:1">${t('my_plan')}</h1></div>
+ <span class="m">${t('programs')}</span><div class="prg">${Object.keys(PROGRAMS).map(k=>`<button class="${S.program===k?'on':''}" onclick="pickProg('${k}')"><b>${t('p_'+k)} ${PROGRAMS[k].prem&&!isPrem()?'<span class="pro">PRO</span>':''}</b><small>${t('pd_'+k)}</small></button>`).join('')}</div>
+ <div class="sec"><span class="m">${t('quests')} · ${S.quests.filter(q=>q.on).length}</span><span class="ln"></span></div>`;
+ h+=S.quests.map(q=>{const C=CATS[q.c];const ds=q.days.length===7?t('everyday'):[1,2,3,4,5,6,0].filter(d=>q.days.includes(d)).map(d=>dn[d]).join(' ');
+  return `<div class="pl ${q.on?'':'off'}"><span class="cb" style="width:4px;align-self:stretch;border-radius:3px;background:${C.col}"></span><div class="tx" onclick="editQ('${q.id}')"><b>${esc(qTitle(q))}</b><small>${qTime(q)||t('anytime')} · ${ds} · ${t('d_'+q.d)}${q.on?'':' · '+t('paused')}</small></div><button class="tg ${q.on?'on':''}" onclick="togQ('${q.id}')"></button></div>`}).join('');
+ h+=`<button class="cta" onclick="editQ()">${t('add_custom')}</button><button class="cta ghost sm" onclick="libSheet()">${ic('i-list','width:15px;height:15px')}${t('library')}</button>`;
+ $('scr').innerHTML=h}
+function togQ(id){const q=S.quests.find(x=>x.id===id);q.on=!q.on;save();pushSchedule();render()}
+function pickProg(k){if(k===S.program)return;if(PROGRAMS[k].prem&&!isPrem())return paywall();
+ openSheet(`<h2 class="w">${t('switch_prog')}</h2><p class="mu" style="margin-top:10px;line-height:1.5">${t('switch_d',t('p_'+k))}</p><button class="cta" onclick="doProg('${k}')">${t('ok')}</button><button class="cta ghost sm" onclick="closeSheet()">${t('cancel')}</button>`)}
+function doProg(k){const custom=S.quests.filter(q=>q.custom);let qs;
+ if(k==='core'){qs=[];S.areas.forEach(a=>Object.keys(LIB).filter(id=>LIB[id].c===a&&!LIB[id].p).slice(0,S.areas.length<=2?3:2).forEach(id=>qs.push(mkQuest(id))))}else qs=PROGRAMS[k].q.map(mkQuest);
+ S.quests=qs.slice(0,8).concat(custom);S.program=k;save();pushSchedule();closeSheet();render();toast(t('switched'))}
+function libSheet(){const have=S.quests.map(q=>q.lib).filter(Boolean);const ids=Object.keys(LIB).filter(id=>!have.includes(id)&&(!LIB[id].p||isPrem()));
+ openSheet(`<h2 class="w">${t('library')}</h2>${ids.length?ids.map(id=>{const b=LIB[id],C=CATS[b.c];const tmp=mkQuest(id);return `<div class="pl" onclick="addLib('${id}')"><span style="width:4px;align-self:stretch;border-radius:3px;background:${C.col}"></span><div class="tx"><b>${esc(qTitle(tmp))}</b><small>${t('c_'+b.c)} · ${t('d_'+b.d)}</small></div>${ic('i-plus')}</div>`}).join(''):`<p class="mu" style="margin-top:12px">${t('lib_empty')}</p>`}<button class="cta ghost sm" onclick="closeSheet()">${t('close')}</button>`)}
+function addLib(id){S.quests.push(mkQuest(id));save();pushSchedule();closeSheet();render();toast(t('q_added'))}
+
+/* ---------- INSIGHT ---------- */
+function rInsight(){
+ const top=topStat(),L1=lvl(S.xp),pct=Math.max(3,Math.min(60,Math.round(100-S.stats[top]*1.1)));
+ let h=`<div class="hdr"><h1 class="w">${t('insight')}</h1><div class="peak"><div class="m" style="font-size:9px">${t('to_level',L1.l+1)}</div><b class="w">${fmtN(L1.need-L1.r)}</b><small> XP</small><div class="bar"><i style="width:${L1.r/L1.need*100}%"></i></div></div></div>
+ <div class="klass">${art('mount','#1d2a1e','#0b0c0a',3)}<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span class="m" style="color:#d8d0c5">${esc(t('analysis',up(S.name),Math.min(S.day,66)))}</span><span class="tag">${t('top_pct',pct)}</span></div>
+ <h2 class="d">${t('k_'+top)}</h2><p>${t('kd_'+top)}</p><div style="height:1px;background:#ffffff22;margin:16px 0 12px"></div>
+ <div style="display:flex;justify-content:space-between"><span class="m" style="color:#d8d0c5">${t('class_profile')}</span><span class="m" style="color:#d8d0c5">${t('peak',t('c_'+top))}</span></div>
+ <div class="cls">${CK.map(k=>`<div class="${k===top?'top1':''}"><span style="color:${CATS[k].col}">${ic(CATS[k].ic)}</span><b class="w">${S.stats[k]}</b><span>${t('c_'+k)}</span></div>`).join('')}</div></div>`;
+ // chart + suggestion
+ let cum=0;const pts=[0];S.hist.forEach(x=>{cum+=x.done;pts.push(cum)});const cd=todayQuests().filter(isDone).length;pts.push(cum+cd);
+ const mx=Math.max(pts[pts.length-1],pts.length*3,6),xy=(v,i,n)=>[8+i*(134/(n-1)),70-v/mx*62];
+ const P=pts.map((v,i)=>xy(v,i,pts.length).join(',')).join(' '),A=pts.map((v,i)=>xy(i*3,i,pts.length).join(',')).join(' '),last=xy(pts[pts.length-1],pts.length-1,pts.length);
+ const wk=CK.reduce((a,b)=>S.stats[b]<S.stats[a]?b:a);const SG={wis:['20','u_page','read'],conf:['3','','journal'],str:['20','u_rep','push'],disc:[S.sched.wake,'','wake'],foc:['50','u_min','deep']}[wk];
+ const inPlan=S.quests.some(q=>q.lib===SG[2]);
+ h+=`<div class="two"><div class="tile"><div class="m">${t('total_tasks')}</div><b class="big w">${S.tasks}</b><div class="m" style="font-size:9.5px">${t('since_d1')}</div>
+ <svg viewBox="0 0 150 80" style="width:100%;margin-top:6px"><polyline points="${A}" fill="none" stroke="#5f5952" stroke-dasharray="3 3" stroke-width="1.5"/><polygon points="8,72 ${P} ${last[0]},72" fill="#62d08e22"/><polyline points="${P}" fill="none" stroke="#62d08e" stroke-width="2"/><circle cx="${last[0]}" cy="${last[1]}" r="4.5" fill="#0a0908" stroke="#e7e0d4" stroke-width="2"/></svg>
+ <div class="m" style="font-size:9px;display:flex;justify-content:space-between"><span><b style="color:var(--gn)">—</b> ${t('you')} -- ${t('avg')}</span><span>${t('today_plus',cd)}</span></div></div>
+ <div class="tile" style="transform:rotate(1deg);box-shadow:-4px 5px 0 #000"><div class="m">${t('suggestion')}</div><b class="big w" style="font-size:30px">${SG[0]}</b><div class="m" style="font-size:9.5px">${SG[1]?t(SG[1]):''}</div>
+ <div style="display:flex;gap:7px;align-items:center;font-size:12.5px;margin-top:8px;color:#d8d0c5">${ic(CATS[wk].ic,'width:15px;height:15px;stroke:var(--or)')}${t('weakest',t('c_'+wk))}</div><div style="font-size:12px;margin-top:6px;color:var(--mu)">${t('sg_'+wk)}</div>
+ <div class="row2" style="margin-top:10px"><button class="pill ${inPlan?'':'sel'}" style="font-size:11px;padding:8px" onclick="${inPlan?`toast(t('already'))`:`addLib('${SG[2]}');toast(t('added_plan'))`}">${inPlan?t('in_plan'):t('add')}</button><button class="pill" style="font-size:11px;padding:8px" onclick="toast(t('tomorrow_sugg'))">${t('pass_')}</button></div></div></div>`;
+ // before/after
+ const cnt=lib=>S.log.filter(l=>{const q=S.quests.find(x=>x.id===l.id);return q&&q.lib===lib}).length,B=S.base;
+ const wNow=Math.min(3,B.water+cnt('water')*.1),wkNow=Math.max(toMin(S.sched.wake)/60,B.wake-cnt('wake')*.1),scNow=Math.max(60,B.screen-cnt('screen')*8-cnt('deep')*4-cnt('med')*2);
+ const ago=Math.max(0,S.day-1),sct=m=>Math.floor(m/60)+(LANG==='tr'?' sa ':'h ')+Math.round(m%60)+(LANG==='tr'?' dk':'m');
+ h+=`<div class="sec"><span class="m">${t('ba')}</span><span class="ln"></span><span class="m">${t('ba3')}</span></div><div class="ba">${[['i-drop','#5aa9ff',t('ba_water'),num(B.water.toFixed(1))+' L',num(wNow.toFixed(1))+' L'],['i-sun','#d6a443',t('ba_wake'),hm(B.wake),hm(wkNow)],['i-phone','#8c7cff',t('ba_screen'),sct(B.screen),sct(scNow)]].map(x=>`<div class="tile"><div class="h"><span style="color:${x[1]}">${ic(x[0],'width:14px;height:14px')}</span>${x[2]}</div><div class="v">${x[3]}<br><span style="font-size:9.5px">${t('days_ago',ago)}</span></div><div class="n w">${x[4]}</div><div class="m" style="font-size:9px;color:var(--gn)">${t('today')}</div></div>`).join('')}</div>`;
+ // deep analysis (premium)
+ h+=`<div class="sec"><span class="m">${t('deep')} <span class="pro">PRO</span></span><span class="ln"></span></div>`+(isPrem()?deepHtml():`<div class="lockwrap"><div class="blur">${deepHtml(true)}</div><div class="ov2">${ic('i-lock','width:28px;height:28px;stroke:var(--or)')}<b class="w" style="font-size:20px;margin-top:8px">${t('unlock')}</b><p class="mu" style="font-size:13px;margin-top:6px">${t('unlock_d')}</p><button class="cta sm" style="width:auto;padding:0 18px" onclick="paywall()">${t('go_premium')}</button></div></div>`);
+ // level
+ const segs=24,on=Math.round(L1.r/L1.need*segs),ref=rt==='now'?S.stats:rt==='d1'?S.stats0:proj();
+ h+=`<div class="sec"><span class="m">${t('level')}</span><span class="ln"></span></div><div class="rt">${[['now','now'],['d1','d1'],['66','d66']].map(x=>`<button class="${rt===x[0]?'on':''}" onclick="rt='${x[0]}';render()">${t(x[1])}</button>`).join('')}</div>
+ <div class="lvcard" style="margin-top:20px"><div class="lvbox"><b class="w">${rt==='d1'?1:rt==='66'?Math.max(L1.l,lvl(projXp()).l):L1.l}</b><span>${t('LEVEL')}</span></div><div class="lvtop"><b class="w">${fmtN(rt==='d1'?0:rt==='66'?Math.max(S.xp,projXp()):S.xp)}</b><div class="mu" style="font-size:13px">${t('xp_earned')}</div></div>
+ <div class="seg" style="margin-top:6px;border:1.5px solid var(--ln);padding:4px">${Array.from({length:segs},(_,i)=>`<i class="${i<(rt==='now'?on:rt==='66'?segs-1:0)?'on':''}"></i>`).join('')}</div>
+ <div class="mu" style="text-align:center;font-size:12.5px;margin-top:8px">${rt==='now'?t('xp_to',L1.l+1,fmtN(L1.need-L1.r)):rt==='d1'?t('start_pt'):t('at_pace')}</div></div>
+ ${CK.map(k=>{const dl=ref[k]-S.stats0[k];return `<div class="srow"><span style="color:${CATS[k].col}">${ic(CATS[k].ic)}</span><span class="m">${up(t('c_'+k))}</span><span class="m dl">${dl>0?'▲ '+dl:''}</span><b class="w">${ref[k]}</b></div>`}).join('')}`;
+ $('scr').innerHTML=h}
+function deepHtml(fake){
+ const H=fake?Array.from({length:20},(_,i)=>({done:i%4,total:4})):S.hist;
+ const heat=Array.from({length:66},(_,i)=>{const x=H[i];if(!x)return `<i style="${i+1===S.day&&!fake?'outline:1.5px solid var(--tx)':''}"></i>`;const r=x.total?x.done/x.total:0;return `<i style="background:var(--or);opacity:${.15+r*.85}"></i>`}).join('');
+ const by={};CK.forEach(k=>by[k]=[0,0]);(fake?[]:S.hist).forEach(x=>(x.cats||[]).forEach(([c,d])=>{by[c][0]+=d;by[c][1]++}));
+ const rate=k=>by[k][1]?Math.round(by[k][0]/by[k][1]*100):(fake?60:0);
+ const dw={};(fake?[]:S.hist).forEach((x,i)=>{const d=dowOf(i+1);dw[d]=dw[d]||[0,0];dw[d][0]+=x.done;dw[d][1]+=x.total});
+ let best=null,bv=-1;Object.keys(dw).forEach(d=>{const v=dw[d][1]?dw[d][0]/dw[d][1]:0;if(v>bv){bv=v;best=+d}});
+ const last7=(fake?[]:S.hist).slice(-7),r7=last7.length?Math.round(last7.reduce((a,x)=>a+x.done,0)/Math.max(1,last7.reduce((a,x)=>a+x.total,0))*100):0;
+ const weakC=CK.filter(k=>by[k][1]).sort((a,b)=>rate(a)-rate(b))[0];
+ const note=fake||S.hist.length<3?t('coach_start'):(r7>=85?t('coach_good',r7):weakC?t('coach_weak',t('c_'+weakC),rate(weakC)):t('coach_good',r7));
+ return `<div class="panel" style="margin-top:0"><span class="m">${t('heat')}</span><div class="heat">${heat}</div></div>
+ <div class="panel"><span class="m">${t('by_area')}</span>${CK.map(k=>`<div class="cbar"><span>${t('c_'+k)}</span><div><i style="width:${rate(k)}%;background:${CATS[k].col}"></i></div><b>${rate(k)}%</b></div>`).join('')}
+ ${best!=null?`<div class="set" style="margin-top:8px;border:0;padding-bottom:0"><span class="mu">${t('best_day')}</span><span class="v">${t('dow')[best]}</span></div>`:''}</div>
+ <div class="coach"><span class="m or">${t('coach')}</span><p>${note}</p></div>`}
+function proj(){const o={},left=Math.max(0,66-S.day+1);CK.forEach(k=>{const per=S.quests.filter(q=>q.on&&q.c===k).reduce((a,q)=>a+STD[q.d]*q.days.length/7,0);o[k]=Math.round(S.stats[k]+per*left*.8)});return o}
+function projXp(){const left=Math.max(0,66-S.day+1),per=S.quests.filter(q=>q.on).reduce((a,q)=>a+XPD[q.d]*q.days.length/7,0);return Math.round(S.xp+(per+45)*left*.85)}
+
+/* ---------- WORKOUT ---------- */
+function rWorkout(){if(live)return rLive();const w=WT[wsel],sets=w.mv.reduce((a,m)=>a+m[1],0);
+ $('scr').innerHTML=`<div class="hdr"><h1 class="w">${t('workout')}</h1></div><div class="m" style="color:var(--rd);margin-bottom:8px">${t('today_sess')}</div>
+ <div class="sess"><div class="img">${art('bar','#3a2014','#100b08',7)}<span class="c1 tchip"><i></i>${sets*3} ${t('u_min')}</span><span class="c2">${w.mv.length} ${t('moves')} · ${sets} ${t('sets')}</span><div class="t w">${t(w.tk)}</div></div>
+ <div class="body"><div class="st3"><div><span class="m">${t('dur')}</span><b class="w">${sets*3} ${t('u_min')}</b></div><div><span class="m">${t('sets')}</span><b class="w">${sets}</b></div><div><span class="m">${t('moves')}</span><b class="w">${w.mv.length}</b></div></div>
+ <button class="cta" onclick="startW()">${ic('i-play','fill:#140a03;stroke:none;width:14px;height:14px')} ${t('start_w')}</button>
+ <div class="moves">${w.mv.map((m,i)=>`<span><em>${i+1}.</em>${mvName(m[0])} · ${m[1]}×${m[2]}</span>`).join('')}</div><p class="fl2">${t('rest_rule')}</p></div></div>
+ <div class="sec"><span class="m">${t('quick')}</span><span class="ln"></span></div>
+ <div class="qs"><button onclick="toast(t('new_w_soon'))"><div class="sw" style="background:#e7e0d4;color:#111">${ic('i-plus')}</div>${t('new_')}</button>${Object.keys(WT).map(k=>`<button class="${k===wsel?'on':''}" onclick="wsel='${k}';render()"><div class="sw" style="background:${WT[k].col}">${ic('i-wave','stroke:#fff;width:16px')}</div>${t(WT[k].tk).split(' ')[0]}</button>`).join('')}</div>
+ <div class="sec"><span class="m">${t('recent')}</span><span class="ln"></span></div>
+ ${S.workouts.length?S.workouts.slice(0,5).map(x=>`<div class="rec"><div><b>${t(x.tk||'w_push')}</b><small>${t('day_n',x.day)} · ${x.sets} ${t('sets').toLowerCase()} · ${x.min} ${t('u_min')}</small></div><span class="kg">${fmtN(x.kg)} kg</span></div>`).join(''):`<div class="rec" style="border-style:dashed"><div><b class="mu">${t('no_sess')}</b><small>${t('no_sess_d')}</small></div></div>`}`}
+function startW(){live={k:wsel,t0:Date.now(),done:WT[wsel].mv.map(m=>Array(m[1]).fill(false))};clearInterval(timer);timer=setInterval(()=>{const c=$('clk');if(c)c.textContent=clock()},1000);render()}
+function clock(){const s=Math.floor((Date.now()-live.t0)/1000);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function rLive(){const w=WT[live.k],n=live.done.flat().filter(Boolean).length,tt=live.done.flat().length;
+ $('scr').innerHTML=`<div class="hdr"><h1 class="w">${t('workout')}</h1></div><div class="panel live"><div class="m">${t('in_progress',t(w.tk))}</div><div class="clock d" id="clk">${clock()}</div><div class="m">${t('sets_done',n,tt)}</div><div class="barb"><i style="width:${n/tt*100}%"></i></div></div>
+ ${w.mv.map((m,i)=>`<div class="mv"><div class="h"><span>${i+1}. ${mvName(m[0])}</span><span class="m">${m[1]}×${m[2]}</span></div><div class="sets">${live.done[i].map((d,j)=>`<button class="${d?'on':''}" onclick="live.done[${i}][${j}]=!live.done[${i}][${j}];render()">${j+1}</button>`).join('')}</div></div>`).join('')}
+ <button class="cta" onclick="endW()">${t('finish_w')}</button><button class="cta ghost sm" onclick="live=null;clearInterval(timer);render()">${t('cancel')}</button>`}
+function endW(){const n=live.done.flat().filter(Boolean).length;if(!n)return toast(t('one_set'));const min=Math.max(1,Math.round((Date.now()-live.t0)/60000));
+ S.workouts.unshift({tk:WT[live.k].tk,day:S.day,sets:n,min,kg:n*385});S.stats.str+=4;addXp(15*n);S.log.unshift({day:S.day,id:'w',t:t(WT[live.k].tk),xp:15*n,st:0});
+ live=null;clearInterval(timer);save();render();toast(t('w_saved',15*n))}
+
+/* ---------- SEASON ---------- */
+function rSeason(){
+ const now=new Date(),end=new Date(now.getFullYear(),now.getMonth()+1,1),ms=end-now,L1=league(S.xp);
+ const mon=up(now.toLocaleDateString(LANG==='tr'?'tr-TR':'en-US',{month:'long',year:'numeric'})),segOn=Math.round(L1.into/L1.step*5);
+ const daily=S.hist.map((x,i)=>x.xp-(i?S.hist[i-1].xp:0));const todayX=S.xp-(S.hist.length?S.hist[S.hist.length-1].xp:0);daily.push(todayX);
+ const avg=Math.round(daily.reduce((a,b)=>a+Math.max(0,b),0)/daily.length)||0,AVG=Math.max(60,Math.round(avg*.9)+20);
+ const N=24,sh=daily.slice(-N),mx=Math.max(AVG*1.6,...sh,1);
+ const bars=Array.from({length:N},(_,i)=>{const v=sh[i];return v==null?`<rect x="${i*12+2}" y="58" width="8" height="2" fill="#2b2723"/>`:`<rect x="${i*12+2}" y="${60-Math.max(2,v/mx*56)}" width="8" height="${Math.max(2,v/mx*56)}" fill="#c99637"/>`}).join('');
+ const base=Math.max(S.xp,900);const rows=PLAYERS.map((p,i)=>({n:p[0],g:p[1],c:p[2],x:Math.round(base*1.25-i*base*.045+(i%3)*7),td:[110,60,80,40,110,30,50,20,90,40][i],f:[8,15,4,11,18,6,9,3,13,5][i]}));
+ rows.push({me:1,x:S.xp});rows.sort((a,b)=>b.x-a.x);const myR=rows.findIndex(r=>r.me)+1+17;
+ $('scr').innerHTML=`<div class="hdr"><h1 class="w">${t('season')}</h1><div style="display:flex;gap:10px;align-items:center"><div style="text-align:right"><b class="w" style="font-size:20px">${Math.floor(ms/864e5)}${LANG==='tr'?'g':'d'} ${Math.floor(ms%864e5/36e5)}${LANG==='tr'?'s':'h'}</b><div class="m">${t('closes_in')}</div></div><button class="bx" onclick="toast(t('season_info'))">${ic('i-info')}</button></div></div>
+ <div class="lg"><div class="a"><svg width="60" height="60" viewBox="0 0 64 64"><defs><linearGradient id="gg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3d58a"/><stop offset="1" stop-color="#9c6c22"/></linearGradient></defs><path d="M32 4l22 9v17c0 15-10 24-22 30C20 54 10 45 10 30V13z" fill="url(#gg)" stroke="#5a3f12" stroke-width="2"/><path d="M20 26l12 8 12-8M20 36l12 8 12-8" stroke="#5a3f12" stroke-width="3.5" fill="none" stroke-linejoin="round"/></svg>
+ <div style="flex:1;min-width:0"><div class="m" style="color:var(--gd)">${mon}</div><h2 class="w">${L1.t} ${L1.d}</h2><div class="mu" style="font-size:13px;margin-top:3px">${t('this_season',fmtN(S.xp))}</div></div></div>
+ <div class="b"><div style="display:flex;justify-content:space-between;font-size:14px;gap:8px"><span>${t('to_next',fmtN(L1.step-L1.into),L1.next)}</span><span class="m">${Math.round(L1.into/L1.step*100)}%</span></div>
+ <div class="seg">${Array.from({length:5},(_,i)=>`<i class="${i<segOn?'on':''}"></i>`).join('')}</div>
+ <div class="rw"><div><svg width="30" height="30" viewBox="0 0 34 34" style="flex:none"><circle cx="17" cy="17" r="13" fill="none" stroke="#d6a443" stroke-width="3" stroke-dasharray="5 3"/></svg><div style="min-width:0"><b>${t('frame')}</b><small>${t('tiers')[0]} III</small><div class="pb2"><i style="width:100%"></i></div><small style="color:var(--gd);font-family:'JetBrains Mono';font-size:9px">${t('unlocked')}</small></div></div>
+ <div>${ic('i-lock','width:26px;height:26px')}<div style="min-width:0"><b>${t('wallpaper')}</b><small>5.000 XP</small><div class="pb2"><i style="width:${Math.min(100,S.xp/50)}%;background:var(--or)"></i></div><small style="font-family:'JetBrains Mono';font-size:9px">${Math.min(100,Math.round(S.xp/50))}%</small></div></div></div></div></div>
+ <div class="chart"><div style="display:flex;justify-content:space-between;gap:8px"><span class="m">${t('daily_xp')}</span><span class="m"><b style="color:var(--gd)">■</b> ${Math.max(0,todayX)} <b style="color:var(--rd)">···</b> ${t('avg_of',L1.t)} ${AVG}</span></div><svg viewBox="0 0 288 62" style="width:100%;margin-top:12px">${bars}<line x1="0" x2="288" y1="${60-AVG/mx*56}" y2="${60-AVG/mx*56}" stroke="#ff6464" stroke-dasharray="2 3" stroke-width="1.5"/></svg></div>
+ <div class="lb"><div class="h"><span class="m">${t('sample_lg')}</span><span class="m" style="text-align:right">XP</span></div>
+ ${rows.filter(r=>!r.me).slice(0,7).map((r,i)=>`<div class="lr"><span class="rk">${i+1}</span>${avatar(r.n,r.c)}<div class="nm"><b>${r.n}</b>${TRF}<span class="fl">${ic('i-flame','fill:var(--or);stroke:none;width:11px;height:11px;vertical-align:-1px')}${r.f}</span>${r.g?`<small>${r.g[LI()]}</small>`:''}</div><div class="xp">${fmtN(r.x)}<small>(+${r.td})</small></div></div>`).join('')}
+ <div class="lr me"><span class="rk">#${myR}</span>${avatar(S.name,'var(--or)')}<div class="nm"><b>${t('you2')}</b><small>${esc(S.goal)}</small></div><div class="xp">${fmtN(S.xp)}<small>(+${Math.max(0,todayX)})</small></div></div></div>`}
+
+/* ---------- PROFILE ---------- */
+function rProfile(){
+ const L1=league(S.xp),since=new Date(S.since).toLocaleDateString(LANG==='tr'?'tr-TR':'en-US',{month:'short',year:'numeric'}),tq=todayQuests().filter(isDone).length,P=isPrem();
+ const ver=NATIVE?(()=>{try{return AzimNative.appVersion()}catch(e){return '2.0.0'}})():'2.0.0';
+ $('scr').innerHTML=`<div class="hdr"><h1 class="w" style="font-size:24px;letter-spacing:.02em">${t('profile')}</h1><button class="bx" onclick="go('today')">${ic('i-x')}</button></div>
+ <div class="fs"><div class="m or">${t('together')}</div><div class="r">${ic('i-flame','fill:var(--or);stroke:none;width:28px;height:28px')}<div style="flex:1;min-width:0"><b class="w" style="font-size:18px">${t('invite')}</b><div style="color:#cdb8a6;font-size:13px;margin-top:4px">${t('invite_d')}</div></div><button class="nudge" onclick="invite()">${ic('i-hand','width:15px;height:15px;vertical-align:-3px')} ${t('invite_btn')}</button></div></div>
+ <div class="pc">${avatar(S.name,'var(--or)')}<h2 class="w">${esc(S.name)}${LANG==='tr'?TRF:''}</h2>
+ <div class="bdg"><span style="background:linear-gradient(90deg,#8a6a2c,#d6a443);color:#1a1205">${up(L1.t)} ${L1.d}</span><span style="background:var(--or);color:#140a03">${t('day')} ${Math.min(S.day,66)}/66</span>${P?`<span class="pro" style="font-size:11px;padding:6px 12px;border-radius:20px">PREMIUM</span>`:''}</div>
+ <div class="m" style="margin-top:18px">${t('month_goal')}</div><b class="w" style="font-size:18px;display:block;margin-top:6px" onclick="goalSheet()">${esc(S.goal)} <span class="mu" style="font-size:13px">✎</span></b></div>
+ <div class="g4"><div><span class="m">${t('member')}</span><b class="w">${since}</b></div><div><span class="m">${t('cur_streak')}</span><b class="w">${S.streak||0}${ic('i-flame','fill:var(--or);stroke:none;width:18px;height:18px')}</b></div><div><span class="m">${t('today_q')}</span><b class="w">${tq}</b></div><div><span class="m">${t('season_xp')}</span><b class="w">${fmtN(S.xp)}</b></div></div>
+ <div class="panel" style="${P?'':'border-color:var(--gd)'}"><div class="set" style="padding-top:0"><div><b>${t('premium')} ${P?'':'<span class="pro">PRO</span>'}</b><small>${P?t('premium_on'):t('premium_off')}</small></div><button class="cta sm" style="width:auto;margin:0;padding:0 14px" onclick="${P?'manageSub()':'paywall()'}">${P?t('manage_sub'):t('go_premium')}</button></div></div>
+ <div class="panel"><div style="display:flex;justify-content:space-between;margin-bottom:6px"><span class="m">${t('recent_act')}</span><span class="mu" style="font-size:12px">${t('last5')}</span></div>
+ ${S.log.length?S.log.slice(0,5).map(l=>`<div class="act"><div class="dy"><span class="m" style="font-size:8.5px">${t('day')}</span><b class="w">${l.day}</b></div><div style="min-width:0"><b>${esc(l.t)}</b>${l.st?`<div class="mu" style="font-size:12px;margin-top:3px">${ic('i-flame','fill:var(--mu);stroke:none;width:11px;height:11px;vertical-align:-1px')} ${l.st}</div>`:''}</div><div class="xb"><span>+${l.xp} XP</span><small>${l.day===S.day?t('today'):l.day===S.day-1?t('yesterday'):t('days_ago',S.day-l.day)}</small></div></div>`).join(''):`<div class="mu" style="padding:12px 0">${t('no_act')}</div>`}</div>
+ <div class="panel"><span class="m">${t('settings')}</span>
+ <div class="set"><div><b>${t('language')}</b></div><div class="lang" style="position:static"><button class="${LANG==='tr'?'on':''}" onclick="setLang('tr')">TR</button><button class="${LANG==='en'?'on':''}" onclick="setLang('en')">EN</button></div></div>
+ <div class="set"><div><b>${t('theme')}</b><div class="sw5">${Object.keys(THEMES).map(k=>`<button class="${(S.theme||'orange')===k?'on':''}" style="background:${THEMES[k][0]}" onclick="setTheme('${k}')">${THEMES[k][3]&&!P?ic('i-lock','stroke:#fff'):''}</button>`).join('')}</div></div></div>
+ <div class="set"><div><b>${t('hard_mode')}</b><small>${t('hard_d')}</small></div><button class="tg ${S.hard?'on':''}" onclick="S.hard=!S.hard;if(S.hard)S.freezes=0;else S.freezes=Math.max(S.freezes||0,1);save();render();toast(S.hard?t('hard_on'):t('hard_off'))"></button></div>
+ <div class="set" onclick="schedSheet()"><div><b>${t('schedule')}</b><small>${t('schedule_d')}</small></div><span class="v">${S.sched.wake} – ${S.sched.sleep}</span></div>
+ <div class="set"><div><b>${t('reminders')}</b><small>${t('rem_d')}</small></div><button class="tg ${remOn()?'on':''}" onclick="enableReminders(!remOn());render()"></button></div>
+ ${remOn()?`<div style="padding:2px 0 4px">${remList()}<div class="tline"><span>${t('quests')}</span><b>${S.quests.filter(q=>q.on&&q.remind&&qTime(q)).length}×</b></div></div><button class="cta ghost sm" style="margin-bottom:6px" onclick="testNotif()">${ic('i-bell','width:15px;height:15px')}${t('test_notif')}</button>`:''}
+ <div class="set" onclick="go('plan')"><div><b>${t('my_plan')}</b><small>${t('p_'+S.program)} · ${S.quests.filter(q=>q.on).length} ${t('quests').toLowerCase()}</small></div>${ic('i-r')}</div></div>
+ <div class="panel"><span class="m">${t('data')}</span><button class="cta ghost sm" onclick="exportSheet()">${ic('i-up','width:15px;height:15px')}${t('export')}</button><button class="cta ghost sm" onclick="importSheet()">${ic('i-down','width:15px;height:15px')}${t('import')}</button></div>
+ <div class="panel"><span class="m">${t('account')}</span><div class="set"><div style="min-width:0"><b style="word-break:break-all">${esc(USER||'')}</b><small>${t('on_device')}</small></div></div>
+ <button class="cta ghost sm" onclick="logout()">${t('logout')}</button><button class="cta ghost sm" style="color:var(--rd)" onclick="resetSheet()">${t('reset')}</button><button class="lnk" style="color:var(--rd)" onclick="delSheet()">${t('del_acc')}</button></div>
+ <div class="m" style="text-align:center;margin-top:18px;font-size:9.5px">${t('version',ver)}</div>`}
+function setTheme(k){if(THEMES[k][3]&&!isPrem())return paywall();S.theme=k;save();applyTheme();render()}
+function schedSheet(){const pre=k=>`<button class="pill ${S.sched.preset===k?'sel':''}" onclick="setPreset('${k}')">${t('sh_'+k)}</button>`;
+ openSheet(`<h2 class="w">${t('schedule')}</h2><p class="mu" style="margin-top:8px">${t('schedule_d')}</p><span class="m lbl">${t('preset')}</span><div class="pills">${pre('day')}${pre('early')}${pre('night')}</div>
+ <div class="row2"><div><span class="m lbl">${t('wake')}</span><input class="inp" id="sW" type="time" value="${S.sched.wake}"></div><div><span class="m lbl">${t('sleep')}</span><input class="inp" id="sS" type="time" value="${S.sched.sleep}"></div></div>
+ <span class="m lbl">${t('train_t')}</span><input class="inp" id="sT" type="time" value="${S.sched.train}"><div class="panel" id="sPrev">${remList()}</div>
+ <button class="cta" onclick="saveSched()">${t('save')}</button>`)}
+function setPreset(k){const p=SHIFTS[k];S.sched={wake:p.w,sleep:p.s,train:p.tr,preset:k};schedSheet()}
+function saveSched(){const w=$('sW').value,s=$('sS').value,tr=$('sT').value;if(w&&s){S.sched={wake:w,sleep:s,train:tr||S.sched.train,preset:'custom'}}save();pushSchedule();closeSheet();render()}
+function testNotif(){if(!NATIVE)return toast(t('only_android'));try{if(!AzimNative.hasNotifPermission()){AzimNative.requestNotifPermission();return}AzimNative.testNotification();toast(t('test_sent'))}catch(e){}}
+function goalSheet(){openSheet(`<h2 class="w">${t('month_goal')}</h2><input class="inp" id="gI" value="${esc(S.goal)}" maxlength="34"><button class="cta" onclick="S.goal=val('gI')||S.goal;save();closeSheet();render()">${t('save')}</button>`)}
+function resetSheet(){openSheet(`<h2 class="w">${t('reset_q')}</h2><p class="mu" style="margin-top:10px">${t('reset_d')}</p><button class="cta red" onclick="doReset()">${t('reset_yes')}</button><button class="cta ghost sm" onclick="closeSheet()">${t('cancel')}</button>`)}
+function doReset(){Store.del('azim.data.'+USER);S=null;closeSheet();nav(false);resume()}
+function delSheet(){openSheet(`<h2 class="w">${t('del_acc')}</h2><p class="mu" style="margin-top:10px">${t('delacc_d')}</p><button class="cta red" onclick="wipeAccount(USER)">${t('delacc_yes')}</button><button class="cta ghost sm" onclick="closeSheet()">${t('cancel')}</button>`)}
+function invite(){const x=t('invite_text');if(NATIVE)try{return AzimNative.share(x)}catch(e){}
+ if(navigator.share)navigator.share({text:x}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(x).then(()=>toast(t('copied')),()=>{})}
+function exportSheet(){const data=JSON.stringify({app:'azim',v:2,user:USER,at:new Date().toISOString(),data:S});
+ openSheet(`<h2 class="w">${t('export')}</h2><p class="mu" style="margin-top:8px;line-height:1.5">${t('export_d')}</p><textarea class="inp" id="exT" readonly>${esc(data)}</textarea>
+ <div class="row2"><button class="cta sm" onclick="copyEx()">${t('copy')}</button><button class="cta ghost sm" onclick="NATIVE?AzimNative.share($('exT').value):copyEx()">${t('share')}</button></div>`)}
+function copyEx(){const v=$('exT').value;if(navigator.clipboard)navigator.clipboard.writeText(v).then(()=>toast(t('copied')),()=>{$('exT').select()});else $('exT').select()}
+function importSheet(){openSheet(`<h2 class="w">${t('import')}</h2><p class="mu" style="margin-top:8px;line-height:1.5">${t('import_d')}</p><textarea class="inp" id="imT"></textarea><button class="cta" onclick="doImport()">${t('import')}</button>`)}
+function doImport(){try{const o=JSON.parse($('imT').value);if(o.app!=='azim'||!o.data||!o.data.quests)throw 0;S=o.data;S.date=S.date||ymd();save();pushSchedule();closeSheet();applyTheme();rollover();go('today');toast(t('import_ok'))}catch(e){toast(t('import_bad'))}}
+
+/* ---------- PREMIUM ---------- */
+function price(id,fb){if(PRODUCTS&&PRODUCTS[id])return PRODUCTS[id];return fb}
+let PWMSG='';
+function paywall(msg){PWMSG=typeof msg==='string'?msg:'';if(NATIVE)try{AzimNative.loadProducts()}catch(e){}pwRender()}
+function pwRender(){
+ const m=price('monthly',LANG==='tr'?'₺59,99':'$2.99'),y=price('yearly',LANG==='tr'?'₺399,99':'$19.99');
+ openSheet(`<div class="pw"><div class="m or">${t('pw_k')}</div><h2 class="d">${t('pw_t')}</h2>${PWMSG?`<p style="color:#d8d0c5;margin-top:10px;line-height:1.5">${PWMSG}</p>`:''}
+ ${[['i-list','f1','f1d'],['i-snow','f2','f2d'],['i-chart','f3','f3d'],['i-star','f4','f4d']].map(f=>`<div class="feat"><span>${ic(f[0],'width:16px;height:16px')}</span><div><b>${t(f[1])}</b><small>${t(f[2])}</small></div></div>`).join('')}
+ <div class="plans"><button class="${pwPlan==='m'?'on':''}" onclick="pwPlan='m';pwRender()"><span class="m">${t('monthly')}</span><b class="w">${m}</b><small>${t('per_mo')}</small></button>
+ <button class="${pwPlan==='y'?'on':''}" onclick="pwPlan='y';pwRender()"><em>${t('save_pct')}</em><span class="m">${t('yearly')}</span><b class="w">${y}</b><small>${t('per_yr')}</small></button></div>
+ <button class="cta" onclick="buy()">${t('subscribe')}</button><button class="lnk" onclick="restore()">${t('restore')}</button><p class="fl2" style="text-align:center">${t('pw_note')}</p></div>`)}
+function buy(){const id=pwPlan==='y'?'yearly':'monthly';
+ if(NATIVE){try{AzimNative.buy(id)}catch(e){toast(t('billing_na'))}return}
+ Store.set('azim.demoPremium','1');closeSheet();toast(t('pw_preview'));if(S&&!S.hard)S.freezes=Math.max(S.freezes||0,1);render()}
+function restore(){if(NATIVE){try{AzimNative.restorePurchases()}catch(e){}}toast(t('restored'))}
+function manageSub(){if(NATIVE){try{AzimNative.manageSubscription()}catch(e){}}else{Store.del('azim.demoPremium');render()}}
+
+/* ---------- BOOT ---------- */
+document.addEventListener('keydown',e=>{if(e.key!=='Enter')return;if(view==='reg')register();else if(view==='login')login()});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)window.azimResume()});
+setInterval(()=>{if(S&&S.quests&&S.date<ymd())window.azimResume()},60000);
+document.documentElement.lang=LANG;
+USER=Store.get('azim.session');
+if(USER&&(Store.json('azim.accounts')||{})[USER])resume();else{USER=null;obGo('welcome')}
+
+</script>
+</body>
+</html>
