@@ -56,7 +56,7 @@ android {
 
     lint {
         textReport = true
-        textOutput = file("stdout")
+        textOutput = file("build/reports/lint.txt")
         abortOnError = true
         checkReleaseBuilds = true
     }
