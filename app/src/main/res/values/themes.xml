@@ -5,6 +5,5 @@
         <item name="colorPrimary">@color/orange</item>
         <item name="colorAccent">@color/orange</item>
         <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowLightNavigationBar">false</item>
     </style>
 </resources>

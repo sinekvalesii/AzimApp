@@ -97,7 +97,10 @@ class MainActivity : AppCompatActivity() {
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 web.evaluateJavascript("(window.azimBack && window.azimBack()) ? 'y' : 'n'") { r ->
-                    if (r?.contains("y") != true) {
+                    if (r?.contains("y") == true) return@evaluateJavascript
+                    if (web.canGoBack()) {
+                        web.goBack()
+                    } else {
                         isEnabled = false
                         onBackPressedDispatcher.onBackPressed()
                         isEnabled = true

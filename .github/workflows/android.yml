@@ -44,6 +44,11 @@ jobs:
             echo "keyPassword=$KEY_PASSWORD"
           } > keystore.properties
 
+      - name: Web ve Android arayüzü aynı mı?
+        run: |
+          cmp docs/index.html app/src/main/assets/www/index.html
+          cmp docs/privacy.html app/src/main/assets/www/privacy.html
+
       - name: Derle (debug APK + release AAB/APK) ve lint
         run: ./gradlew --no-daemon --stacktrace assembleDebug lintDebug bundleRelease assembleRelease
 

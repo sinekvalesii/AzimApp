@@ -6,6 +6,10 @@
 <meta name="theme-color" content="#0a0908">
 <title>AZİM · 66 Gün</title>
 <link rel="stylesheet" href="fonts/fonts.css">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="description" content="AZİM: Alışkanlıklarını oyuna çevir. Saatli görevler, XP, seri koruma ve 66 günlük program.">
 <style>
 :root{--bg:#0a0908;--s1:#131110;--s2:#1a1816;--s3:#221f1c;--ln:#2b2723;--ln2:#3d3832;--tx:#f1ebe2;--mu:#8b837a;--mu2:#5f5952;--or:#ee7a2f;--or2:#a8511d;--or3:#3a2216;--gd:#d6a443;--gn:#62d08e;--rd:#ff6464;--safe-t:env(safe-area-inset-top);--safe-b:env(safe-area-inset-bottom)}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -463,12 +467,15 @@ const L={
  subscribe:['Abone ol','Subscribe'],restore:['Satın alımları geri yükle','Restore purchases'],pw_note:['Abonelik Google Play üzerinden yönetilir, istediğin zaman iptal edebilirsin. Ücretsiz deneme varsa süresi bitmeden iptal edersen ücret alınmaz.','Subscriptions are managed in Google Play and can be cancelled anytime. If a free trial applies, cancel before it ends and you won\'t be charged.'],
  pw_preview:['Önizleme modunda gerçek satın alma yok. Premium deneme olarak açıldı.','No real purchases in preview. Premium unlocked as a demo.'],premium_thanks:['Premium aktif. Teşekkürler!','Premium is active. Thank you!'],billing_na:['Mağaza bağlantısı kurulamadı. Biraz sonra tekrar dene.','Could not reach the store. Try again shortly.'],restored:['Satın alımlar kontrol edildi.','Purchases checked.'],
  pw_d8:['7 gündür buradasın. Seriyi korumak için en güçlü araçlar Premium\'da.','You\'ve been here 7 days. The strongest tools to protect your streak are in Premium.'],
+ privacy:['Gizlilik','Privacy'],web_notif:['Bildirimler ve ana ekran widget\'ı Android uygulamasında çalışır.','Notifications and the home screen widget work in the Android app.'],web_premium:['Premium, Android uygulamasından Google Play ile satın alınır.','Premium is purchased in the Android app via Google Play.'],
  nav_today:['Bugün','Today'],nav_growth:['Gelişim','Growth'],nav_workout:['Antrenman','Workout'],nav_season:['Sezon','Season'],nav_profile:['Profil','Profile']
 };
 
 "use strict";
 /* ---------- BASICS ---------- */
 const NATIVE=typeof window.AzimNative!=='undefined';
+const WEB=!NATIVE&&/\.github\.io$/.test(location.hostname);
+const PREVIEW=!NATIVE&&!WEB;
 const Store={
  get(k){try{return NATIVE?AzimNative.get(k):localStorage.getItem(k)}catch(e){return null}},
  set(k,v){try{NATIVE?AzimNative.set(k,v):localStorage.setItem(k,v)}catch(e){}},
@@ -678,7 +685,7 @@ function obGo(step){view=step;render()}
 function renderOb(){
  const sc=$('scr');sc.className='ob';let h='';
  if(view==='welcome')h=`${langSw()}<div class="logo"><div class="n d">66<span class="d">66</span></div><div class="v d">${LANG==='tr'?'GÜN':'DAYS'}</div><div class="bars"><i></i><i></i><i></i></div></div>
-  <div class="hero d">${t('tagline')}</div><p class="lead">${t('lead0')}</p><div class="grow"></div><div class="m" style="text-align:center">${t('madeby')}</div>
+  <div class="hero d">${t('tagline')}</div><p class="lead">${t('lead0')}</p><div class="grow"></div><div class="m" style="text-align:center">${t('madeby')} · <a href="privacy.html" style="color:var(--mu)">${t('privacy')}</a></div>
   <button class="cta" onclick="obGo('reg')">${t('create')} ${ic('i-arr')}</button><button class="cta ghost" style="margin-top:10px" onclick="obGo('login')">${t('signin')}</button>`;
  if(view==='reg')h=`${prog(1)}<div class="m">01 / 06</div><div class="q d">${t('reg_t')}</div>
   <input class="inp" id="rName" placeholder="${t('name')}" maxlength="18" autocomplete="given-name"><input class="inp" id="rMail" type="email" placeholder="${t('email')}" autocomplete="email" inputmode="email"><input class="inp" id="rPass" type="password" placeholder="${t('pass')}" autocomplete="new-password">
@@ -693,7 +700,7 @@ function renderOb(){
   <div class="m lbl">${t('o_wake')}</div>${P('water',[t('w0'),t('w1'),t('w2')])}<div class="m lbl">${t('o_screen')}</div>${P('screen',[t('sc0'),t('sc1'),t('sc2')])}
   <div class="grow"></div><button class="cta" onclick="obGo('mode')" ${[F.shift,F.water,F.screen].includes(null)?'disabled':''}>${t('next')}</button>`}
  if(view==='mode')h=`${prog(4)}<div class="m">${t('s_mode','04')}</div><div class="q d">${t('mode_q')}</div><div id="opts">${optHtml([{n:t('m_std'),d:t('m_std_d'),ic:'i-shield'},{n:t('m_hard'),d:t('m_hard_d'),ic:'i-flame',col:'var(--or)'}],F.hard==null?[]:[F.hard?1:0])}</div><div class="grow"></div><button class="cta" onclick="analyze()" ${F.hard==null?'disabled':''}>${t('next')}</button>`;
- if(view==='an')h=`${prog(5)}<div class="m">${t('s_an')}</div><div class="q d" id="anT">${t('an_t')}</div><div class="scan" id="scan">${[1,2,3,4,5].map(i=>`<div>${t('sc_'+i)} <b>OK</b></div>`).join('')}</div><div id="anR"></div><div class="grow"></div><button class="cta" id="b5" onclick="obGo('rem')" style="display:none">${t('next')}</button>`;
+ if(view==='an')h=`${prog(5)}<div class="m">${t('s_an')}</div><div class="q d" id="anT">${t('an_t')}</div><div class="scan" id="scan">${[1,2,3,4,5].map(i=>`<div>${t('sc_'+i)} <b>OK</b></div>`).join('')}</div><div id="anR"></div><div class="grow"></div><button class="cta" id="b5" onclick="NATIVE?obGo('rem'):startApp()" style="display:none">${t('next')}</button>`;
  if(view==='rem')h=`${prog(6)}<div class="m">${t('rem_k')}</div><div class="q d">${t('rem_t')}</div><p class="lead">${t('rem_lead')}</p><div class="panel">${remList()}</div><div class="grow"></div>
   <button class="cta" onclick="enableReminders(true);startApp()">${t('allow')}</button><button class="cta ghost" style="margin-top:10px" onclick="enableReminders(false);startApp()">${t('notnow')}</button>`;
  sc.innerHTML=h;
@@ -758,7 +765,7 @@ function rToday(){
  h+=`<div class="sec"><span class="m">${t('plan_today')} · ${done.length}/${Q.length}</span><span class="ln"></span><button class="chip" onclick="go('plan')">${ic('i-edit','width:14px;height:14px')}${t('edit')}</button><button class="bx" style="width:34px;height:34px" onclick="editQ()">${ic('i-plus')}</button></div>`;
  const groups=[['g_morning',q=>q.tm&&toMin(q.tm)<720],['g_noon',q=>q.tm&&toMin(q.tm)>=720&&toMin(q.tm)<1020],['g_eve',q=>q.tm&&toMin(q.tm)>=1020],['g_any',q=>!q.tm]];
  groups.forEach(g=>{const list=Q.filter(g[1]);if(!list.length)return;h+=`<div class="grp"><div class="gh"><span class="m">${t(g[0])}</span></div>${list.map(qRow).join('')}</div>`});
- h+=NATIVE?`<div class="m" style="text-align:center;margin-top:22px;font-size:9.5px">${t('closes')}</div>`:`<button class="closeday m" onclick="closeDaySheet()">${t('preview_close')} ${ic('i-arr','width:14px;height:14px;vertical-align:-2px')}</button>`;
+ h+=!PREVIEW?`<div class="m" style="text-align:center;margin-top:22px;font-size:9.5px">${t('closes')}</div>`:`<button class="closeday m" onclick="closeDaySheet()">${t('preview_close')} ${ic('i-arr','width:14px;height:14px;vertical-align:-2px')}</button>`;
  $('scr').innerHTML=h;
 }
 function qRow(q){const C=CATS[q.c],p=S.prog[q.id]||0,dn=isDone(q),sk=S.skip.includes(q.id)&&!dn,st=S.qs[q.id]||0;
@@ -952,13 +959,13 @@ function rProfile(){
  <div class="set"><div><b>${t('theme')}</b><div class="sw5">${Object.keys(THEMES).map(k=>`<button class="${(S.theme||'orange')===k?'on':''}" style="background:${THEMES[k][0]}" onclick="setTheme('${k}')">${THEMES[k][3]&&!P?ic('i-lock','stroke:#fff'):''}</button>`).join('')}</div></div></div>
  <div class="set"><div><b>${t('hard_mode')}</b><small>${t('hard_d')}</small></div><button class="tg ${S.hard?'on':''}" onclick="S.hard=!S.hard;if(S.hard)S.freezes=0;else S.freezes=Math.max(S.freezes||0,1);save();render();toast(S.hard?t('hard_on'):t('hard_off'))"></button></div>
  <div class="set" onclick="schedSheet()"><div><b>${t('schedule')}</b><small>${t('schedule_d')}</small></div><span class="v">${S.sched.wake} – ${S.sched.sleep}</span></div>
- <div class="set"><div><b>${t('reminders')}</b><small>${t('rem_d')}</small></div><button class="tg ${remOn()?'on':''}" onclick="enableReminders(!remOn());render()"></button></div>
- ${remOn()?`<div style="padding:2px 0 4px">${remList()}<div class="tline"><span>${t('quests')}</span><b>${S.quests.filter(q=>q.on&&q.remind&&qTime(q)).length}×</b></div></div><button class="cta ghost sm" style="margin-bottom:6px" onclick="testNotif()">${ic('i-bell','width:15px;height:15px')}${t('test_notif')}</button>`:''}
+ ${!NATIVE?`<div class="set"><div><b>${t('reminders')}</b><small>${t('web_notif')}</small></div>${ic('i-bell','stroke:var(--mu)')}</div>`:`<div class="set"><div><b>${t('reminders')}</b><small>${t('rem_d')}</small></div><button class="tg ${remOn()?'on':''}" onclick="enableReminders(!remOn());render()"></button></div>`}
+ ${NATIVE&&remOn()?`<div style="padding:2px 0 4px">${remList()}<div class="tline"><span>${t('quests')}</span><b>${S.quests.filter(q=>q.on&&q.remind&&qTime(q)).length}×</b></div></div><button class="cta ghost sm" style="margin-bottom:6px" onclick="testNotif()">${ic('i-bell','width:15px;height:15px')}${t('test_notif')}</button>`:''}
  <div class="set" onclick="go('plan')"><div><b>${t('my_plan')}</b><small>${t('p_'+S.program)} · ${S.quests.filter(q=>q.on).length} ${t('quests').toLowerCase()}</small></div>${ic('i-r')}</div></div>
  <div class="panel"><span class="m">${t('data')}</span><button class="cta ghost sm" onclick="exportSheet()">${ic('i-up','width:15px;height:15px')}${t('export')}</button><button class="cta ghost sm" onclick="importSheet()">${ic('i-down','width:15px;height:15px')}${t('import')}</button></div>
  <div class="panel"><span class="m">${t('account')}</span><div class="set"><div style="min-width:0"><b style="word-break:break-all">${esc(USER||'')}</b><small>${t('on_device')}</small></div></div>
  <button class="cta ghost sm" onclick="logout()">${t('logout')}</button><button class="cta ghost sm" style="color:var(--rd)" onclick="resetSheet()">${t('reset')}</button><button class="lnk" style="color:var(--rd)" onclick="delSheet()">${t('del_acc')}</button></div>
- <div class="m" style="text-align:center;margin-top:18px;font-size:9.5px">${t('version',ver)}</div>`}
+ <div class="m" style="text-align:center;margin-top:18px;font-size:9.5px">${t('version',ver)} · <a href="privacy.html" style="color:var(--mu)">${t('privacy')}</a></div>`}
 function setTheme(k){if(THEMES[k][3]&&!isPrem())return paywall();S.theme=k;save();applyTheme();render()}
 function schedSheet(){const pre=k=>`<button class="pill ${S.sched.preset===k?'sel':''}" onclick="setPreset('${k}')">${t('sh_'+k)}</button>`;
  openSheet(`<h2 class="w">${t('schedule')}</h2><p class="mu" style="margin-top:8px">${t('schedule_d')}</p><span class="m lbl">${t('preset')}</span><div class="pills">${pre('day')}${pre('early')}${pre('night')}</div>
@@ -994,6 +1001,7 @@ function pwRender(){
  <button class="cta" onclick="buy()">${t('subscribe')}</button><button class="lnk" onclick="restore()">${t('restore')}</button><p class="fl2" style="text-align:center">${t('pw_note')}</p></div>`)}
 function buy(){const id=pwPlan==='y'?'yearly':'monthly';
  if(NATIVE){try{AzimNative.buy(id)}catch(e){toast(t('billing_na'))}return}
+ if(WEB){closeSheet();return toast(t('web_premium'))}
  Store.set('azim.demoPremium','1');closeSheet();toast(t('pw_preview'));if(S&&!S.hard)S.freezes=Math.max(S.freezes||0,1);render()}
 function restore(){if(NATIVE){try{AzimNative.restorePurchases()}catch(e){}}toast(t('restored'))}
 function manageSub(){if(NATIVE){try{AzimNative.manageSubscription()}catch(e){}}else{Store.del('azim.demoPremium');render()}}
@@ -1003,6 +1011,7 @@ document.addEventListener('keydown',e=>{if(e.key!=='Enter')return;if(view==='reg
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)window.azimResume()});
 setInterval(()=>{if(S&&S.quests&&S.date<ymd())window.azimResume()},60000);
 document.documentElement.lang=LANG;
+if(WEB&&'serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 USER=Store.get('azim.session');
 if(USER&&(Store.json('azim.accounts')||{})[USER])resume();else{USER=null;obGo('welcome')}
 

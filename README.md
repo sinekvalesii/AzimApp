@@ -11,9 +11,16 @@
 </p>
 
 ## Hızlı bağlantılar
+- **Web uygulaması (tarayıcıda hemen kullan, telefona "Ana ekrana ekle" ile kurulabilir):** https://sinekvalesii.github.io/AzimApp/
 - **Gizlilik politikası (Play Console'a girilecek adres):** https://sinekvalesii.github.io/AzimApp/privacy.html
 - **Hazır APK / AAB:** [Actions](https://github.com/sinekvalesii/AzimApp/actions) sekmesi > son başarılı derleme > *Artifacts*. `v*` etiketiyle yayınlanan sürümler [Releases](https://github.com/sinekvalesii/AzimApp/releases) sayfasında.
 - **Mağaza metinleri ve görseller:** [`play-store/`](play-store)
+
+## Web sürümü (GitHub Pages)
+`docs/` klasörü GitHub Pages ile yayınlanıyor: uygulama, gizlilik politikası, PWA manifesti ve çevrimdışı önbellek (`sw.js`).
+- Web ve Android aynı arayüzü kullanır: `docs/index.html` dosyası `app/src/main/assets/www/index.html` ile birebir aynı olmalı. CI bunu kontrol eder; birini değiştirirsen diğerine de kopyala.
+- Web'de veriler tarayıcıda (localStorage) saklanır. Bildirim, widget ve Premium satın alma sadece Android uygulamasında çalışır.
+- Web'de yeni sürüm yayınlarken `docs/sw.js` içindeki `VERSION` değerini artır.
 
 ## Otomatik derleme (GitHub Actions)
 Her push'ta `.github/workflows/android.yml` şunları üretir:
