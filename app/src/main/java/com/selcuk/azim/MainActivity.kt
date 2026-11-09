@@ -17,6 +17,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.toColorInt
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.webkit.WebViewAssetLoader
@@ -155,14 +156,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun hasNotifPermission(): Boolean =
-        Build.VERSION.SDK_INT < 33 ||
+        Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
             ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
 
     fun askNotifPermission() {
         if (hasNotifPermission()) {
             Reminders.scheduleAll(this)
             js("window.azimOnNotifPermission && window.azimOnNotifPermission(true)")
-        } else if (Build.VERSION.SDK_INT >= 33) {
+        } else {
+            // hasNotifPermission() false ise cihaz zaten Android 13+ demektir
             notifPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
     }
@@ -177,6 +179,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val START_URL = "https://appassets.androidplatform.net/assets/www/index.html"
-        private val BG = Color.parseColor("#0A0908")
+        private val BG = "#0A0908".toColorInt()
     }
 }

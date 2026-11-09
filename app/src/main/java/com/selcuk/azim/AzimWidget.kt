@@ -9,6 +9,7 @@ import android.content.Intent
 import android.view.View
 import android.widget.RemoteViews
 import org.json.JSONArray
+import androidx.core.content.edit
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -133,14 +134,14 @@ class AzimWidget : AppWidgetProvider() {
             s.put("left", (s.optInt("left", 1) - 1).coerceAtLeast(0))
             val queue = runCatching { JSONArray(p.getString(PENDING, "[]")) }.getOrDefault(JSONArray())
             queue.put(JSONObject().put("id", qid).put("date", today()))
-            p.edit().putString("summary", s.toString()).putString(PENDING, queue.toString()).apply()
+            p.edit { putString("summary", s.toString()); putString(PENDING, queue.toString()) }
         }
 
         /** Uygulama açıldığında: bugüne ait widget işlemlerini döndürür ve kuyruğu temizler. */
         fun takeActions(ctx: Context): String {
             val p = Reminders.prefs(ctx)
             val queue = runCatching { JSONArray(p.getString(PENDING, "[]")) }.getOrDefault(JSONArray())
-            p.edit().remove(PENDING).apply()
+            p.edit { remove(PENDING) }
             val out = JSONArray()
             val d = today()
             for (i in 0 until queue.length()) {

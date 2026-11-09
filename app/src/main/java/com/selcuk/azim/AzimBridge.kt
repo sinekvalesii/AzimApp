@@ -2,6 +2,7 @@ package com.selcuk.azim
 
 import android.content.Context
 import android.webkit.JavascriptInterface
+import androidx.core.content.edit
 
 /**
  * JavaScript <-> Android köprüsü. Web arayüzü bu nesneye window.AzimNative olarak erişir.
@@ -17,12 +18,12 @@ class AzimBridge(private val activity: MainActivity) {
 
     @JavascriptInterface
     fun set(key: String, value: String) {
-        prefs.edit().putString(key, value).apply()
+        prefs.edit { putString(key, value) }
     }
 
     @JavascriptInterface
     fun remove(key: String) {
-        prefs.edit().remove(key).apply()
+        prefs.edit { remove(key) }
     }
 
     @JavascriptInterface

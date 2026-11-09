@@ -2,7 +2,6 @@ package com.selcuk.azim
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import com.android.billingclient.api.AcknowledgePurchaseParams
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
@@ -14,6 +13,8 @@ import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.PurchasesUpdatedListener
 import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryPurchasesParams
+import androidx.core.content.edit
+import androidx.core.net.toUri
 import org.json.JSONObject
 
 /**
@@ -123,13 +124,13 @@ class Billing(private val act: MainActivity) : PurchasesUpdatedListener {
 
     private fun setPremium(on: Boolean) {
         val old = isPremium()
-        prefs.edit().putBoolean("premium", on).apply()
+        prefs.edit { putBoolean("premium", on) }
         if (old != on) act.js("window.azimOnPremium && window.azimOnPremium($on)")
     }
 
     fun manage() {
         val url = "https://play.google.com/store/account/subscriptions?package=${act.packageName}"
-        act.runOnUiThread { runCatching { act.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url))) } }
+        act.runOnUiThread { runCatching { act.startActivity(Intent(Intent.ACTION_VIEW, url.toUri())) } }
     }
 
     fun end() {

@@ -15,6 +15,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import org.json.JSONArray
+import androidx.core.content.edit
 import org.json.JSONObject
 import java.util.Calendar
 
@@ -53,12 +54,12 @@ object Reminders {
     fun isEnabled(ctx: Context) = prefs(ctx).getBoolean("enabled", true)
 
     fun setEnabled(ctx: Context, on: Boolean) {
-        prefs(ctx).edit().putBoolean("enabled", on).apply()
+        prefs(ctx).edit { putBoolean("enabled", on) }
         if (on) scheduleAll(ctx) else cancelAll(ctx)
     }
 
     fun saveSummary(ctx: Context, json: String) {
-        prefs(ctx).edit().putString("summary", json).apply()
+        prefs(ctx).edit { putString("summary", json) }
     }
 
     fun summary(ctx: Context): JSONObject =
@@ -67,7 +68,7 @@ object Reminders {
     /** Web arayüzünden gelen planı kaydeder ve hepsini yeniden kurar. */
     fun saveSchedule(ctx: Context, json: String) {
         cancelAll(ctx)
-        prefs(ctx).edit().putString("schedule", json).apply()
+        prefs(ctx).edit { putString("schedule", json) }
         scheduleAll(ctx)
     }
 
@@ -89,18 +90,16 @@ object Reminders {
     }
 
     fun ensureChannel(ctx: Context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val ch = NotificationChannel(CHANNEL, ctx.getString(R.string.channel_name), NotificationManager.IMPORTANCE_DEFAULT)
-                .apply { description = ctx.getString(R.string.channel_desc) }
-            ctx.getSystemService(NotificationManager::class.java)?.createNotificationChannel(ch)
-        }
+        val ch = NotificationChannel(CHANNEL, ctx.getString(R.string.channel_name), NotificationManager.IMPORTANCE_DEFAULT)
+            .apply { description = ctx.getString(R.string.channel_desc) }
+        ctx.getSystemService(NotificationManager::class.java)?.createNotificationChannel(ch)
     }
 
     fun scheduleAll(ctx: Context) {
         if (!isEnabled(ctx)) return
         val list = items(ctx)
         list.forEach { schedule(ctx, it) }
-        prefs(ctx).edit().putString("ids", list.joinToString(",") { it.id.toString() }).apply()
+        prefs(ctx).edit { putString("ids", list.joinToString(",") { it.id.toString() }) }
     }
 
     fun cancelAll(ctx: Context) {
@@ -129,7 +128,7 @@ object Reminders {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-    private fun hasPermission(ctx: Context) = Build.VERSION.SDK_INT < 33 ||
+    private fun hasPermission(ctx: Context) = Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
         ContextCompat.checkSelfPermission(ctx, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
 
     /** Bugün bu bildirimin gösterilip gösterilmeyeceği (gün filtresi, görev zaten bitti mi). */
