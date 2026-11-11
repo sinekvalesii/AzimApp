@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Azim" parent="Theme.AppCompat.NoActionBar">
+    <style name="Theme.Azim" parent="android:Theme.Material.NoActionBar">
         <item name="android:windowBackground">@color/bg</item>
-        <item name="colorPrimary">@color/orange</item>
-        <item name="colorAccent">@color/orange</item>
-        <item name="android:windowLightStatusBar">false</item>
     </style>
 </resources>

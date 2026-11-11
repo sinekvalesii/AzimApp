@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AZİM</string>
-    <string name="channel_name">Günlük hatırlatıcılar</string>
-    <string name="channel_desc">Motivasyon, su, antrenman, görev saatleri ve gün sonu hatırlatmaları</string>
-    <string name="share_title">Paylaş</string>
-    <string name="widget_desc">Bugünün görevleri ve serin</string>
-    <string name="widget_check">Görevi tamamla</string>
-    <string name="widget_day">GÜN %1$d / 66</string>
-    <string name="widget_all_done">Bugünün tüm görevleri tamam.</string>
-    <string name="widget_open">Yeni gün başladı. Görmek için dokun.</string>
-    <string name="widget_setup">Başlamak için AZİM\'i aç.</string>
+    <string name="channel_name">Günlük hatırlatıcı</string>
 </resources>

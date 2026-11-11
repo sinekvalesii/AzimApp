@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Android 11 ve altı: hesap ve ilerleme verileri Google yedeğine dahil edilir. -->
 <full-backup-content>
-    <include domain="sharedpref" path="azim_store.xml" />
-    <include domain="sharedpref" path="azim_reminders.xml" />
+    <include domain="database" path="azim.db" />
 </full-backup-content>
