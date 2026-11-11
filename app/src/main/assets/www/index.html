@@ -131,6 +131,9 @@ textarea.inp{height:140px;padding:12px;font:500 12px 'JetBrains Mono'}
 .empty b{display:block;color:var(--tx);font-size:20px;margin-bottom:6px}
 .closeday{margin-top:18px;width:100%;background:none;border:1.5px dashed var(--ln2);border-radius:8px;height:48px;color:var(--mu)}
 
+.hc{display:flex;align-items:center;gap:12px;border:1.5px solid var(--ln2);border-radius:12px;background:var(--s1);padding:12px 14px;margin-top:12px}.hc b{font-size:20px}.hc small{font-size:11.5px;display:block;color:var(--mu);line-height:1.35}
+.hb{height:5px;background:var(--s3);margin-top:7px;border-radius:3px;overflow:hidden}.hb i{display:block;height:100%;background:var(--or)}
+.fat{margin-top:8px;font-size:13px;color:#d8d0c5;border-left:3px solid var(--rd);padding:8px 10px;background:#ff64640f;border-radius:0 8px 8px 0}
 /* insight */
 .peak{border:1.5px solid var(--ln2);border-radius:8px;padding:7px 11px;text-align:left}
 .peak b{font-size:20px}.peak small{font-family:'JetBrains Mono';font-size:11px;color:var(--mu)}
@@ -410,7 +413,7 @@ const L={
  sum_part:['{0}/{1} görev. Standart modda serin korunur.','{0}/{1} quests. In Standard mode your streak is kept.'],
  close_day:['Günü kapat','Close the day'],keep_going:['Devam et','Keep going'],
  rolled:['Gün {0} kapandı','Day {0} closed'],rolled_d:['{0}/{1} görev tamamlandı.','{0}/{1} quests completed.'],rolled_more:[' Arada {0} gün daha geçti ve işlendi.',' {0} more days passed and were processed.'],rolled_streak:[' Güncel serin: <b class="or">{0}</b>',' Current streak: <b class="or">{0}</b>'],
- freezes:['Seri koruma','Streak freeze'],freeze_info:['Kaçırdığın bir günde seri koruma otomatik kullanılır ve serin bozulmaz. Her pazartesi 1 hak yenilenir (Premium: haftada 3). Sert Mod\'da kullanılamaz.','A freeze is used automatically on a missed day so your streak survives. 1 refills every Monday (Premium: 3 per week). Not available in Hard Mode.'],
+ freezes:['Seri koruma','Streak freeze'],freeze_info:['Kaçırdığın bir günde seri koruma otomatik kullanılır ve serin bozulmaz. Her pazartesi 1 hak yenilenir (Plus: haftada 3). Sert Mod\'da kullanılamaz.','A freeze is used automatically on a missed day so your streak survives. 1 refills every Monday (Plus: 3 per week). Not available in Hard Mode.'],
  // quest edit
  new_q:['Yeni görev','New quest'],edit_q:['Görevi düzenle','Edit quest'],q_name:['Görev adı','Quest name'],q_target:['Hedef','Target'],q_unit:['Birim','Unit'],q_step:['Adım','Step'],q_days:['Günler','Days'],q_time:['Saat (isteğe bağlı)','Time (optional)'],q_area:['Alan','Area'],q_diff:['Zorluk','Difficulty'],q_remind:['Bu saatte hatırlat','Remind me at this time'],
  q_added:['Görev eklendi.','Quest added.'],q_saved:['Görev güncellendi.','Quest updated.'],q_need_name:['Görev adı yaz.','Enter a quest name.'],q_need_day:['En az bir gün seç.','Pick at least one day.'],
@@ -428,7 +431,7 @@ const L={
  ba:['Önce & Sonra','Before & After'],ba3:['3 değişim','3 changes'],ba_water:['Günlük su','Daily water'],ba_wake:['Kalkış saati','Wake time'],ba_screen:['Ekran süresi','Screen time'],days_ago:['{0} gün önce','{0} days ago'],today:['Bugün','Today'],
  level:['Seviye','Level'],now:['Şu an','Now'],d1:['Gün 1','Day 1'],d66:['Gün 66 tahmini','Day 66 forecast'],xp_earned:['XP kazanıldı','XP earned'],xp_to:['Seviye {0} için {1} XP','{1} XP to level {0}'],start_pt:['Başlangıç noktan','Your starting point'],at_pace:['Mevcut tempoyla 66. gün','Day 66 at your current pace'],LEVEL:['SEVİYE','LEVEL'],
  deep:['Detaylı analiz','Deep analysis'],heat:['66 günlük harita','66-day map'],by_area:['Alanlara göre tamamlama','Completion by area'],best_day:['En iyi günün','Your best day'],coach:['Koç notu','Coach note'],
- unlock:['Premium ile aç','Unlock with Premium'],unlock_d:['Detaylı analiz, koç notları ve 66 günlük harita Premium\'da.','Deep analysis, coach notes and the 66-day map are in Premium.'],
+ unlock:['Plus ile aç','Unlock with Plus'],unlock_d:['Detaylı analiz, koç notları ve 66 günlük harita Plus\'ta.','Deep analysis, coach notes and the 66-day map are in Plus.'],
  coach_weak:['{0} görevlerinde tamamlama oranın %{1}. Bu alandaki bir görevi daha küçük bir hedefe indir ya da saatini değiştir: zor görev değil, uygun olmayan saat çoğu zaman sorundur.','Your {0} completion rate is {1}%. Shrink one of these quests or move its time: the problem is usually the timing, not the task.'],
  coach_good:['Son 7 günde tamamlama oranın %{0}. Hedefleri büyütmeye hazırsın: bir görevin hedefini %10–20 artır.','Your completion rate over the last 7 days is {0}%. You are ready to grow: raise one target by 10–20%.'],
  coach_start:['Henüz yeterli veri yok. 3 gün sonra kişisel öneriler burada görünecek.','Not enough data yet. Personal insights appear here after 3 days.'],
@@ -451,23 +454,35 @@ const L={
  reminders:['Hatırlatıcılar','Reminders'],rem_d:['Günde en az 7 bildirim + görev saatleri','7+ daily notifications + quest times'],test_notif:['Örnek bildirim gönder','Send a test notification'],test_sent:['Örnek bildirim gönderildi.','Test notification sent.'],only_android:['Bildirimler Android uygulamasında çalışır.','Notifications work in the Android app.'],
  rem_on:['Hatırlatıcılar açık.','Reminders are on.'],rem_denied:['Bildirim izni verilmedi. Telefon ayarlarından açabilirsin.','Notification permission denied. Enable it in phone settings.'],
  language:['Dil','Language'],theme:['Tema rengi','Accent color'],areas:['Alanlar','Areas'],
- premium:['AZİM Premium','AZIM Premium'],premium_on:['Premium aktif','Premium active'],premium_off:['Ücretsiz plan','Free plan'],go_premium:['Premium\'a geç','Go Premium'],manage_sub:['Aboneliği yönet','Manage subscription'],
+ premium:['AZİM Plus','AZIM Plus'],premium_on:['Plus aktif','Plus active'],premium_off:['Ücretsiz plan','Free plan'],go_premium:['Plus\'a geç','Get Plus'],manage_sub:['Aboneliği yönet','Manage subscription'],
  data:['Veriler','Data'],export:['Yedeği dışa aktar','Export backup'],import:['Yedeği içe aktar','Import backup'],export_d:['Bu metni güvenli bir yere kaydet. Yeni cihazda "Yedeği içe aktar" ile geri yükleyebilirsin.','Save this text somewhere safe. Restore it on a new device with "Import backup".'],
  copy:['Kopyala','Copy'],share:['Paylaş','Share'],import_d:['Daha önce dışa aktardığın yedek metnini yapıştır. Mevcut ilerlemenin yerine geçer.','Paste a backup you exported earlier. It replaces your current progress.'],import_ok:['Yedek geri yüklendi.','Backup restored.'],import_bad:['Yedek okunamadı. Metni eksiksiz yapıştır.','Could not read the backup. Paste the full text.'],
  account:['Hesap','Account'],on_device:['Veriler bu cihazda saklanır','Data is stored on this device'],logout:['Çıkış yap','Sign out'],reset:['Programı sıfırla','Reset program'],reset_q:['Emin misin?','Are you sure?'],reset_d:['Tüm ilerleme, XP ve seri silinir. Bu işlem geri alınamaz.','All progress, XP and streak will be deleted. This cannot be undone.'],reset_yes:['Evet, sıfırla','Yes, reset'],
  delacc_d:['Hesabın ve tüm ilerlemen bu cihazdan kalıcı olarak silinir.','Your account and all progress will be permanently deleted from this device.'],delacc_yes:['Hesabı kalıcı olarak sil','Delete permanently'],
  version:['AZİM · Yapım: selcukyus · Sürüm {0}','AZIM · Made by selcukyus · Version {0}'],
  // paywall
- pw_k:['66 GÜNÜ GARANTİLE','LOCK IN YOUR 66 DAYS'],pw_t:['AZİM<br><span class="or">Premium</span>','AZIM<br><span class="or">Premium</span>'],
+ pw_k:['66 GÜNÜ GARANTİLE','LOCK IN YOUR 66 DAYS'],pw_t:['AZİM<br><span class="or">Plus</span>','AZIM<br><span class="or">Plus</span>'],
  f1:['3 özel program','3 extra programs'],f1d:['Sigarayı bırak, Sınav dönemi, Kilo ver','Quit smoking, Exam season, Lose weight'],
  f2:['Haftada 3 seri koruma','3 streak freezes per week'],f2d:['Kötü bir gün 40 günlük seriyi bitirmesin','Don\'t let one bad day end a 40-day streak'],
  f3:['Detaylı analiz ve koç notları','Deep analysis & coach notes'],f3d:['66 günlük harita, alan bazlı oranlar, kişisel öneriler','66-day map, per-area rates, personal advice'],
  f4:['Tema renkleri','Accent themes'],f4d:['4 ek renk','4 extra colors'],
- monthly:['Aylık','Monthly'],yearly:['Yıllık','Yearly'],per_mo:['/ay','/mo'],per_yr:['/yıl','/yr'],save_pct:['%44 TASARRUF','SAVE 44%'],
+ monthly:['Aylık','Monthly'],yearly:['Yıllık','Yearly'],per_mo:['/ay','/mo'],per_yr:['/yıl','/yr'],save_pct:['%37 TASARRUF','SAVE 37%'],
  subscribe:['Abone ol','Subscribe'],restore:['Satın alımları geri yükle','Restore purchases'],pw_note:['Abonelik Google Play üzerinden yönetilir, istediğin zaman iptal edebilirsin. Ücretsiz deneme varsa süresi bitmeden iptal edersen ücret alınmaz.','Subscriptions are managed in Google Play and can be cancelled anytime. If a free trial applies, cancel before it ends and you won\'t be charged.'],
- pw_preview:['Önizleme modunda gerçek satın alma yok. Premium deneme olarak açıldı.','No real purchases in preview. Premium unlocked as a demo.'],premium_thanks:['Premium aktif. Teşekkürler!','Premium is active. Thank you!'],billing_na:['Mağaza bağlantısı kurulamadı. Biraz sonra tekrar dene.','Could not reach the store. Try again shortly.'],restored:['Satın alımlar kontrol edildi.','Purchases checked.'],
- pw_d8:['7 gündür buradasın. Seriyi korumak için en güçlü araçlar Premium\'da.','You\'ve been here 7 days. The strongest tools to protect your streak are in Premium.'],
- privacy:['Gizlilik','Privacy'],web_notif:['Bildirimler ve ana ekran widget\'ı Android uygulamasında çalışır.','Notifications and the home screen widget work in the Android app.'],web_premium:['Premium, Android uygulamasından Google Play ile satın alınır.','Premium is purchased in the Android app via Google Play.'],
+ pw_preview:['Önizleme modunda gerçek satın alma yok. Plus deneme olarak açıldı.','No real purchases in preview. Plus unlocked as a demo.'],premium_thanks:['Plus aktif. Teşekkürler!','Plus is active. Thank you!'],billing_na:['Mağaza bağlantısı kurulamadı. Biraz sonra tekrar dene.','Could not reach the store. Try again shortly.'],restored:['Satın alımlar kontrol edildi.','Purchases checked.'],
+ pw_d8:['7 gündür buradasın. Seriyi korumak için en güçlü araçlar Plus\'ta.','You\'ve been here 7 days. The strongest tools to protect your streak are in Plus.'],
+ privacy:['Gizlilik','Privacy'],web_notif:['Bildirimler ve ana ekran widget\'ı Android uygulamasında çalışır.','Notifications and the home screen widget work in the Android app.'],web_premium:['Plus, Android uygulamasından Google Play ile satın alınır.','Plus is purchased in the Android app via Google Play.'],
+ q_steps:['{n} adım','{n} steps'],hc_title:['Health Connect','Health Connect'],hc_perm:['Adım ve nabzını otomatik çekmek için izin ver. Veriler yalnızca okunur ve cihazında kalır.','Allow access to sync steps and heart rate automatically. Read-only, stays on your device.'],hc_update:['Health Connect\'i yükle ya da güncelle.','Install or update Health Connect.'],hc_connect:['BAĞLAN','CONNECT'],
+ bpm:['atım/dk','bpm'],fatigue:['Ortalama nabzın son günlere göre yüksek. Bugün hedefler artırılmayacak; dinlenmeye öncelik ver.','Your average heart rate is above your recent baseline. Targets won\'t increase today; prioritize rest.'],adj:['hedef güncellendi','target adjusted'],auto:['otomatik','auto'],
+ health:['Sağlık','Health'],avg_steps:['Ort. adım · 7 gün','Avg steps · 7 days'],avg_hr:['Ort. nabız · 7 gün','Avg heart rate · 7 days'],steps_vs:['Adım ve görev tamamlama','Steps vs. quest completion'],
+ corr_wait:['Adım ile görev başarın arasındaki ilişkiyi görmek için en az 4 günlük veri gerekiyor.','At least 4 days of data are needed to relate your steps to quest success.'],corr_flat:['Adım sayın günden güne çok benzer; karşılaştırma için daha fazla veri gerekiyor.','Your steps barely vary; more data is needed to compare.'],
+ corr_pos:['Hareketli günlerinde görevlerin %{0}\'ını, az hareketli günlerinde %{1}\'ini tamamlıyorsun. Yürüyüş, disiplinini besliyor.','On active days you complete {0}% of quests vs {1}% on low-step days. Moving fuels your discipline.'],
+ corr_neg:['Az yürüdüğün günlerde tamamlama oranın daha yüksek (%{1} / %{0}). Yoğun günlerde hedefleri küçültmeyi dene.','You complete more on low-step days ({1}% vs {0}%). Try smaller targets on busy days.'],
+ corr_none:['Adım sayın ile görev başarın arasında belirgin bir fark yok (%{0} / %{1}).','No clear difference between your steps and quest success ({0}% / {1}%).'],
+ adapt_d:['Uyarlanabilir zorluk: Son 7 günde görevin %85\'ini tamamladıysan hedefi %10 artar, %40\'ın altındaysan %15 azalır. Nabzın yüksekse artış ertelenir.','Adaptive difficulty: complete 85% over the last 7 days and the target rises 10%; under 40% and it drops 15%. Raised heart rate postpones increases.'],
+ wait:['Lütfen bekle…','Please wait…'],e_net:['İnternet bağlantısı yok.','No internet connection.'],e_recent:['Güvenlik için çıkış yapıp tekrar giriş yap, sonra yeniden dene.','For security, sign out, sign in again and retry.'],e_many:['Çok fazla deneme. Biraz sonra tekrar dene.','Too many attempts. Try again later.'],e_generic:['İşlem tamamlanamadı. Tekrar dene.','Something went wrong. Try again.'],
+ reset_sent:['Şifre sıfırlama bağlantısı e-postana gönderildi.','Password reset link sent to your email.'],reset_d:['E-posta adresini gir, şifre sıfırlama bağlantısı gönderelim.','Enter your email and we\'ll send a reset link.'],send_reset:['Bağlantı gönder','Send link'],
+ reg_note_fb:['Hesabın Firebase ile güvenli şekilde korunur. Görev ve sağlık verilerin cihazında kalır. Devam ederek Gizlilik Politikası\'nı kabul edersin.','Your account is secured with Firebase. Quest and health data stay on your device. By continuing you accept the Privacy Policy.'],
+ fb_acc:['Hesap Firebase ile korunuyor · veriler cihazda','Account secured by Firebase · data on device'],
  nav_today:['Bugün','Today'],nav_growth:['Gelişim','Growth'],nav_workout:['Antrenman','Workout'],nav_season:['Sezon','Season'],nav_profile:['Profil','Profile']
 };
 
@@ -491,7 +506,7 @@ const up=s=>s.toLocaleUpperCase(LANG==='tr'?'tr':'en');
 function toast(x){const e=$('toast');e.textContent=x;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2600)}
 function ic(id,st){return `<svg class="i"${st?` style="${st}"`:''}><use href="#${id}"/></svg>`}
 const fmtN=n=>Math.round(n).toLocaleString(LANG==='tr'?'tr-TR':'en-US');
-const num=n=>LANG==='tr'?String(n).replace('.',','):String(n);
+const num=n=>LANG==='tr'&&typeof n==='number'?String(n).replace('.',','):String(n);
 const toMin=s=>{if(!s)return null;const [h,m]=s.split(':').map(Number);return h*60+m};
 const fromMin=m=>{m=((Math.round(m)%1440)+1440)%1440;return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')};
 function hm(h){return fromMin(h*60)}
@@ -506,6 +521,7 @@ const ALL=[0,1,2,3,4,5,6],MWF=[1,3,5];
 // Quest library. tk = translation key, n = base target, u = unit key, s = step, days, d = difficulty, time ('' = flexible, 'wake'/'sleep' = linked)
 const LIB={
  push:{c:'str',tk:'q_push',n:20,u:'u_rep',s:5,days:ALL,d:'Orta',time:'07:15'},
+ steps:{c:'str',tk:'q_steps',n:6000,u:'u_step',s:500,days:ALL,d:'Orta',time:'',auto:1,k:[1,1.17,1.33]},
  water:{c:'str',tk:'q_water',n:2,u:'u_l',s:.5,days:ALL,d:'Kolay',time:'',k:[1,1.25,1.5]},
  run:{c:'str',tk:'q_run',n:3,u:'u_km',s:1,days:MWF,d:'Zor',time:'18:30'},
  read:{c:'wis',tk:'q_read',n:20,u:'u_page',s:5,days:ALL,d:'Kolay',time:'21:30'},
@@ -527,7 +543,7 @@ const LIB={
  ex2:{c:'wis',tk:'q_ex2',n:20,u:'u_min',s:5,days:ALL,d:'Orta',time:'19:00',p:'exam'},
  ex3:{c:'wis',tk:'q_ex3',n:1,u:'',s:1,days:[2,6],d:'Zor',time:'10:00',p:'exam'},
  ex4:{c:'disc',tk:'q_ex4',n:1,u:'',s:1,days:ALL,d:'Orta',time:'',p:'exam'},
- ft1:{c:'str',tk:'q_ft1',n:8000,u:'u_step',s:1000,days:ALL,d:'Orta',time:'',p:'fat',k:[1,1.25,1.25]},
+ ft1:{c:'str',tk:'q_ft1',n:8000,u:'u_step',s:1000,days:ALL,d:'Orta',time:'',p:'fat',auto:1,k:[1,1.25,1.25]},
  ft2:{c:'disc',tk:'q_ft2',n:1,u:'',s:1,days:ALL,d:'Orta',time:'',p:'fat'},
  ft3:{c:'str',tk:'q_ft3',n:1,u:'',s:1,days:ALL,d:'Kolay',time:'08:30',p:'fat'},
  ft4:{c:'disc',tk:'q_ft4',n:1,u:'',s:1,days:ALL,d:'Zor',time:'20:00',p:'fat'}
@@ -575,7 +591,7 @@ function applyTheme(){const th=THEMES[(S&&S.theme)||'orange']||THEMES.orange;con
 function mkQuest(id){const b=LIB[id];return {id,lib:id,c:b.c,n:b.n,u:b.u,s:b.s,days:b.days.slice(),d:b.d,time:b.time,remind:true,on:true}}
 function phase(d){return d<=22?0:d<=44?1:2}
 function dowOf(day){return (dowOfDate(S.start)+day-1)%7}
-function qN(q,day){if(q.custom||!q.u)return q.n;const k=(LIB[q.lib]&&LIB[q.lib].k)||[1,1.5,2];const m=k[phase(day)];return Math.max(q.s,Math.round(q.n*m/q.s)*q.s)}
+function qN(q,day){if(!q.u)return q.n;const a=(S.adj&&S.adj[q.id])||1;const k=q.custom?[1,1,1]:(LIB[q.lib]&&LIB[q.lib].k)||[1,1.5,2];const m=k[phase(day)]*a;return Math.max(q.s,Math.round(q.n*m/q.s)*q.s)}
 function qTime(q){return q.time==='wake'?S.sched.wake:q.time==='sleep'?S.sched.sleep:q.time||''}
 function qTitle(q,day){if(q.custom)return q.text;const n=qN(q,day||S.day);return t(q.tk||LIB[q.lib].tk).replace('{n}',num(fmtSmall(n))).replace('{w}',S.sched.wake).replace('{s}',S.sched.sleep)}
 function fmtSmall(n){return n>=1000?fmtN(n):+n.toFixed(2)}
@@ -612,9 +628,10 @@ function closeDay(auto){
   if(o==='frz'){res='frz';S.freezes--}
   else if(o==='grace'){res='grace'}
   else{res='miss';S.streak=0;if(S.hard)addXp(-100)}}
+ adapt(x.Q);
  x.Q.forEach(q=>S.qs[q.id]=isDone(q)?(S.qs[q.id]||0)+1:(res==='frz'?(S.qs[q.id]||0):0));
  S.best=Math.max(S.best||0,S.streak||0);
- S.hist[S.day-1]={done:x.d,total:x.all,res,xp:S.xp,items:x.Q.filter(isDone).map(q=>q.title),cats:x.Q.map(q=>[q.c,isDone(q)?1:0])};
+ S.hist[S.day-1]={date:S.date,done:x.d,total:x.all,res,xp:S.xp,items:x.Q.filter(isDone).map(q=>q.title),cats:x.Q.map(q=>[q.c,isDone(q)?1:0])};
  S.day++;S.prog={};S.skip=[];
  if(S.day<=66&&dowOf(S.day)===1)S.freezes=Math.min(freezeCap(),(S.freezes||0)+1);
  const out={day:S.day-1,res,done:x.d,total:x.all};
@@ -623,6 +640,40 @@ function closeDay(auto){
  const ph={23:t('ph2'),45:t('ph3')}[S.day];
  toast(S.day>66?t('finished66'):ph?t('new_phase',ph):t('day_started',S.day));return out;
 }
+/* ---------- HEALTH (Health Connect, Android) ---------- */
+let HEALTH=[];
+function hcState(){if(!NATIVE)return'web';try{return AzimNative.healthState()}catch(e){return'unavailable'}}
+function loadHealth(){if(!NATIVE)return;try{HEALTH=JSON.parse(AzimNative.healthDays()||'[]')}catch(e){HEALTH=[]}}
+function fatigued(){const h=HEALTH.map(d=>d.hr).filter(v=>v);if(h.length<4)return false;const p=h.slice(0,-1);return h[h.length-1]>p.reduce((a,b)=>a+b,0)/p.length*1.08}
+function applyHealth(){loadHealth();if(!S||!S.quests||!HEALTH.length)return;const td=HEALTH.find(d=>d.date===S.date);if(!td)return;let ch=0;
+ todayQuests().filter(q=>LIB[q.lib]&&LIB[q.lib].auto).forEach(q=>{if(isDone(q))return;const v=Math.min(td.steps,q.N);if(v>=q.N){complete(q.id,null,true);ch=1}else if(v>(S.prog[q.id]||0)){S.prog[q.id]=v;ch=1}});if(ch)save()}
+window.azimOnHealth=()=>{applyHealth();if(S&&S.quests&&view&&!live&&!$('ov').classList.contains('on'))render()};
+/* ---------- ADAPTIVE DIFFICULTY ----------
+ Son 7 kaydın tamamlama oranı >= %85 ve son 3 gün tamamlandıysa hedef x1.10; oran <= %40 ise x0.85.
+ Değişiklikten sonra en az 3 gün sabit. Nabız ortalamanın %8 üstündeyse (yorgunluk) artış yapılmaz. Çarpan 0.5–2.5 arası. */
+function adapt(Q){S.qh=S.qh||{};S.adj=S.adj||{};S.adjAt=S.adjAt||{};S.adjDir={};const fat=fatigued();
+ Q.forEach(q=>{const h=(S.qh[q.id]=(S.qh[q.id]||[]).concat(isDone(q)?1:0).slice(-14));
+  if(!q.u||h.length<3||S.day-(S.adjAt[q.id]||0)<3)return;const w=h.slice(-7),r=w.reduce((a,b)=>a+b,0)/w.length;
+  const f=r>=.85&&h.slice(-3).every(v=>v)&&!fat?1.1:r<=.4?.85:0;if(!f)return;
+  S.adj[q.id]=Math.min(2.5,Math.max(.5,(S.adj[q.id]||1)*f));S.adjAt[q.id]=S.day;S.adjDir[q.id]=f>1?1:-1})}
+function healthStrip(){const st=hcState();if(st==='web'||st==='unavailable')return'';
+ if(st!=='ready')return `<div class="hc"><div style="flex:1"><b>${t('hc_title')}</b><small>${t(st==='update'?'hc_update':'hc_perm')}</small></div><button class="chip hot" onclick="AzimNative.requestHealth()">${t('hc_connect')}</button></div>`;
+ const td=HEALTH.find(d=>d.date===S.date)||{steps:0,hr:null},sq=todayQuests().find(q=>LIB[q.lib]&&LIB[q.lib].auto),goal=sq?sq.N:6000;
+ return `<div class="hc" onclick="go('insight')">${ic('i-run','stroke:var(--or);width:22px;height:22px')}<div style="flex:1;min-width:0"><b class="w">${fmtN(td.steps)} <small class="mu" style="display:inline">/ ${fmtN(goal)} ${t('u_step')}</small></b><div class="hb"><i style="width:${Math.min(100,td.steps/goal*100)}%"></i></div></div><div style="text-align:right"><b class="w">${td.hr??'—'}</b><small>${t('bpm')}</small></div></div>${fatigued()?`<div class="fat">${t('fatigue')}</div>`:''}`}
+function healthInsight(){if(hcState()!=='ready'||!HEALTH.length)return'';
+ const days=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);days.push(ymd(d))}
+ const rate={};S.hist.forEach(x=>{if(x.date&&x.total)rate[x.date]=x.done/x.total});const tq=todayQuests();if(tq.length)rate[S.date]=tq.filter(isDone).length/tq.length;
+ const hm={};HEALTH.forEach(d=>hm[d.date]=d);const st=d=>(hm[d]||{}).steps||0,mx=Math.max(1,...days.map(st));
+ const bars=days.map((d,i)=>{const hg=Math.max(2,st(d)/mx*70),r=rate[d];return `<rect x="${i*41+8}" y="${80-hg}" width="25" height="${hg}" rx="2" fill="var(--or)" opacity=".8"/>${r!=null?`<circle cx="${i*41+20.5}" cy="${80-r*70}" r="4.5" fill="#62d08e" stroke="#0a0908" stroke-width="2"/>`:''}<text x="${i*41+20.5}" y="96" text-anchor="middle" fill="#8b837a" font-size="10" font-family="JetBrains Mono">${t('dow')[dowOfDate(d)]}</text>`}).join('');
+ const hrs=days.map(d=>(hm[d]||{}).hr).filter(v=>v),avgHr=hrs.length?Math.round(hrs.reduce((a,b)=>a+b,0)/hrs.length):null;
+ return `<div class="sec"><span class="m">${t('health')}</span><span class="ln"></span><span class="m">Health Connect</span></div>
+ <div class="two" style="margin-top:0"><div class="tile"><div class="m">${t('avg_steps')}</div><b class="big w" style="font-size:30px">${fmtN(days.reduce((a,d)=>a+st(d),0)/7)}</b></div><div class="tile"><div class="m">${t('avg_hr')}</div><b class="big w" style="font-size:30px">${avgHr??'—'}</b><div class="m" style="font-size:9px">${t('bpm')}</div></div></div>
+ <div class="chart"><div style="display:flex;justify-content:space-between;gap:8px"><span class="m">${t('steps_vs')}</span><span class="m"><b style="color:var(--or)">■</b> ${t('u_step')} <b style="color:var(--gn)">●</b> %</span></div><svg viewBox="0 0 288 100" style="width:100%;margin-top:10px">${bars}</svg></div>`}
+function corrNote(){const hm={};HEALTH.forEach(d=>hm[d.date]=d);const P=S.hist.filter(x=>x.date&&hm[x.date]&&x.total).map(x=>[hm[x.date].steps,x.done/x.total]);
+ if(P.length<4)return hcState()==='ready'?`<p>${t('corr_wait')}</p>`:'';
+ const med=P.map(p=>p[0]).sort((a,b)=>a-b)[Math.floor(P.length/2)],av=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length*100:NaN,hi=av(P.filter(p=>p[0]>=med).map(p=>p[1])),lo=av(P.filter(p=>p[0]<med).map(p=>p[1]));
+ if(isNaN(lo))return `<p>${t('corr_flat')}</p>`;const d=hi-lo;return `<p>${t(d>=10?'corr_pos':d<=-10?'corr_neg':'corr_none',Math.round(hi),Math.round(lo))}</p>`}
+
 function rollover(){
  if(!S||!S.quests)return;const td=ymd();let n=0,first=null;
  while(S.date<td&&n<80){const r=closeDay(true);if(!first&&r)first=r;S.date=addDay(S.date);n++}
@@ -661,19 +712,31 @@ async function hashPw(pw,salt){const data=new TextEncoder().encode(salt+':'+pw);
  try{if(window.crypto&&crypto.subtle){const b=await crypto.subtle.digest('SHA-256',data);return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}}catch(e){}
  let h=2166136261;for(const c of data){h^=c;h=Math.imul(h,16777619)>>>0}return 'f'+h.toString(16)}
 function rnd(){const a=new Uint8Array(12);try{crypto.getRandomValues(a)}catch(e){for(let i=0;i<12;i++)a[i]=Math.random()*256|0}return [...a].map(x=>x.toString(16).padStart(2,'0')).join('')}
+const FB=()=>{if(!NATIVE)return false;try{return AzimNative.authAvailable()}catch(e){return false}};let PEND=null;
 const mailOk=m=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m);
 async function register(){const n=val('rName'),m=val('rMail').toLowerCase(),p=$('rPass').value,e=$('rErr');
  if(n.length<2)return e.textContent=t('e_name');if(!mailOk(m))return e.textContent=t('e_mail');if(p.length<6)return e.textContent=t('e_pass');
+ if(FB()){PEND={op:'signUp',n,m};e.textContent=t('wait');AzimNative.auth('signUp',m,p);return}
  const acc=Store.json('azim.accounts')||{};if(acc[m])return e.textContent=t('e_exists');
  const salt=rnd();acc[m]={name:n,salt,hash:await hashPw(p,salt),created:Date.now()};Store.set('azim.accounts',JSON.stringify(acc));
  USER=m;Store.set('azim.session',m);F={name:n,areas:[],water:null,screen:null,shift:null,hard:null};obGo('areas')}
-async function login(){const m=val('lMail').toLowerCase(),p=$('lPass').value,e=$('lErr');const a=(Store.json('azim.accounts')||{})[m];
+async function login(){const m=val('lMail').toLowerCase(),p=$('lPass').value,e=$('lErr');
+ if(FB()){if(!mailOk(m)||!p)return e.textContent=t('e_login');PEND={op:'signIn',m};e.textContent=t('wait');AzimNative.auth('signIn',m,p);return}const a=(Store.json('azim.accounts')||{})[m];
  if(!a||a.hash!==await hashPw(p,a.salt))return e.textContent=t('e_login');USER=m;Store.set('azim.session',m);resume()}
-function forgotSheet(){openSheet(`<h2 class="w">${t('forgot_t')}</h2><p class="mu" style="margin-top:10px;line-height:1.5">${t('forgot_d')}</p><input class="inp" id="fMail" type="email" placeholder="${t('del_mail')}"><button class="cta red" onclick="wipeAccount(val('fMail').toLowerCase())">${t('del_acc')}</button><button class="cta ghost sm" onclick="closeSheet()">${t('cancel')}</button>`)}
-function wipeAccount(m){const acc=Store.json('azim.accounts')||{};if(!acc[m])return toast(t('no_such'));delete acc[m];Store.set('azim.accounts',JSON.stringify(acc));Store.del('azim.data.'+m);if(Store.get('azim.session')===m)Store.del('azim.session');closeSheet();toast(t('acc_deleted'));if(USER===m){USER=null;S=null;nav(false);obGo('welcome')}}
-function logout(){Store.del('azim.session');USER=null;S=null;live=null;clearInterval(timer);nav(false);closeSheet();applyTheme();obGo('welcome')}
+window.azimAuth=(op,ok,code)=>{const P=PEND;PEND=null;const err=$('rErr')||$('lErr');
+ if(!ok){const k={ERROR_EMAIL_ALREADY_IN_USE:'e_exists',ERROR_WEAK_PASSWORD:'e_pass',ERROR_INVALID_EMAIL:'e_mail',NETWORK:'e_net',ERROR_REQUIRES_RECENT_LOGIN:'e_recent',ERROR_TOO_MANY_REQUESTS:'e_many'}[code]||(op==='signIn'?'e_login':'e_generic');
+  if(err&&(op==='signIn'||op==='signUp'))err.textContent=t(k);else toast(t(k));return}
+ if(op==='reset')return toast(t('reset_sent'));
+ if(op==='delete')return localWipe(USER);
+ if(!P||!P.m)return;const m=P.m,acc=Store.json('azim.accounts')||{};
+ acc[m]=Object.assign(acc[m]||{name:(P.n||m.split('@')[0]).slice(0,18),created:Date.now()},{fb:true});if(P.n)acc[m].name=P.n;Store.set('azim.accounts',JSON.stringify(acc));
+ USER=m;Store.set('azim.session',m);if(op==='signUp'&&!Store.json('azim.data.'+m)){F={name:acc[m].name,areas:[],water:null,screen:null,shift:null,hard:null};obGo('areas')}else resume()};
+function forgotSheet(){if(FB())return openSheet(`<h2 class="w">${t('forgot_t')}</h2><p class="mu" style="margin-top:10px;line-height:1.5">${t('reset_d')}</p><input class="inp" id="fMail" type="email" placeholder="${t('email')}" value="${esc(val('lMail'))}"><button class="cta" onclick="const x=val('fMail').toLowerCase();if(!mailOk(x))return toast(t('e_mail'));AzimNative.auth('reset',x,'');closeSheet()">${t('send_reset')}</button><button class="cta ghost sm" onclick="closeSheet()">${t('cancel')}</button>`);openSheet(`<h2 class="w">${t('forgot_t')}</h2><p class="mu" style="margin-top:10px;line-height:1.5">${t('forgot_d')}</p><input class="inp" id="fMail" type="email" placeholder="${t('del_mail')}"><button class="cta red" onclick="wipeAccount(val('fMail').toLowerCase())">${t('del_acc')}</button><button class="cta ghost sm" onclick="closeSheet()">${t('cancel')}</button>`)}
+function wipeAccount(m){if(FB()&&m===USER&&((Store.json('azim.accounts')||{})[m]||{}).fb){closeSheet();toast(t('wait'));AzimNative.auth('delete',m,'');return}localWipe(m)}
+function localWipe(m){if(FB())try{AzimNative.signOut()}catch(e){}const acc=Store.json('azim.accounts')||{};if(!acc[m])return toast(t('no_such'));delete acc[m];Store.set('azim.accounts',JSON.stringify(acc));Store.del('azim.data.'+m);if(Store.get('azim.session')===m)Store.del('azim.session');closeSheet();toast(t('acc_deleted'));if(USER===m){USER=null;S=null;nav(false);obGo('welcome')}}
+function logout(){if(FB())try{AzimNative.signOut()}catch(e){}Store.del('azim.session');USER=null;S=null;live=null;clearInterval(timer);nav(false);closeSheet();applyTheme();obGo('welcome')}
 function resume(){S=load();
- if(S&&S.quests){applyTheme();nav(true);rollover();applyWidgetActions();pushSchedule();go(S.view&&S.view!=='plan'?S.view:'today');maybePaywall()}
+ if(S&&S.quests){applyTheme();nav(true);loadHealth();rollover();applyHealth();applyWidgetActions();pushSchedule();go(S.view&&S.view!=='plan'?S.view:'today');maybePaywall()}
  else{const a=(Store.json('azim.accounts')||{})[USER];F={name:a?a.name:'',areas:[],water:null,screen:null,shift:null,hard:null};obGo('areas')}}
 
 /* ---------- ONBOARDING ---------- */
@@ -689,7 +752,7 @@ function renderOb(){
   <button class="cta" onclick="obGo('reg')">${t('create')} ${ic('i-arr')}</button><button class="cta ghost" style="margin-top:10px" onclick="obGo('login')">${t('signin')}</button>`;
  if(view==='reg')h=`${prog(1)}<div class="m">01 / 06</div><div class="q d">${t('reg_t')}</div>
   <input class="inp" id="rName" placeholder="${t('name')}" maxlength="18" autocomplete="given-name"><input class="inp" id="rMail" type="email" placeholder="${t('email')}" autocomplete="email" inputmode="email"><input class="inp" id="rPass" type="password" placeholder="${t('pass')}" autocomplete="new-password">
-  <div class="err" id="rErr"></div><p class="fl2">${t('reg_note')}</p><div class="grow"></div><button class="cta" onclick="register()">${t('next')}</button><button class="lnk" onclick="obGo('login')">${t('have_acc')}</button>`;
+  <div class="err" id="rErr"></div><p class="fl2">${t(FB()?'reg_note_fb':'reg_note')}</p><div class="grow"></div><button class="cta" onclick="register()">${t('next')}</button><button class="lnk" onclick="obGo('login')">${t('have_acc')}</button>`;
  if(view==='login')h=`<div class="m" style="margin-top:20px">${t('welcome_back')}</div><div class="q d">${t('login_t')}</div>
   <input class="inp" id="lMail" type="email" placeholder="${t('email')}" autocomplete="email" inputmode="email"><input class="inp" id="lPass" type="password" placeholder="${t('pass2')}" autocomplete="current-password">
   <div class="err" id="lErr"></div><button class="lnk" style="text-align:left;margin-top:4px" onclick="forgotSheet()">${t('forgot')}</button><div class="grow"></div><button class="cta" onclick="login()">${t('signin')}</button><button class="lnk" onclick="obGo('reg')">${t('no_acc')}</button>`;
@@ -755,6 +818,7 @@ function rToday(){
  <span class="chip hot">${ic('i-flame','fill:var(--or);stroke:none;width:15px;height:15px')}${S.streak||0}</span><span class="chip" onclick="freezeInfo()" style="color:#6aa6ff">${ic('i-snow','width:15px;height:15px')}${S.hard?0:S.freezes||0}</span></div>
  <div class="dayhero">${art('grid','#1d1a17','#0d0c0b',2)}<div class="dh"><div><div class="m or">${t('phase'+phase(Math.min(S.day,66)))} · ${fmtN(S.xp)} XP</div><h1 class="w" style="margin-top:8px">${t('day')} ${Math.min(S.day,66)} <small>/ 66</small></h1><div style="color:#cfc7bc;margin-top:8px;font-size:14px;font-weight:500">${sub}</div></div>
  <div class="ring"><svg width="76" height="76" viewBox="0 0 78 78"><circle cx="39" cy="39" r="33" stroke="#2b2723" stroke-width="7" fill="none"/><circle cx="39" cy="39" r="33" stroke="var(--or)" stroke-width="7" fill="none" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pct/100)}" transform="rotate(-90 39 39)" style="transition:.5s"/></svg><b>${pct}%</b></div></div>${weekStrip()}</div>`;
+ h+=healthStrip();
  if(nx){const Cc=CATS[nx.c],p=S.prog[nx.id]||0;
   h+=`<div class="sec" style="margin-top:20px"><span class="m">${t('nextq')}</span><span class="ln"></span></div>
   <div class="next" data-q="${nx.id}" onclick="qSheet('${nx.id}')">${art(Cc.art,Cc.a[0],Cc.a[1],nx.id.length+3)}<div class="shade"></div><div class="in">
@@ -771,7 +835,7 @@ function rToday(){
 function qRow(q){const C=CATS[q.c],p=S.prog[q.id]||0,dn=isDone(q),sk=S.skip.includes(q.id)&&!dn,st=S.qs[q.id]||0;
  const pr=q.u?`${num(fmtSmall(Math.min(p,q.N)))} / ${num(fmtSmall(q.N))} ${t(q.u)}`:t('d_'+q.d);
  return `<div class="qr ${dn?'done':''} ${sk?'skip':''}" data-q="${q.id}" onclick="qSheet('${q.id}')"><span class="tm">${q.tm||'—'}</span><span class="cb" style="background:${C.col}"></span>
- <div class="tx"><b>${esc(q.title)}</b><small>${pr}${st?` · <span class="st">${ic('i-flame','fill:var(--or);stroke:none;width:11px;height:11px')}${st}</span>`:''} · +${XPD[q.d]} XP</small></div>
+ <div class="tx"><b>${esc(q.title)}</b><small>${pr}${S.adjDir&&S.adjDir[q.id]?` · <span style="color:${S.adjDir[q.id]>0?'var(--gn)':'var(--rd)'}">${S.adjDir[q.id]>0?'▲':'▼'} ${t('adj')}</span>`:''}${LIB[q.lib]&&LIB[q.lib].auto&&hcState()==='ready'?' · '+t('auto'):''}${st?` · <span class="st">${ic('i-flame','fill:var(--or);stroke:none;width:11px;height:11px')}${st}</span>`:''} · +${XPD[q.d]} XP</small></div>
  <button class="c2" onclick="event.stopPropagation();complete('${q.id}',event)">${ic('i-check','width:18px;height:18px')}</button>${q.u&&p>0&&!dn?`<div class="pb" style="width:${p/q.N*100}%"></div>`:''}</div>`}
 function rPastDay(){const h=S.hist[viewDay-1];$('scr').innerHTML=`<div class="hdr"><button class="bx" onclick="viewDay=null;render()">${ic('i-l')}</button><h1 class="w" style="flex:1">${t('day')} ${viewDay}</h1></div>
  <div class="panel"><div class="m">${h?resName(h.res):''}</div><h2 class="w" style="font-size:28px;margin-top:6px">${h?h.done+'/'+h.total:''}</h2>${h?h.items.map(x=>`<div class="act"><div class="dy" style="border-color:var(--or2)">${ic('i-check','stroke:var(--or)')}</div><b>${esc(x)}</b></div>`).join(''):''}</div>`}
@@ -830,11 +894,11 @@ function delQ(id){S.quests=S.quests.filter(x=>x.id!==id);save();pushSchedule();c
 function rPlan(){
  const dn=t('dow');
  let h=`<div class="hdr"><button class="bx" onclick="go('today')">${ic('i-l')}</button><h1 class="w" style="flex:1">${t('my_plan')}</h1></div>
- <span class="m">${t('programs')}</span><div class="prg">${Object.keys(PROGRAMS).map(k=>`<button class="${S.program===k?'on':''}" onclick="pickProg('${k}')"><b>${t('p_'+k)} ${PROGRAMS[k].prem&&!isPrem()?'<span class="pro">PRO</span>':''}</b><small>${t('pd_'+k)}</small></button>`).join('')}</div>
+ <span class="m">${t('programs')}</span><div class="prg">${Object.keys(PROGRAMS).map(k=>`<button class="${S.program===k?'on':''}" onclick="pickProg('${k}')"><b>${t('p_'+k)} ${PROGRAMS[k].prem&&!isPrem()?'<span class="pro">PLUS</span>':''}</b><small>${t('pd_'+k)}</small></button>`).join('')}</div>
  <div class="sec"><span class="m">${t('quests')} · ${S.quests.filter(q=>q.on).length}</span><span class="ln"></span></div>`;
  h+=S.quests.map(q=>{const C=CATS[q.c];const ds=q.days.length===7?t('everyday'):[1,2,3,4,5,6,0].filter(d=>q.days.includes(d)).map(d=>dn[d]).join(' ');
   return `<div class="pl ${q.on?'':'off'}"><span class="cb" style="width:4px;align-self:stretch;border-radius:3px;background:${C.col}"></span><div class="tx" onclick="editQ('${q.id}')"><b>${esc(qTitle(q))}</b><small>${qTime(q)||t('anytime')} · ${ds} · ${t('d_'+q.d)}${q.on?'':' · '+t('paused')}</small></div><button class="tg ${q.on?'on':''}" onclick="togQ('${q.id}')"></button></div>`}).join('');
- h+=`<button class="cta" onclick="editQ()">${t('add_custom')}</button><button class="cta ghost sm" onclick="libSheet()">${ic('i-list','width:15px;height:15px')}${t('library')}</button>`;
+ h+=`<p class="fl2">${t('adapt_d')}</p><button class="cta" onclick="editQ()">${t('add_custom')}</button><button class="cta ghost sm" onclick="libSheet()">${ic('i-list','width:15px;height:15px')}${t('library')}</button>`;
  $('scr').innerHTML=h}
 function togQ(id){const q=S.quests.find(x=>x.id===id);q.on=!q.on;save();pushSchedule();render()}
 function pickProg(k){if(k===S.program)return;if(PROGRAMS[k].prem&&!isPrem())return paywall();
@@ -871,8 +935,9 @@ function rInsight(){
  const wNow=Math.min(3,B.water+cnt('water')*.1),wkNow=Math.max(toMin(S.sched.wake)/60,B.wake-cnt('wake')*.1),scNow=Math.max(60,B.screen-cnt('screen')*8-cnt('deep')*4-cnt('med')*2);
  const ago=Math.max(0,S.day-1),sct=m=>Math.floor(m/60)+(LANG==='tr'?' sa ':'h ')+Math.round(m%60)+(LANG==='tr'?' dk':'m');
  h+=`<div class="sec"><span class="m">${t('ba')}</span><span class="ln"></span><span class="m">${t('ba3')}</span></div><div class="ba">${[['i-drop','#5aa9ff',t('ba_water'),num(B.water.toFixed(1))+' L',num(wNow.toFixed(1))+' L'],['i-sun','#d6a443',t('ba_wake'),hm(B.wake),hm(wkNow)],['i-phone','#8c7cff',t('ba_screen'),sct(B.screen),sct(scNow)]].map(x=>`<div class="tile"><div class="h"><span style="color:${x[1]}">${ic(x[0],'width:14px;height:14px')}</span>${x[2]}</div><div class="v">${x[3]}<br><span style="font-size:9.5px">${t('days_ago',ago)}</span></div><div class="n w">${x[4]}</div><div class="m" style="font-size:9px;color:var(--gn)">${t('today')}</div></div>`).join('')}</div>`;
+ h+=healthInsight();
  // deep analysis (premium)
- h+=`<div class="sec"><span class="m">${t('deep')} <span class="pro">PRO</span></span><span class="ln"></span></div>`+(isPrem()?deepHtml():`<div class="lockwrap"><div class="blur">${deepHtml(true)}</div><div class="ov2">${ic('i-lock','width:28px;height:28px;stroke:var(--or)')}<b class="w" style="font-size:20px;margin-top:8px">${t('unlock')}</b><p class="mu" style="font-size:13px;margin-top:6px">${t('unlock_d')}</p><button class="cta sm" style="width:auto;padding:0 18px" onclick="paywall()">${t('go_premium')}</button></div></div>`);
+ h+=`<div class="sec"><span class="m">${t('deep')} <span class="pro">PLUS</span></span><span class="ln"></span></div>`+(isPrem()?deepHtml():`<div class="lockwrap"><div class="blur">${deepHtml(true)}</div><div class="ov2">${ic('i-lock','width:28px;height:28px;stroke:var(--or)')}<b class="w" style="font-size:20px;margin-top:8px">${t('unlock')}</b><p class="mu" style="font-size:13px;margin-top:6px">${t('unlock_d')}</p><button class="cta sm" style="width:auto;padding:0 18px" onclick="paywall()">${t('go_premium')}</button></div></div>`);
  // level
  const segs=24,on=Math.round(L1.r/L1.need*segs),ref=rt==='now'?S.stats:rt==='d1'?S.stats0:proj();
  h+=`<div class="sec"><span class="m">${t('level')}</span><span class="ln"></span></div><div class="rt">${[['now','now'],['d1','d1'],['66','d66']].map(x=>`<button class="${rt===x[0]?'on':''}" onclick="rt='${x[0]}';render()">${t(x[1])}</button>`).join('')}</div>
@@ -894,7 +959,7 @@ function deepHtml(fake){
  return `<div class="panel" style="margin-top:0"><span class="m">${t('heat')}</span><div class="heat">${heat}</div></div>
  <div class="panel"><span class="m">${t('by_area')}</span>${CK.map(k=>`<div class="cbar"><span>${t('c_'+k)}</span><div><i style="width:${rate(k)}%;background:${CATS[k].col}"></i></div><b>${rate(k)}%</b></div>`).join('')}
  ${best!=null?`<div class="set" style="margin-top:8px;border:0;padding-bottom:0"><span class="mu">${t('best_day')}</span><span class="v">${t('dow')[best]}</span></div>`:''}</div>
- <div class="coach"><span class="m or">${t('coach')}</span><p>${note}</p></div>`}
+ <div class="coach"><span class="m or">${t('coach')}</span><p>${note}</p>${fake?'':corrNote()}</div>`}
 function proj(){const o={},left=Math.max(0,66-S.day+1);CK.forEach(k=>{const per=S.quests.filter(q=>q.on&&q.c===k).reduce((a,q)=>a+STD[q.d]*q.days.length/7,0);o[k]=Math.round(S.stats[k]+per*left*.8)});return o}
 function projXp(){const left=Math.max(0,66-S.day+1),per=S.quests.filter(q=>q.on).reduce((a,q)=>a+XPD[q.d]*q.days.length/7,0);return Math.round(S.xp+(per+45)*left*.85)}
 
@@ -944,14 +1009,14 @@ function rSeason(){
 /* ---------- PROFILE ---------- */
 function rProfile(){
  const L1=league(S.xp),since=new Date(S.since).toLocaleDateString(LANG==='tr'?'tr-TR':'en-US',{month:'short',year:'numeric'}),tq=todayQuests().filter(isDone).length,P=isPrem();
- const ver=NATIVE?(()=>{try{return AzimNative.appVersion()}catch(e){return '2.0.0'}})():'2.0.0';
+ const ver=NATIVE?(()=>{try{return AzimNative.appVersion()}catch(e){return '3.1.0'}})():'3.1.0';
  $('scr').innerHTML=`<div class="hdr"><h1 class="w" style="font-size:24px;letter-spacing:.02em">${t('profile')}</h1><button class="bx" onclick="go('today')">${ic('i-x')}</button></div>
  <div class="fs"><div class="m or">${t('together')}</div><div class="r">${ic('i-flame','fill:var(--or);stroke:none;width:28px;height:28px')}<div style="flex:1;min-width:0"><b class="w" style="font-size:18px">${t('invite')}</b><div style="color:#cdb8a6;font-size:13px;margin-top:4px">${t('invite_d')}</div></div><button class="nudge" onclick="invite()">${ic('i-hand','width:15px;height:15px;vertical-align:-3px')} ${t('invite_btn')}</button></div></div>
  <div class="pc">${avatar(S.name,'var(--or)')}<h2 class="w">${esc(S.name)}${LANG==='tr'?TRF:''}</h2>
- <div class="bdg"><span style="background:linear-gradient(90deg,#8a6a2c,#d6a443);color:#1a1205">${up(L1.t)} ${L1.d}</span><span style="background:var(--or);color:#140a03">${t('day')} ${Math.min(S.day,66)}/66</span>${P?`<span class="pro" style="font-size:11px;padding:6px 12px;border-radius:20px">PREMIUM</span>`:''}</div>
+ <div class="bdg"><span style="background:linear-gradient(90deg,#8a6a2c,#d6a443);color:#1a1205">${up(L1.t)} ${L1.d}</span><span style="background:var(--or);color:#140a03">${t('day')} ${Math.min(S.day,66)}/66</span>${P?`<span class="pro" style="font-size:11px;padding:6px 12px;border-radius:20px">PLUS</span>`:''}</div>
  <div class="m" style="margin-top:18px">${t('month_goal')}</div><b class="w" style="font-size:18px;display:block;margin-top:6px" onclick="goalSheet()">${esc(S.goal)} <span class="mu" style="font-size:13px">✎</span></b></div>
  <div class="g4"><div><span class="m">${t('member')}</span><b class="w">${since}</b></div><div><span class="m">${t('cur_streak')}</span><b class="w">${S.streak||0}${ic('i-flame','fill:var(--or);stroke:none;width:18px;height:18px')}</b></div><div><span class="m">${t('today_q')}</span><b class="w">${tq}</b></div><div><span class="m">${t('season_xp')}</span><b class="w">${fmtN(S.xp)}</b></div></div>
- <div class="panel" style="${P?'':'border-color:var(--gd)'}"><div class="set" style="padding-top:0"><div><b>${t('premium')} ${P?'':'<span class="pro">PRO</span>'}</b><small>${P?t('premium_on'):t('premium_off')}</small></div><button class="cta sm" style="width:auto;margin:0;padding:0 14px" onclick="${P?'manageSub()':'paywall()'}">${P?t('manage_sub'):t('go_premium')}</button></div></div>
+ <div class="panel" style="${P?'':'border-color:var(--gd)'}"><div class="set" style="padding-top:0"><div><b>${t('premium')} ${P?'':'<span class="pro">PLUS</span>'}</b><small>${P?t('premium_on'):t('premium_off')}</small></div><button class="cta sm" style="width:auto;margin:0;padding:0 14px" onclick="${P?'manageSub()':'paywall()'}">${P?t('manage_sub'):t('go_premium')}</button></div></div>
  <div class="panel"><div style="display:flex;justify-content:space-between;margin-bottom:6px"><span class="m">${t('recent_act')}</span><span class="mu" style="font-size:12px">${t('last5')}</span></div>
  ${S.log.length?S.log.slice(0,5).map(l=>`<div class="act"><div class="dy"><span class="m" style="font-size:8.5px">${t('day')}</span><b class="w">${l.day}</b></div><div style="min-width:0"><b>${esc(l.t)}</b>${l.st?`<div class="mu" style="font-size:12px;margin-top:3px">${ic('i-flame','fill:var(--mu);stroke:none;width:11px;height:11px;vertical-align:-1px')} ${l.st}</div>`:''}</div><div class="xb"><span>+${l.xp} XP</span><small>${l.day===S.day?t('today'):l.day===S.day-1?t('yesterday'):t('days_ago',S.day-l.day)}</small></div></div>`).join(''):`<div class="mu" style="padding:12px 0">${t('no_act')}</div>`}</div>
  <div class="panel"><span class="m">${t('settings')}</span>
@@ -963,7 +1028,7 @@ function rProfile(){
  ${NATIVE&&remOn()?`<div style="padding:2px 0 4px">${remList()}<div class="tline"><span>${t('quests')}</span><b>${S.quests.filter(q=>q.on&&q.remind&&qTime(q)).length}×</b></div></div><button class="cta ghost sm" style="margin-bottom:6px" onclick="testNotif()">${ic('i-bell','width:15px;height:15px')}${t('test_notif')}</button>`:''}
  <div class="set" onclick="go('plan')"><div><b>${t('my_plan')}</b><small>${t('p_'+S.program)} · ${S.quests.filter(q=>q.on).length} ${t('quests').toLowerCase()}</small></div>${ic('i-r')}</div></div>
  <div class="panel"><span class="m">${t('data')}</span><button class="cta ghost sm" onclick="exportSheet()">${ic('i-up','width:15px;height:15px')}${t('export')}</button><button class="cta ghost sm" onclick="importSheet()">${ic('i-down','width:15px;height:15px')}${t('import')}</button></div>
- <div class="panel"><span class="m">${t('account')}</span><div class="set"><div style="min-width:0"><b style="word-break:break-all">${esc(USER||'')}</b><small>${t('on_device')}</small></div></div>
+ <div class="panel"><span class="m">${t('account')}</span><div class="set"><div style="min-width:0"><b style="word-break:break-all">${esc(USER||'')}</b><small>${t(FB()&&((Store.json('azim.accounts')||{})[USER]||{}).fb?'fb_acc':'on_device')}</small></div></div>
  <button class="cta ghost sm" onclick="logout()">${t('logout')}</button><button class="cta ghost sm" style="color:var(--rd)" onclick="resetSheet()">${t('reset')}</button><button class="lnk" style="color:var(--rd)" onclick="delSheet()">${t('del_acc')}</button></div>
  <div class="m" style="text-align:center;margin-top:18px;font-size:9.5px">${t('version',ver)} · <a href="privacy.html" style="color:var(--mu)">${t('privacy')}</a></div>`}
 function setTheme(k){if(THEMES[k][3]&&!isPrem())return paywall();S.theme=k;save();applyTheme();render()}
@@ -993,7 +1058,7 @@ function price(id,fb){if(PRODUCTS&&PRODUCTS[id])return PRODUCTS[id];return fb}
 let PWMSG='';
 function paywall(msg){PWMSG=typeof msg==='string'?msg:'';if(NATIVE)try{AzimNative.loadProducts()}catch(e){}pwRender()}
 function pwRender(){
- const m=price('monthly',LANG==='tr'?'₺59,99':'$2.99'),y=price('yearly',LANG==='tr'?'₺399,99':'$19.99');
+ const m=price('monthly',LANG==='tr'?'₺19,99':'$1.49'),y=price('yearly',LANG==='tr'?'₺149,99':'$9.99');
  openSheet(`<div class="pw"><div class="m or">${t('pw_k')}</div><h2 class="d">${t('pw_t')}</h2>${PWMSG?`<p style="color:#d8d0c5;margin-top:10px;line-height:1.5">${PWMSG}</p>`:''}
  ${[['i-list','f1','f1d'],['i-snow','f2','f2d'],['i-chart','f3','f3d'],['i-star','f4','f4d']].map(f=>`<div class="feat"><span>${ic(f[0],'width:16px;height:16px')}</span><div><b>${t(f[1])}</b><small>${t(f[2])}</small></div></div>`).join('')}
  <div class="plans"><button class="${pwPlan==='m'?'on':''}" onclick="pwPlan='m';pwRender()"><span class="m">${t('monthly')}</span><b class="w">${m}</b><small>${t('per_mo')}</small></button>
@@ -1013,7 +1078,8 @@ setInterval(()=>{if(S&&S.quests&&S.date<ymd())window.azimResume()},60000);
 document.documentElement.lang=LANG;
 if(WEB&&'serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 USER=Store.get('azim.session');
-if(USER&&(Store.json('azim.accounts')||{})[USER])resume();else{USER=null;obGo('welcome')}
+const A0=USER&&(Store.json('azim.accounts')||{})[USER];
+if(A0&&!(A0.fb&&FB()&&AzimNative.currentEmail().toLowerCase()!==USER))resume();else{USER=null;obGo('welcome')}
 
 </script>
 </body>

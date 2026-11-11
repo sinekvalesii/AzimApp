@@ -18,9 +18,9 @@ import androidx.core.net.toUri
 import org.json.JSONObject
 
 /**
- * Google Play Billing (abonelik). Play Console'da şu iki abonelik ürünü oluşturulmalı:
- *   azim_premium_monthly  (aylık temel plan)
- *   azim_premium_yearly   (yıllık temel plan; isteğe bağlı ücretsiz deneme teklifi)
+ * Google Play Billing (abonelik, sunucu gerektirmez). Play Console'da şu iki abonelik ürünü oluşturulmalı:
+ *   azim_plus_monthly  (öneri ₺19,99/ay)
+ *   azim_plus_yearly   (öneri ₺149,99/yıl; isteğe bağlı ücretsiz deneme teklifi)
  * Ürünler oluşturulana ve uygulama bir test kanalına yüklenene kadar satın alma ekranı açılmaz.
  */
 class Billing(private val act: MainActivity) : PurchasesUpdatedListener {
@@ -138,6 +138,6 @@ class Billing(private val act: MainActivity) : PurchasesUpdatedListener {
     }
 
     companion object {
-        val IDS = mapOf("azim_premium_monthly" to "monthly", "azim_premium_yearly" to "yearly")
+        val IDS = mapOf("azim_plus_monthly" to "monthly", "azim_plus_yearly" to "yearly")
     }
 }

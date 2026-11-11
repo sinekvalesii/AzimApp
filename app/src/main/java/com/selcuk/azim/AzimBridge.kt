@@ -1,29 +1,26 @@
 package com.selcuk.azim
 
-import android.content.Context
 import android.webkit.JavascriptInterface
-import androidx.core.content.edit
+import com.selcuk.azim.health.HcState
 
 /**
  * JavaScript <-> Android köprüsü. Web arayüzü bu nesneye window.AzimNative olarak erişir.
- * Tüm veriler cihazdaki SharedPreferences içinde saklanır; uygulama kapanıp açıldığında
+ * Tüm veriler cihazdaki Room veritabanında saklanır; uygulama kapanıp açıldığında
  * kullanıcı kaldığı yerden devam eder. Android Otomatik Yedekleme de bu dosyayı kapsar.
  */
-class AzimBridge(private val activity: MainActivity) {
-
-    private val prefs = activity.getSharedPreferences(STORE, Context.MODE_PRIVATE)
+class AzimBridge(private val activity: MainActivity, private val vm: MainViewModel) {
 
     @JavascriptInterface
-    fun get(key: String): String? = prefs.getString(key, null)
+    fun get(key: String): String? = vm.get(key)
 
     @JavascriptInterface
     fun set(key: String, value: String) {
-        prefs.edit { putString(key, value) }
+        vm.set(key, value)
     }
 
     @JavascriptInterface
     fun remove(key: String) {
-        prefs.edit { remove(key) }
+        vm.remove(key)
     }
 
     @JavascriptInterface
@@ -93,10 +90,41 @@ class AzimBridge(private val activity: MainActivity) {
         Reminders.testNotification(activity)
     }
 
+    // ---------- Health Connect ----------
+    @JavascriptInterface
+    fun healthState(): String = when (vm.hcState) {
+        HcState.READY -> "ready"
+        HcState.NO_PERMISSION -> "noperm"
+        HcState.NEEDS_UPDATE -> "update"
+        HcState.UNAVAILABLE -> "unavailable"
+    }
+
+    @JavascriptInterface
+    fun healthDays(): String = vm.healthJson()
+
+    @JavascriptInterface
+    fun requestHealth() {
+        activity.runOnUiThread { activity.requestHealth() }
+    }
+
+    // ---------- Firebase Authentication ----------
+    @JavascriptInterface
+    fun authAvailable(): Boolean = vm.fbAvailable
+
+    @JavascriptInterface
+    fun auth(op: String, email: String, pass: String) {
+        vm.auth(op, email, pass)
+    }
+
+    @JavascriptInterface
+    fun currentEmail(): String = vm.currentEmail()
+
+    @JavascriptInterface
+    fun signOut() {
+        vm.signOut()
+    }
+
     @JavascriptInterface
     fun appVersion(): String = BuildConfig.VERSION_NAME
 
-    companion object {
-        const val STORE = "azim_store"
-    }
 }

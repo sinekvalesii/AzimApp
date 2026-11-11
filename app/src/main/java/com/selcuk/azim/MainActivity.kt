@@ -12,6 +12,13 @@ import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.widget.FrameLayout
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
+import androidx.health.connect.client.PermissionController
+import androidx.lifecycle.lifecycleScope
+import androidx.core.net.toUri
+import com.selcuk.azim.health.HcState
+import com.selcuk.azim.health.HealthRepo
+import kotlinx.coroutines.launch
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -24,6 +31,11 @@ import androidx.webkit.WebViewAssetLoader
 import androidx.webkit.WebViewClientCompat
 
 class MainActivity : AppCompatActivity() {
+
+    private val vm: MainViewModel by viewModels()
+
+    private val healthPermission =
+        registerForActivityResult(PermissionController.createRequestPermissionResultContract()) { vm.refreshHealth() }
 
     lateinit var billing: Billing
     private lateinit var root: FrameLayout
@@ -82,7 +94,8 @@ class MainActivity : AppCompatActivity() {
         web.isVerticalScrollBarEnabled = false
         web.overScrollMode = WebView.OVER_SCROLL_NEVER
         billing = Billing(this)
-        web.addJavascriptInterface(AzimBridge(this), "AzimNative")
+        web.addJavascriptInterface(AzimBridge(this, vm), "AzimNative")
+        lifecycleScope.launch { vm.js.collect { js(it) } }
 
         // Sistem çubukları ve klavye için boşluklar
         ViewCompat.setOnApplyWindowInsetsListener(root) { v, insets ->
@@ -116,7 +129,7 @@ class MainActivity : AppCompatActivity() {
         if (Reminders.isEnabled(this) && hasNotifPermission()) Reminders.scheduleAll(this)
 
         if (savedInstanceState == null || web.restoreState(savedInstanceState) == null) {
-            web.loadUrl(START_URL)
+            web.loadUrl(if (isRationale(intent)) PRIVACY_URL else START_URL)
         }
     }
 
@@ -124,6 +137,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         web.onResume()
         billing.refresh()
+        vm.refreshHealth()
         js("window.azimResume && window.azimResume()")
     }
 
@@ -169,6 +183,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        if (isRationale(intent)) web.loadUrl(PRIVACY_URL)
+    }
+
+    /** Health Connect'in "bu uygulama verilerimi neden kullanıyor" ekranı: gizlilik politikasını gösterir. */
+    private fun isRationale(i: Intent?) = i?.action == "androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" ||
+        i?.action == "android.intent.action.VIEW_PERMISSION_USAGE"
+
+    fun requestHealth() {
+        when (vm.hcState) {
+            HcState.NO_PERMISSION -> runCatching { healthPermission.launch(HealthRepo.PERMS) }
+            HcState.NEEDS_UPDATE -> runCatching {
+                startActivity(Intent(Intent.ACTION_VIEW, "market://details?id=com.google.android.apps.healthdata".toUri()))
+            }
+            else -> vm.refreshHealth()
+        }
+    }
+
     fun shareText(text: String) {
         val send = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
@@ -179,6 +212,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val START_URL = "https://appassets.androidplatform.net/assets/www/index.html"
+        private const val PRIVACY_URL = "https://appassets.androidplatform.net/assets/www/privacy.html"
         private val BG = "#0A0908".toColorInt()
     }
 }

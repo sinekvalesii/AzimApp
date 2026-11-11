@@ -1,79 +1,42 @@
-# Google Play mağaza metinleri
+# Google Play mağaza metinleri (sürüm 3.1)
 
-## Türkçe (varsayılan)
-
-**Uygulama adı (en fazla 30 karakter):** AZİM: 66 Günlük Alışkanlık
-
-**Kısa açıklama (en fazla 80 karakter):** Alışkanlıklarını oyuna çevir: görevler, XP, seri ve 66 günlük program.
+## Türkçe
+**Uygulama adı:** AZİM: Sağlık ve Alışkanlık
+**Kısa açıklama:** Sağlığını oyuna çevir: görevler, adım ve nabız takibi, sana göre zorluk.
 
 **Tam açıklama:**
-
 Araştırmalar, yeni bir davranışın otomatikleşmesinin ortalama 66 gün sürdüğünü gösteriyor. AZİM bu 66 günü bir oyuna dönüştürür.
 
+SANA GÖRE AYARLANAN ZORLUK
+Şınav, su, adım, okuma, meditasyon gibi günlük görevlerin performansına göre otomatik büyür ya da küçülür. Zorlandığın hedef iner, kolay gelen yükselir. Nabzın yüksekse artış ertelenir.
+
+HEALTH CONNECT İLE OTOMATİK TAKİP
+Adım sayın ve nabzın Health Connect'ten okunur, adım görevin kendiliğinden ilerler. Sağlık panelinde adımların ile görev başarın yan yana görünür.
+
 HER GÖREV KENDİ SAATİNDE
-Görevlerin saate bağlı: "07:15 · 20 şınav", "21:30 · 20 sayfa oku" gibi. Belirli bir saate bağlanan hedefler daha sık gerçekleşir. AZİM her görevi kendi saatinde hatırlatır.
+"07:15 · 20 şınav" gibi saate bağlı görevler ve her biri için hatırlatma. Vardiyalı çalışanlar için uyanış ve uyku saatine göre ayarlanan günlük bildirimler.
 
 SERİN GÜVENDE
-Tek bir kötü gün 40 günlük emeğini silmez. Standart modda tek kaçırma hakkın var; ayrıca her hafta bir seri koruma hakkı yenilenir. Kendini zorlamak istersen Sert Mod'u aç.
+Tek kaçırma hakkı ve haftalık seri koruma. Kendini zorlamak istersen Sert Mod'u aç.
 
-VARDİYANA UYGUN
-Gündüz, erken kalkan ya da gece vardiyası. Bildirimler uyanış ve uyku saatine göre ayarlanır.
+OYUNLAŞTIRMA
+XP, seviye, sınıf (Savaşçı, Bilge, Muhafız, Avcı, Lider), sezon ligi, antrenman takibi ve ana ekran widget'ı.
 
-ANA EKRAN WIDGET'I
-Uygulamayı açmadan görevlerini gör ve işaretle.
+ÜCRETSİZ
+Tüm görevler, uyarlanabilir zorluk, sağlık takibi, bildirimler ve widget ücretsizdir. Reklam yoktur.
 
-GELİŞİMİNİ GÖR
-Sınıfın (Savaşçı, Bilge, Muhafız, Avcı, Lider), 5 yetenek puanı, seviye, önce-sonra karşılaştırması ve sezon ligi.
+AZİM PLUS (isteğe bağlı, sembolik ücret)
+Ek programlar (Sigarayı bırak, Sınav dönemi, Kilo ver), haftada 3 seri koruma, detaylı analiz ve sağlık-başarı ilişkisi, tema renkleri.
 
-ANTRENMAN TAKİBİ
-İtiş, Çekiş ve Bacak seanslarını sayaçla yap, setleri işaretle.
-
-TAMAMEN DÜZENLENEBİLİR
-Hedefi, birimi, günleri, saati ve zorluğu sen belirle ya da kütüphaneden hazır görev ekle.
-
-AZİM PREMIUM
-• 3 özel program: Sigarayı bırak, Sınav dönemi, Kilo ver
-• Haftada 3 seri koruma
-• 66 günlük harita, alan bazlı oranlar ve kişisel koç notları
-• Tema renkleri
-
-GİZLİLİK ÖNCELİKLİ
-Hesabın ve verilerin yalnızca cihazında saklanır. Reklam yok, internet izni yok. Yedeğini istediğin zaman dışa aktarabilirsin.
-
-Türkçe ve İngilizce.
+AZİM tıbbi bir cihaz değildir; teşhis ya da tedavi amacı taşımaz.
 Yapım: selcukyus
 
 ## English
-
-**App name:** AZIM: 66-Day Habit Builder
-
-**Short description:** Turn habits into quests: XP, streaks and a 66-day program.
+**App name:** AZIM: Health & Habit Quests
+**Short description:** Gamify your health: quests, steps & heart rate, adaptive difficulty.
 
 **Full description:**
+Daily quests (push-ups, water, steps, reading…) that adapt to your performance. Steps and heart rate sync from Health Connect and auto-complete your step quest. Timed quest reminders, streak freezes, XP, levels, classes, seasons, workout tracker and a home screen widget. Everything core is free with no ads. AZIM Plus (low-cost, optional) adds extra programs, more streak freezes, deep analysis and themes. AZIM is not a medical device. Made by selcukyus.
 
-Research suggests a new behavior takes about 66 days on average to become automatic. AZIM turns those 66 days into a game.
-
-EVERY QUEST HAS ITS TIME. "07:15 · 20 push-ups", "21:30 · Read 20 pages". Goals tied to a specific time get done more often, and AZIM reminds you at each one.
-
-YOUR STREAK IS SAFE. One bad day won't erase 40 days of work: Standard mode gives you a one-miss grace, plus a weekly streak freeze. Want it strict? Turn on Hard Mode.
-
-SHIFT-FRIENDLY. Daytime, early riser or night shift: reminders follow your wake and sleep times.
-
-HOME SCREEN WIDGET. See and check off quests without opening the app.
-
-SEE YOUR GROWTH. Your class, 5 attributes, levels, before/after and seasonal leagues.
-
-WORKOUT TRACKER. Push, Pull and Leg sessions with a timer and set tracking.
-
-FULLY EDITABLE. Set target, unit, days, time and difficulty, or add from the library.
-
-AZIM PREMIUM: 3 extra programs (Quit smoking, Exam season, Lose weight), 3 streak freezes per week, deep analysis with coach notes, accent themes.
-
-PRIVACY FIRST. Your account and data stay on your device. No ads, no internet permission. Export a backup anytime.
-
-Made by selcukyus
-
-## Görseller (bu klasörde)
-- icon-512.png: uygulama simgesi, 512×512
-- feature-graphic-1024x500.png: öne çıkan görsel
-- screenshots/tr/ ve screenshots/en/: her dil için 7 telefon ekran görüntüsü, 1080×1920
+**Kategori:** Sağlık ve Fitness
+**Görseller:** icon-512.png, feature-graphic-1024x500.png, screenshots/tr ve screenshots/en (8'er adet, 1080×1920)

@@ -1,115 +1,57 @@
 <p align="center"><img src="play-store/icon-512.png" width="96" alt="AZİM"></p>
+<h1 align="center">AZİM 3.1 · Sağlık ve Alışkanlık</h1>
+<p align="center"><a href="https://github.com/sinekvalesii/AzimApp/actions/workflows/android.yml"><img src="https://github.com/sinekvalesii/AzimApp/actions/workflows/android.yml/badge.svg" alt="build"></a></p>
+<p align="center"><img src="play-store/screenshots/tr/2-today.png" width="170"> <img src="play-store/screenshots/tr/4-growth.png" width="170"> <img src="play-store/screenshots/tr/5-health.png" width="170"> <img src="play-store/screenshots/tr/8-plus.png" width="170"></p>
 
-<h1 align="center">AZİM · 66 Günlük Alışkanlık</h1>
+Yapım: **selcukyus** · Paket: `com.selcuk.azim` · Sürüm 3.1.0 (versionCode 4) · TR/EN
+Web sürümü: https://sinekvalesii.github.io/AzimApp/ · Gizlilik: https://sinekvalesii.github.io/AzimApp/privacy.html
 
-<p align="center">
-<a href="https://github.com/sinekvalesii/AzimApp/actions/workflows/android.yml"><img src="https://github.com/sinekvalesii/AzimApp/actions/workflows/android.yml/badge.svg" alt="Android build"></a>
-</p>
+## Android Studio'da açma
+1. **File > Open** ile bu klasörü seç ve Gradle senkronizasyonunun bitmesini bekle.
+2. ▶ **Run** düğmesine bas. Proje Firebase dosyası olmadan da derlenir; bu durumda hesaplar cihazda tutulur.
 
-<p align="center">
-<img src="play-store/screenshots/tr/2-today.png" width="180"> <img src="play-store/screenshots/tr/3-insight.png" width="180"> <img src="play-store/screenshots/tr/5-plan.png" width="180"> <img src="play-store/screenshots/tr/7-premium.png" width="180">
-</p>
+## Mimari
+Native Kotlin kabuğu ve MVVM. Arayüz (`assets/www/index.html`) WebView içinde çalışır ve web sürümüyle aynıdır.
 
-## Hızlı bağlantılar
-- **Web uygulaması (tarayıcıda hemen kullan, telefona "Ana ekrana ekle" ile kurulabilir):** https://sinekvalesii.github.io/AzimApp/
-- **Gizlilik politikası (Play Console'a girilecek adres):** https://sinekvalesii.github.io/AzimApp/privacy.html
-- **Hazır APK / AAB:** [Actions](https://github.com/sinekvalesii/AzimApp/actions) sekmesi > son başarılı derleme > *Artifacts*. `v*` etiketiyle yayınlanan sürümler [Releases](https://github.com/sinekvalesii/AzimApp/releases) sayfasında.
-- **Mağaza metinleri ve görseller:** [`play-store/`](play-store)
-
-## Web sürümü (GitHub Pages)
-`docs/` klasörü GitHub Pages ile yayınlanıyor: uygulama, gizlilik politikası, PWA manifesti ve çevrimdışı önbellek (`sw.js`).
-- Web ve Android aynı arayüzü kullanır: `docs/index.html` dosyası `app/src/main/assets/www/index.html` ile birebir aynı olmalı. CI bunu kontrol eder; birini değiştirirsen diğerine de kopyala.
-- Web'de veriler tarayıcıda (localStorage) saklanır. Bildirim, widget ve Premium satın alma sadece Android uygulamasında çalışır.
-- Web'de yeni sürüm yayınlarken `docs/sw.js` içindeki `VERSION` değerini artır.
-
-## Otomatik derleme (GitHub Actions)
-Her push'ta `.github/workflows/android.yml` şunları üretir:
-- debug APK (telefona doğrudan kurmak için)
-- release AAB (Play Store'a yüklenecek dosya)
-- release APK
-- lint raporu
-
-**İmzalı release için** reponun *Settings > Secrets and variables > Actions* bölümüne 4 secret ekle:
-
-| Secret | Değer |
+| Katman | Dosya |
 |---|---|
-| `KEYSTORE_BASE64` | `base64 -w0 azim-upload.jks` çıktısı (Windows: `certutil -encode`) |
-| `KEYSTORE_PASSWORD` | keystore şifresi |
-| `KEY_ALIAS` | `upload` |
-| `KEY_PASSWORD` | anahtar şifresi |
+| ViewModel | `MainViewModel.kt`: depolama, sağlık ve kimlik işlemleri; sonuçları arayüze akış olarak iletir |
+| Veri (Room) | `data/Db.kt`: `kv` (uygulama durumu) ve `health` (günlük adım/nabız) tabloları. 2.x verisi otomatik taşınır. |
+| Sağlık | `health/HealthRepo.kt`: Health Connect'ten adım ve nabız okur (salt okunur) |
+| Kimlik | Firebase Authentication (e-posta/şifre, şifre sıfırlama, hesap silme) |
+| Abonelik | `Billing.kt`: Google Play Billing 8 |
+| Bildirim | `Reminders.kt`, `Messages.kt`: uyanış/uyku saatine göre günde 7 bildirim + görev saatleri |
+| Widget | `AzimWidget.kt`: ana ekranda görev işaretleme |
+| Köprü | `AzimBridge.kt`: `window.AzimNative` |
 
-Secret yoksa release dosyaları imzasız üretilir. Bu durumda imzalamayı Android Studio'da yaparsın.
+**Uyarlanabilir zorluk:** Her görevin son 7 kaydında tamamlama oranı %85 ve üzeriyse ve son 3 gün üst üste tamamlandıysa hedef ×1,10 olur. Oran %40 ve altındaysa ×0,85 olur. Değişiklikten sonra hedef en az 3 gün sabit kalır. Son günün ortalama nabzı önceki günlerin ortalamasından %8 yüksekse artış yapılmaz. Çarpan 0,5–2,5 arasında tutulur. Bunun yanında 66 günlük aşamalar (Temel, İnşa, Ustalık) hedefleri kademeli büyütür.
 
-Yeni sürüm yayınlamak için: `app/build.gradle.kts` içindeki `versionCode` değerini artır, sonra `git tag v2.0.1 && git push --tags` çalıştır. İmzalı APK ve AAB Releases sayfasına otomatik eklenir.
+**Sağlık-başarı ilişkisi:** Adım sayısı medyanın üstünde olan günlerle altında olan günlerin görev tamamlama oranları karşılaştırılır (Plus'ta detaylı analiz).
 
-> ⚠️ Repo herkese açık. `.jks` dosyasını ve `keystore.properties` dosyasını asla commit'leme; `.gitignore` bunları zaten dışarıda tutuyor.
+## Firebase girişi (ücretsiz Spark planı)
+1. https://console.firebase.google.com adresinde proje oluştur, Android uygulaması ekle ve paket adı olarak `com.selcuk.azim` gir.
+2. İndirdiğin `google-services.json` dosyasını `app/` klasörüne koy. Bu dosya `.gitignore` içinde, repoya yüklenmez.
+3. **Authentication > Sign-in method** bölümünde **E-posta/Şifre**'yi aç ve yeniden derle.
 
+## Abonelik: AZİM Plus (düşük ücretli)
+Ücretsiz: tüm görevler, uyarlanabilir zorluk, sağlık takibi, bildirimler, widget, antrenman, sezon.
+Plus: 3 ek program, haftada 3 seri koruma, detaylı analiz ve sağlık-başarı ilişkisi, tema renkleri. Ödeme ekranı yalnızca 8. günde bir kez kendiliğinden açılır.
 
-Yapım: **selcukyus** · Paket adı: `com.selcuk.azim` · Sürüm 2.0.0 (versionCode 2) · Türkçe + İngilizce
+Play Console > Para kazanma > Abonelikler bölümünde iki ürün oluştur:
+- `azim_plus_monthly` (öneri: ₺19,99/ay)
+- `azim_plus_yearly` (öneri: ₺149,99/yıl)
 
-## 2.0'da yenilikler
-| Özellik | Açıklama |
-|---|---|
-| Yeni tasarım | "Bugün" ekranı: gün kartı, ilerleme halkası, haftalık şerit, "Sıradaki" görev, Sabah/Öğleden sonra/Akşam/Gün boyu zaman çizelgesi |
-| Seri koruma + tek kaçırma hakkı | Standart mod: tek kaçırılan gün seriyi bozmaz, iki gün üst üste kaçırırsan sıfırlanır. Haftada 1 seri koruma hakkı (Premium'da 3). Sert Mod'da ikisi de yok. |
-| Görev saatleri | Her görevin kendi saati var ve o saatte ayrıca bildirim gelir (uygulama niyeti) |
-| Vardiya / günlük düzen | Gündüz, Erken kalkan ve Gece vardiyası hazır düzenleri ile özel uyanış/uyku/antrenman saatleri. 7 genel bildirim bu saatlere göre kayar. |
-| Ana ekran widget'ı | Gün, seri, ilerleme ve sıradaki 3 görev. Görevler widget'tan işaretlenebilir. |
-| Düzenlenebilir görevler | Ad, hedef, birim, adım, günler, saat, alan, zorluk, hatırlatıcı. Ayrıca kütüphane ve görev duraklatma. |
-| Premium (Google Play Billing 8) | 3 program (Sigarayı bırak, Sınav dönemi, Kilo ver), haftada 3 seri koruma, detaylı analiz ve koç notu, 4 tema rengi. Ödeme ekranı 8. günde bir kez gösterilir. |
-| Yedekleme | Profil > Veriler > dışa ve içe aktar (metin olarak) |
-| İngilizce | Profil > Dil. Bildirimler de seçilen dile geçer. |
+Uygulama fiyatı Play'den okur; sunucu gerekmez. Lisans testi için kendi Gmail adresini ekle.
 
-## 1. Android Studio'da açma
-1. Zip'i çıkar. Android Studio > **Open** > `Azim` klasörünü seç.
-2. Gradle senkronizasyonu gerekli parçaları indirir (AGP 8.11.1, Kotlin 2.2.0, SDK 36, Billing 8.0.0).
-   - "SDK Platform 36 eksik" uyarısında **Install** bağlantısına tıkla. AGP yükseltme önerisi gelirse **Upgrade Assistant** ile yükseltebilirsin.
-3. Telefonu bağla ya da bir emülatör seç ve ▶ **Run** düğmesine bas. Debug sürüm `com.selcuk.azim.debug` adıyla kurulur.
-4. Widget'ı denemek için ana ekrana uzun bas > Widget'lar > AZİM.
+## Maliyet
+Firebase Spark, Health Connect, GitHub Pages ve GitHub Actions ücretsiz. Tek ödeme Google Play geliştirici hesabı: 25 $, tek sefer.
 
-
-## 2. Dosyalar
-| Dosya | Görevi |
-|---|---|
-| `assets/www/index.html` | Arayüzün tamamı (TR/EN). Tarayıcıda da açılır; orada "önizleme" moduyla çalışır. |
-| `MainActivity.kt` | Tam ekran WebView, sistem çubukları, klavye, geri tuşu, bildirim izni |
-| `AzimBridge.kt` | Arayüz ile Android arasındaki köprü: veri, bildirim planı, widget, satın alma, paylaşım |
-| `Reminders.kt` | Bildirim planını kurar; görev bittiyse o görevin bildirimini atlar; yeniden başlatmada hepsini tekrar kurar |
-| `Messages.kt` | TR/EN bildirim metinleri: motivasyon, su ve antrenman kuralları |
-| `AzimWidget.kt` + `res/layout/widget_azim.xml` | Ana ekran widget'ı |
-| `Billing.kt` | Google Play abonelikleri |
-
-## 3. Premium kurulumu (Play Console)
-1. Uygulamayı en az bir test kanalına yükle. Ürünler, uygulama Play'e yüklenmeden oluşturulamaz.
-2. **Para kazanma > Abonelikler** bölümünde iki abonelik oluştur. ID'ler birebir aynı olmalı:
-   - `azim_premium_monthly`: aylık temel plan (öneri: ₺59,99)
-   - `azim_premium_yearly`: yıllık temel plan (öneri: ₺399,99). İstersen 7 günlük ücretsiz deneme teklifi ekle.
-3. **Ayarlar > Lisans testi** bölümüne kendi Gmail adresini ekle. Böylece gerçek ödeme yapmadan test satın alması yapabilirsin.
-4. Fiyatı değiştirirsen uygulamadaki fiyat otomatik güncellenir; fiyat Play'den okunur.
-
-> Satın alma doğrulaması cihazda yapılıyor. Ölçek büyüdüğünde sahteciliğe karşı sunucu tarafı doğrulama (Google Play Developer API) eklenmeli.
-
-## 4. Yayın paketi (AAB)
-1. **Build > Generate Signed App Bundle / APK > Android App Bundle** ile yükleme anahtarı oluştur. `.jks` dosyasını ve şifresini güvenli yere yedekle.
-2. **release** seç. Çıktı: `app/release/app-release.aab`.
-3. Her güncellemede `versionCode` değerini 1 artır.
-
-## 5. Play Console formları
-- **Veri güvenliği:** Uygulama veri toplamıyor ve paylaşmıyor (internet izni yok; veriler cihazda). Satın alma işlemini Google Play yürütür. Formu doldururken Google'ın güncel rehberine bak.
-- **Sağlık uygulamaları beyanı:** Fitness ve sağlıklı yaşam.
-- **Hedef kitle:** 18+ (ya da 13+). Çocuklara yönelik değil.
-- **Reklam:** Yok.
-- **Uygulama erişimi:** Özel giriş bilgisi gerekmiyor; hesap cihazda oluşturuluyor.
-- **Mağaza girişi:** `play-store/magaza-metinleri.md` dosyasında TR ve EN metinler, `screenshots/tr` ve `screenshots/en` klasörlerinde görseller var. EN için Play Console'da "Çeviri ekle > İngilizce" ile ayrı mağaza girişi oluştur.
-- **Gizlilik politikası:** https://sinekvalesii.github.io/AzimApp/privacy.html (TR + EN, `docs/` klasöründen GitHub Pages ile yayınlanıyor)
-- **Kapalı test:** Kişisel geliştirici hesaplarında üretime çıkmadan önce 12 test kullanıcısıyla 14 gün kapalı test şartı var. Güncel koşulu Play Console panosundan kontrol et.
-
-## 6. Bakım
-- Proje compileSdk/targetSdk 36 ile derleniyor (Google Play'in güncel hedef API şartını karşılıyor). AndroidX kütüphanelerinin daha yeni sürümleri compileSdk 37 ve AGP 9 gerektiriyor. Play, hedef API şartını yükselttiğinde (genelde her yıl Ağustos) Android Studio > **Tools > AGP Upgrade Assistant** ile AGP'yi, ardından `compileSdk`/`targetSdk` ve kütüphaneleri birlikte yükselt.
-- Billing Library 8.0.0 kullanılıyor. Google'ın kullanım dışı bırakma takvimini Play Console'dan takip et.
-
-## 7. Bilinen sınırlar / sonraki adımlar
-- **Bulut hesabı, gerçek lig, arkadaş serisi ve çökme raporlama (Crashlytics)** senin Firebase projeni gerektiriyor. Firebase Console'da proje oluşturup `google-services.json` dosyasını gönderdiğinde eklenebilir. O zamana kadar Sezon ekranındaki sıralama "örnek lig" olarak etiketli.
-- Bildirimler birkaç dakika sapabilir; Play, tam zamanlı alarm iznini yalnızca alarm uygulamalarına veriyor.
-- Pil tasarrufu agresif olan telefonlarda (Xiaomi, Huawei, Oppo): Ayarlar > Pil > AZİM > **Kısıtlama yok**.
-- Widget'tan işaretlenen görevin XP'si, uygulama bir sonraki açılışta işlenir.
+## Yayın
+- İmzalı AAB: **Build > Generate Signed App Bundle**. Alternatif olarak repo Secrets'a `KEYSTORE_BASE64`, `KEYSTORE_PASSWORD`, `KEY_ALIAS` ve `KEY_PASSWORD` ekle; CI imzalı AAB üretir (`git tag v3.1.0 && git push --tags`).
+- Play Console formları:
+  - **Health Connect izin beyanı:** READ_STEPS ve READ_HEART_RATE, amaç "fitness ve sağlıklı yaşam".
+  - **Sağlık uygulamaları beyanı.**
+  - **Veri güvenliği:** E-posta toplanıyor (hesap yönetimi, Firebase). Sağlık verisi cihazda işleniyor, paylaşılmıyor.
+  - **Hesap silme adresi:** gizlilik sayfası.
+- Kişisel geliştirici hesabında üretime çıkmadan önce kapalı test şartı var (12 test kullanıcısı, 14 gün). Güncel koşulu Play Console'dan kontrol et.
+- Arayüzü değiştirince `docs/index.html` ve `app/src/main/assets/www/index.html` dosyaları aynı kalmalı; CI bunu kontrol eder.
