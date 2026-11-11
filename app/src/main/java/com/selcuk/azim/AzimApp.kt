@@ -13,4 +13,5 @@ class AzimApp : Application() {
     val repo by lazy { Repo(db) }
     val health by lazy { HealthRepo(this) }
     val auth by lazy { AuthRepo(this) }
+    val billing by lazy { com.selcuk.azim.billing.Billing(this) }
 }

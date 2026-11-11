@@ -21,7 +21,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
@@ -68,7 +67,9 @@ import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.health.connect.client.PermissionController
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import android.app.Activity
 import com.selcuk.azim.BuildConfig
+import com.selcuk.azim.billing.Billing
 import com.selcuk.azim.data.done
 import com.selcuk.azim.health.HcState
 import com.selcuk.azim.health.HealthRepo
@@ -169,7 +170,7 @@ private fun AuthScreen(vm: MainViewModel) {
         }
         OutlinedButton({ vm.auth.guest() }, Modifier.fillMaxWidth()) { Text("Misafir olarak devam et") }
         msg?.let { Text(it, Modifier.padding(top = 12.dp), color = MaterialTheme.colorScheme.error) }
-        TextButton({ }) { Text("Kayıt olarak Gizlilik Politikası'nı kabul edersin.", color = Muted) }
+        Text("Kayıt olarak Gizlilik Politikası'nı kabul edersin.", Modifier.padding(top = 12.dp), color = Muted, style = MaterialTheme.typography.bodySmall)
     }
 }
 
@@ -304,6 +305,12 @@ private fun HealthTab(s: UiState, vm: MainViewModel) {
             }
         }
     }
+    val premium by vm.billing.premium.collectAsStateWithLifecycle()
+    if (!premium) {
+        Section("Detaylı analiz")
+        PlusCard(vm, "7 günlük adım ve görev grafiği ile sağlık-başarı ilişkisi analizi AZİM Plus'ta.")
+        return
+    }
     Section("Son 7 gün: adım (çubuk) ve görev tamamlama (nokta)")
     Card(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(14.dp)) {
@@ -329,6 +336,27 @@ private fun HealthTab(s: UiState, vm: MainViewModel) {
     )
 }
 
+/** Abonelik kartı: fiyatlar Google Play'den okunur; ürünler henüz yoksa butonlar bilgi mesajı gösterir. */
+@Composable
+private fun PlusCard(vm: MainViewModel, text: String) {
+    val ctx = LocalContext.current
+    val prices by vm.billing.prices.collectAsStateWithLifecycle()
+    fun buy(id: String) {
+        if ((ctx as? Activity)?.let { vm.billing.buy(it, id) } != true) vm.msg.value = "Mağaza bağlantısı şu an kurulamadı. Biraz sonra tekrar dene."
+    }
+    Card(Modifier.fillMaxWidth()) {
+        Column(Modifier.padding(16.dp)) {
+            Text("AZİM Plus", color = Orange, fontWeight = FontWeight.Black)
+            Text(text, Modifier.padding(vertical = 8.dp), color = Muted)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedButton({ buy(Billing.MONTHLY) }, Modifier.weight(1f)) { Text("Aylık ${prices[Billing.MONTHLY] ?: ""}") }
+                Button({ buy(Billing.YEARLY) }, Modifier.weight(1f)) { Text("Yıllık ${prices[Billing.YEARLY] ?: ""}") }
+            }
+            Text("Google Play üzerinden, istediğin zaman iptal edebilirsin.", Modifier.padding(top = 6.dp), color = Muted, style = MaterialTheme.typography.bodySmall)
+        }
+    }
+}
+
 @Composable
 private fun ProfileTab(vm: MainViewModel) {
     val ctx = LocalContext.current
@@ -342,10 +370,17 @@ private fun ProfileTab(vm: MainViewModel) {
         }
     }
     Spacer(Modifier.height(12.dp))
+    val premium by vm.billing.premium.collectAsStateWithLifecycle()
+    if (premium) {
+        Card(Modifier.fillMaxWidth()) { Text("AZİM Plus aktif. Teşekkürler!", Modifier.padding(16.dp), color = Orange, fontWeight = FontWeight.Bold) }
+        TextButton({
+            ctx.startActivity(Intent(Intent.ACTION_VIEW, "https://play.google.com/store/account/subscriptions?package=${ctx.packageName}".toUri()))
+        }) { Text("Aboneliği yönet") }
+    } else PlusCard(vm, "Tüm görevler, uyarlanabilir zorluk ve sağlık özeti ücretsiz. Plus, detaylı analizi açar ve geliştirmeyi destekler.")
+    Spacer(Modifier.height(12.dp))
     OutlinedButton({ vm.auth.signOut() }, Modifier.fillMaxWidth()) { Text("Çıkış yap") }
     OutlinedButton({ ctx.startActivity(Intent(Intent.ACTION_VIEW, PRIVACY_URL.toUri())) }, Modifier.fillMaxWidth()) { Text("Gizlilik politikası") }
     TextButton({ confirm = true }) { Text("Hesabı ve tüm verileri sil", color = MaterialTheme.colorScheme.error) }
-    Spacer(Modifier.width(1.dp))
     Text("AZİM ${BuildConfig.VERSION_NAME} · Yapım: selcukyus", color = Muted, style = MaterialTheme.typography.bodySmall)
     if (confirm) AlertDialog(
         onDismissRequest = { confirm = false },

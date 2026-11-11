@@ -38,6 +38,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     private val a = app as AzimApp
     val auth = a.auth
     val session = auth.session
+    val billing = a.billing
     val msg = MutableStateFlow<String?>(null)
     private val today = MutableStateFlow(LocalDate.now().toString())
     private val hc = MutableStateFlow(HcState.UNAVAILABLE)
@@ -87,6 +88,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun refresh() = viewModelScope.launch {
+        billing.refresh()
         val t = LocalDate.now().toString()
         a.repo.ensureToday(t)
         today.value = t
