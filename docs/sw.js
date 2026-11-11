@@ -1,5 +1,5 @@
 // AZİM web sürümü: çevrimdışı çalışma için önbellek. Yeni sürüm yayınlarken VERSION değerini artır.
-const VERSION = 'azim-v2.0.0';
+const VERSION = 'azim-v3.1.0';
 const FILES = ['./', 'index.html', 'privacy.html', 'manifest.webmanifest', 'fonts/fonts.css',
   'fonts/archivo-latin-standard-normal.woff2', 'fonts/archivo-latin-ext-standard-normal.woff2',
   'fonts/jetbrains-mono-latin-500-normal.woff2', 'fonts/jetbrains-mono-latin-700-normal.woff2',

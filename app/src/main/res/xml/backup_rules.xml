@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <full-backup-content>
     <include domain="database" path="azim.db" />
+        <include domain="sharedpref" path="azim_reminders.xml" />
+        <include domain="sharedpref" path="azim_billing.xml" />
 </full-backup-content>

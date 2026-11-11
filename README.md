@@ -1,43 +1,57 @@
-# AZİM 3.0 · Sağlık ve Alışkanlık (Android)
+<p align="center"><img src="play-store/icon-512.png" width="96" alt="AZİM"></p>
+<h1 align="center">AZİM 3.1 · Sağlık ve Alışkanlık</h1>
+<p align="center"><a href="https://github.com/sinekvalesii/AzimApp/actions/workflows/android.yml"><img src="https://github.com/sinekvalesii/AzimApp/actions/workflows/android.yml/badge.svg" alt="build"></a></p>
+<p align="center"><img src="play-store/screenshots/tr/2-today.png" width="170"> <img src="play-store/screenshots/tr/4-growth.png" width="170"> <img src="play-store/screenshots/tr/5-health.png" width="170"> <img src="play-store/screenshots/tr/8-plus.png" width="170"></p>
 
-Yapım: **selcukyus** · Paket: `com.selcuk.azim` · Kotlin, Jetpack Compose, MVVM, Room, Firebase Authentication, Health Connect, Play Billing
+Yapım: **selcukyus** · Paket: `com.selcuk.azim` · Sürüm 3.1.0 (versionCode 4) · TR/EN
+Web sürümü: https://sinekvalesii.github.io/AzimApp/ · Gizlilik: https://sinekvalesii.github.io/AzimApp/privacy.html
 
 ## Android Studio'da açma
-1. **File > Open** ile bu klasörü aç, Gradle senkronizasyonunu bekle.
-2. ▶ **Run**. Proje Firebase dosyası olmadan da derlenir ve **misafir moduyla** çalışır.
-
-## Firebase girişini açma (ücretsiz Spark planı)
-1. https://console.firebase.google.com > proje oluştur > Android uygulaması ekle, paket adı `com.selcuk.azim`.
-2. İndirdiğin `google-services.json` dosyasını `app/` klasörüne koy. Bu dosya `.gitignore` içinde; repoya yüklenmez.
-3. Firebase Console > Authentication > Sign-in method > **E-posta/Şifre**'yi etkinleştir.
-4. Yeniden derle. Giriş, kayıt, şifre sıfırlama ve hesap silme ekranları kendiliğinden açılır.
+1. **File > Open** ile bu klasörü seç ve Gradle senkronizasyonunun bitmesini bekle.
+2. ▶ **Run** düğmesine bas. Proje Firebase dosyası olmadan da derlenir; bu durumda hesaplar cihazda tutulur.
 
 ## Mimari
+Native Kotlin kabuğu ve MVVM. Arayüz (`assets/www/index.html`) WebView içinde çalışır ve web sürümüyle aynıdır.
+
 | Katman | Dosya |
 |---|---|
-| Veri (Room) | `data/Db.kt`: Quest, DayLog, HealthDay tabloları · `data/Repo.kt`: depo + `Difficulty` algoritması |
+| ViewModel | `MainViewModel.kt`: depolama, sağlık ve kimlik işlemleri; sonuçları arayüze akış olarak iletir |
+| Veri (Room) | `data/Db.kt`: `kv` (uygulama durumu) ve `health` (günlük adım/nabız) tabloları. 2.x verisi otomatik taşınır. |
 | Sağlık | `health/HealthRepo.kt`: Health Connect'ten adım ve nabız okur (salt okunur) |
-| Kimlik | `auth/AuthRepo.kt`: Firebase Authentication + misafir modu |
-| Abonelik | `billing/Billing.kt`: Google Play abonelikleri |
-| ViewModel | `ui/MainViewModel.kt`: tek `UiState` akışı |
-| Arayüz | `ui/MainActivity.kt`: Compose (Bugün, Sağlık, Profil) · `ui/Reminder.kt`: akşam hatırlatıcısı |
+| Kimlik | Firebase Authentication (e-posta/şifre, şifre sıfırlama, hesap silme) |
+| Abonelik | `Billing.kt`: Google Play Billing 8 |
+| Bildirim | `Reminders.kt`, `Messages.kt`: uyanış/uyku saatine göre günde 7 bildirim + görev saatleri |
+| Widget | `AzimWidget.kt`: ana ekranda görev işaretleme |
+| Köprü | `AzimBridge.kt`: `window.AzimNative` |
 
-**Zorluk algoritması:** Son 7 günde tamamlama oranı %85 ve üzeriyse ve son 3 gün üst üste tamamlandıysa hedef yaklaşık %10 artar; oran %40 ve altındaysa yaklaşık %15 azalır. Hedef, değiştikten sonra en az 3 gün sabit kalır. Ortalama nabız kişisel ortalamanın %8 üzerindeyse artış ertelenir.
+**Uyarlanabilir zorluk:** Her görevin son 7 kaydında tamamlama oranı %85 ve üzeriyse ve son 3 gün üst üste tamamlandıysa hedef ×1,10 olur. Oran %40 ve altındaysa ×0,85 olur. Değişiklikten sonra hedef en az 3 gün sabit kalır. Son günün ortalama nabzı önceki günlerin ortalamasından %8 yüksekse artış yapılmaz. Çarpan 0,5–2,5 arasında tutulur. Bunun yanında 66 günlük aşamalar (Temel, İnşa, Ustalık) hedefleri kademeli büyütür.
 
-## Abonelik (AZİM Plus)
-Ücretsiz: tüm görevler, uyarlanabilir zorluk, seri, seviye, günlük adım ve nabız. Plus: 7 günlük grafik ve sağlık-başarı analizi.
-Play Console > Para kazanma > Abonelikler bölümünde iki ürün oluştur (kimlikler birebir aynı olmalı):
+**Sağlık-başarı ilişkisi:** Adım sayısı medyanın üstünde olan günlerle altında olan günlerin görev tamamlama oranları karşılaştırılır (Plus'ta detaylı analiz).
+
+## Firebase girişi (ücretsiz Spark planı)
+1. https://console.firebase.google.com adresinde proje oluştur, Android uygulaması ekle ve paket adı olarak `com.selcuk.azim` gir.
+2. İndirdiğin `google-services.json` dosyasını `app/` klasörüne koy. Bu dosya `.gitignore` içinde, repoya yüklenmez.
+3. **Authentication > Sign-in method** bölümünde **E-posta/Şifre**'yi aç ve yeniden derle.
+
+## Abonelik: AZİM Plus (düşük ücretli)
+Ücretsiz: tüm görevler, uyarlanabilir zorluk, sağlık takibi, bildirimler, widget, antrenman, sezon.
+Plus: 3 ek program, haftada 3 seri koruma, detaylı analiz ve sağlık-başarı ilişkisi, tema renkleri. Ödeme ekranı yalnızca 8. günde bir kez kendiliğinden açılır.
+
+Play Console > Para kazanma > Abonelikler bölümünde iki ürün oluştur:
 - `azim_plus_monthly` (öneri: ₺19,99/ay)
 - `azim_plus_yearly` (öneri: ₺149,99/yıl)
 
-Fiyatı Play Console'dan istediğin zaman değiştirebilirsin; uygulama fiyatı oradan okur. Sunucu gerekmez.
+Uygulama fiyatı Play'den okur; sunucu gerekmez. Lisans testi için kendi Gmail adresini ekle.
 
 ## Maliyet
-Firebase Authentication (Spark planı), Health Connect, GitHub Pages ve GitHub Actions ücretsiz. Tek zorunlu ödeme Google Play geliştirici hesabı (25 $, tek sefer). Abonelik satışlarından Google komisyon keser.
+Firebase Spark, Health Connect, GitHub Pages ve GitHub Actions ücretsiz. Tek ödeme Google Play geliştirici hesabı: 25 $, tek sefer.
 
-## Play Console'da dikkat edilecekler
-- **Sağlık uygulamaları beyanı** ve **Health Connect izin beyanı** formlarını doldur: READ_STEPS ve READ_HEART_RATE; amaç "fitness ve sağlıklı yaşam".
-- **Veri güvenliği formu:** e-posta adresi (hesap yönetimi, Firebase) toplanıyor; sağlık verisi cihazda işleniyor. Formu Google'ın güncel rehberine göre doldur.
-- **Gizlilik politikası ve hesap silme adresi:** https://sinekvalesii.github.io/AzimApp/privacy.html
-- İmzalı AAB: **Build > Generate Signed App Bundle**. Ayrıntı için `keystore.properties.example` dosyasına bak.
-- `docs/` klasöründeki web sayfası eski 2.0 web sürümüdür; native uygulamadan bağımsızdır.
+## Yayın
+- İmzalı AAB: **Build > Generate Signed App Bundle**. Alternatif olarak repo Secrets'a `KEYSTORE_BASE64`, `KEYSTORE_PASSWORD`, `KEY_ALIAS` ve `KEY_PASSWORD` ekle; CI imzalı AAB üretir (`git tag v3.1.0 && git push --tags`).
+- Play Console formları:
+  - **Health Connect izin beyanı:** READ_STEPS ve READ_HEART_RATE, amaç "fitness ve sağlıklı yaşam".
+  - **Sağlık uygulamaları beyanı.**
+  - **Veri güvenliği:** E-posta toplanıyor (hesap yönetimi, Firebase). Sağlık verisi cihazda işleniyor, paylaşılmıyor.
+  - **Hesap silme adresi:** gizlilik sayfası.
+- Kişisel geliştirici hesabında üretime çıkmadan önce kapalı test şartı var (12 test kullanıcısı, 14 gün). Güncel koşulu Play Console'dan kontrol et.
+- Arayüzü değiştirince `docs/index.html` ve `app/src/main/assets/www/index.html` dosyaları aynı kalmalı; CI bunu kontrol eder.
